@@ -1,0 +1,67 @@
+\documentclass[12pt]{article}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    allcolors=blue
+    }
+
+\usepackage{graphicx}
+\usepackage[version=4]{mhchem}
+\usepackage{subfig}
+\usepackage{pgfgantt}
+\usepackage{pdflscape}
+\usepackage{afterpage}
+\usepackage{geometry}
+\usepackage{gensymb}
+\usepackage{matlab-prettifier}
+\usepackage{enumitem}
+\usepackage{url}
+
+\usepackage[english]{babel}
+\addto\captionsenglish{% Replace "english" with the language you use
+  \renewcommand{\contentsname}%
+    {Table of Contents}%
+}
+\usepackage[nottoc,numbib]{tocbibind}
+
+\widowpenalties 1 10000
+\raggedbottom
+
+\usepackage{tocbibind}
+
+\title{Aluminium-Water Combustion for Zero Carbon Marine Shipping: Masters Proposal}
+
+\author{Md Nadim Ahmed}
+
+\begin{document}
+
+\maketitle
+
+\begin{figure}[h!]
+\centering
+  \includegraphics[width=\linewidth]{./images/Al-H20 for maritime.png}
+  \caption{Aluminium powder as maritime shipping fuel (Energy Life-cycle). Adapted from \cite{Al-H20-economics}}
+  \label{fig:Al-H2O-maritime}
+\end{figure}
+
+\break
+
+\section*{Abstract}
+
+\break
+
+\tableofcontents
+
+\break
+
+\listoftables
+
+\listoffigures
+
+\break
+
+\bibliography{references} 
+\bibliographystyle{ieeetr}
+
+\end{document}
