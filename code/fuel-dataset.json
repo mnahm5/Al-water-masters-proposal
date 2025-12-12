@@ -1,0 +1,217 @@
+{
+  "fuels": {
+    "HFO": {
+      "name": "Heavy Fuel Oil",
+      "density": 0.98,
+      "mass_energy_density": 11.6,
+      "engine_efficiency": 0.5,
+      "source": "https://www.engineeringtoolbox.com/co2-emission-fuels-d_1085.html"
+    },
+    "Coal": {
+      "name": "Coal",
+      "density": 1.3,
+      "mass_energy_density": 6.67,
+      "engine_efficiency": 0.25,
+      "source": "https://www.engineeringtoolbox.com/co2-emission-fuels-d_1085.html",
+      "notes": "Density calculated as average of 1100-1500 kg/m³"
+    },
+    "H2_Gas": {
+      "name": "H2_Gas",
+      "density": 0.00009,
+      "mass_energy_density": 39.44,
+      "engine_efficiency": 0.5,
+      "notes": "Gaseous hydrogen at standard conditions"
+    },
+    "Pressure_Tank_H2": {
+      "name": "Pressure_Tank_H2",
+      "density": 0.027,
+      "mass_energy_density": 1.58,
+      "engine_efficiency": 0.5,
+      "notes": "Hydrogen in pressure tank, effective energy density is 4% of H2 energy density"
+    },
+    "NH3": {
+      "name": "Liquid_NH3",
+      "density": 0.696,
+      "mass_energy_density": 6.94,
+      "engine_efficiency": 0.5,
+      "notes": "Liquid ammonia, energy density is 17.6% of H2 energy density"
+    },
+    "CNG": {
+      "name": "CNG",
+      "density": 0.16,
+      "mass_energy_density": 14.89,
+      "engine_efficiency": 0.5
+    },
+    "LNG": {
+      "name": "LNG",
+      "density": 0.5,
+      "mass_energy_density": 14.89,
+      "engine_efficiency": 0.5
+    },
+    "Methanol": {
+      "name": "Methanol",
+      "density": 0.791,
+      "mass_energy_density": 5.5,
+      "engine_efficiency": 0.5
+    },
+    "Fe_ref": {
+      "name": "Iron (ref)",
+      "density": 7.9,
+      "mass_energy_density": 2.05,
+      "engine_efficiency": 0.4,
+      "notes": "Iron fuel with no by-products"
+    },
+    "Fe3O4": {
+      "name": "Fe3O4",
+      "density": 5.15,
+      "mass_energy_density": 1.49,
+      "engine_efficiency": 0.4,
+      "notes": "Iron fuel with Fe3O4 as by-product, energy density is Fe_ref / 1.38"
+    },
+    "Al_ref": {
+      "name": "Aluminium (ref)",
+      "density": 2.7,
+      "mass_energy_density": 8.63,
+      "engine_efficiency": 0.4,
+      "notes": "Aluminium fuel with no by-products"
+    },
+    "AlOOH": {
+      "name": "AlOOH",
+      "density": 3.03,
+      "mass_energy_density": 3.89,
+      "engine_efficiency": 0.4,
+      "notes": "Aluminium fuel with AlOOH as by-product, energy density is Al_ref / 2.22"
+    },
+    "Al2O3": {
+      "name": "Al2O3",
+      "density": 3.97,
+      "mass_energy_density": 4.57,
+      "engine_efficiency": 0.4,
+      "notes": "Aluminium fuel with Al2O3 as by-product, energy density is Al_ref / 1.89"
+    },
+    "Mg_ref": {
+      "name": "Magnesium (ref)",
+      "density": 1.7,
+      "mass_energy_density": 6.88,
+      "engine_efficiency": 0.4,
+      "notes": "Magnesium fuel with no by-products"
+    },
+    "MgO": {
+      "name": "MgO",
+      "density": 3.58,
+      "mass_energy_density": 4.12,
+      "engine_efficiency": 0.4,
+      "notes": "Magnesium fuel with MgO as by-product, energy density is Mg_ref / 1.67"
+    },
+    "B_ref": {
+      "name": "Boron (ref)",
+      "density": 2.48,
+      "mass_energy_density": 17.702,
+      "engine_efficiency": 0.4,
+      "notes": "Boron fuel with no by-products"
+    },
+    "B2O3": {
+      "name": "B2O3",
+      "density": 2.56,
+      "mass_energy_density": 5.56,
+      "engine_efficiency": 0.4,
+      "notes": "Boron fuel with B2O3 as by-product, energy density is B_ref / 3.1818"
+    },
+    "Si_ref": {
+      "name": "Si (ref)",
+      "density": 2.33,
+      "mass_energy_density": 9.01,
+      "engine_efficiency": 0.4,
+      "notes": "Silicon fuel with no by-products",
+      "source": "doi:10.1016/j.energy.2005.12.001"
+    },
+    "SiO2": {
+      "name": "SiO2",
+      "density": 2.65,
+      "mass_energy_density": 4.21,
+      "engine_efficiency": 0.4,
+      "notes": "Silicon fuel with SiO2 as by-product, energy density is Si_ref / 2.14"
+    },
+    "MgH2": {
+      "name": "MgH2",
+      "density": 1.46,
+      "mass_energy_density": 3.0,
+      "engine_efficiency": 0.5,
+      "notes": "Metal hydride, energy density is 7.6% of H2_Gas",
+      "source": "https://next-gen.materialsproject.org/materials/mp-23710?formula=MgH2&has_props=dos"
+    },
+    "AlH3": {
+      "name": "AlH3",
+      "density": 1.52,
+      "mass_energy_density": 3.98,
+      "engine_efficiency": 0.5,
+      "notes": "Metal hydride, energy density is 10.1% of H2_Gas",
+      "source": "10.17188/1199814"
+    },
+    "LiBH4": {
+      "name": "LiBH4",
+      "density": 0.72,
+      "mass_energy_density": 7.3,
+      "engine_efficiency": 0.5,
+      "notes": "Metal hydride, energy density is 18.5% of H2_Gas",
+      "source": "https://next-gen.materialsproject.org/materials/mp-30209?formula=LiBH4&has_props=dos"
+    },
+    "NaAlH4": {
+      "name": "NaAlH4",
+      "density": 1.34,
+      "mass_energy_density": 2.96,
+      "engine_efficiency": 0.5,
+      "notes": "Metal hydride, energy density is 7.5% of H2_Gas",
+      "source": "https://next-gen.materialsproject.org/materials/mp-23704?formula=NaAlH4&has_props=dos#properties"
+    },
+    "MgH2_MgO": {
+      "name": "MgH2->MgO",
+      "density": 3.58,
+      "mass_energy_density": 6.0754,
+      "engine_efficiency": 0.4,
+      "notes": "Metal hydride combustion with MgO as by-product"
+    },
+    "AlH3_AlOOH": {
+      "name": "AlH3->AlOOH",
+      "density": 3.03,
+      "mass_energy_density": 5.8737,
+      "engine_efficiency": 0.4,
+      "notes": "Metal hydride combustion with AlOOH as by-product"
+    },
+    "AlH3_Al2O3": {
+      "name": "AlH3->Al2O3",
+      "density": 3.97,
+      "mass_energy_density": 6.9102,
+      "engine_efficiency": 0.4,
+      "notes": "Metal hydride combustion with Al2O3 as by-product"
+    },
+    "Zn_ref": {
+      "name": "Zinc (ref)",
+      "density": 7.14,
+      "mass_energy_density": 1.48,
+      "engine_efficiency": 0.4,
+      "notes": "Zinc fuel with no by-products"
+    },
+    "ZnO": {
+      "name": "ZnO",
+      "density": 5.61,
+      "mass_energy_density": 0.4748,
+      "engine_efficiency": 0.4,
+      "notes": "Zinc fuel with ZnO as by-product, energy density is Zn_ref / 1.2462"
+    }
+  },
+  "metadata": {
+    "description": "Fuel properties for shipping analysis",
+    "units": {
+      "density": "kg/l",
+      "mass_energy_density": "kWh/kg",
+      "engine_efficiency": "dimensionless (0-1)"
+    },
+    "notes": [
+      "Effective mass energy density = mass_energy_density × engine_efficiency",
+      "Effective volumetric energy density = effective_mass_energy_density × density",
+      "Metal fuel energy densities from https://www.vibgyorpublishers.org/content/ijmmp/ijmmp-5-056-table2.html",
+      "Metal densities from PubChem for individual chemicals"
+    ]
+  }
+}
