@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 import json
 import matplotlib.pyplot as plt  # pyright: ignore[reportMissingImports]
-import numpy as np  # pyright: ignore[reportMissingImports]
 from adjustText import adjust_text  # pyright: ignore[reportMissingImports]
 
 # Load the JSON file
