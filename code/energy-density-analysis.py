@@ -16,11 +16,13 @@ fuel_names = []
 mass_energy_densities = []
 volumetric_energy_densities = []
 
+categories = []
+
 for fuel_key, fuel_data in fuels.items():
     name = fuel_data['name']
 
     # Skip Coal, H2_Gas, and fuels with metal oxide in name
-    if name == "Coal" or name == "H2_Gas":
+    if name == "Coal" or name == "H2_Gas" or name == "CNG":
         continue
     if "->" in name:  # Skip metal oxide combustion fuels (e.g., "MgH2->MgO")
         continue
@@ -63,13 +65,42 @@ for fuel_key, fuel_data in fuels.items():
     if display_name in name_simplifications:
         display_name = name_simplifications[display_name]
 
+    # Determine category for coloring
+    if display_name in ["H2", "NH3"]:
+        category = "Simple Electro-fuels"
+    elif display_name in ["Diesel", "Petrol", "Methanol", "Ethanol", "LNG", "LPG"]:
+        category = "Synthetic Hydrocarbons"
+    elif display_name in ["Fe", "Al", "Mg", "B", "Si", "Zn"]:
+        category = "Simple Metal Fuels"
+    elif display_name in ["MgH2", "AlH3", "LiAlH4", "NaBH4", "LiBH4", "NaAlH4"]:
+        category = "Metal Hydrides"
+    elif display_name == "HFO":
+        category = "HFO"
+    else:
+        category = "Other"
+
     fuel_names.append(display_name)
     mass_energy_densities.append(mass_energy)
     volumetric_energy_densities.append(vol_energy)
+    categories.append(category)
 
 # Create scatter plot
+color_map = {
+    "Simple Electro-fuels": "#3498db",  # Blue
+    "Synthetic Hydrocarbons": "#e74c3c",   # Red
+    "Simple Metal Fuels": "#2ecc71",    # Green
+    "Metal Hydrides": "#f39c12", # Orange
+    "HFO": "#9b59b6"             # Purple
+}
+
 plt.figure(figsize=(12, 8))
-plt.scatter(mass_energy_densities, volumetric_energy_densities, s=50, alpha=0.6)
+for category in color_map.keys():
+    mask = [cat == category for cat in categories]
+    x = [mass_energy_densities[i] for i in range(len(mask)) if mask[i]]
+    y = [volumetric_energy_densities[i] for i in range(len(mask)) if mask[i]]
+    plt.scatter(x, y, s=50, alpha=0.6, color=color_map[category], label=category)
+
+plt.legend(loc='best', fontsize=10)
 
 # Add labels for each point with adjustText to avoid overlap
 # Calculate offset distance based on data range
@@ -81,8 +112,8 @@ offset_y = y_range * 0.00375  # 0.375% of y range
 texts = []
 for i, name in enumerate(fuel_names):
     # Start text at an offset position from the point
-    txt = plt.text(mass_energy_densities[i] + offset_x, 
-                   volumetric_energy_densities[i] + offset_y, 
+    txt = plt.text(mass_energy_densities[i] + offset_x,
+                   volumetric_energy_densities[i] + offset_y,
                    name,
                    fontsize=11, fontweight='bold', alpha=0.8)
     texts.append(txt)
@@ -101,8 +132,9 @@ adjust_text(texts,
 plt.xlabel('Mass Energy Density (kWh/kg)', fontsize=12)
 plt.ylabel('Volumetric Energy Density (kWh/L)', fontsize=12)
 plt.title('Fuel Energy Density Comparison', fontsize=14, fontweight='bold')
-plt.grid(True, alpha=0.3)
+plt.grid(True, alpha=0.7, linestyle='-', linewidth=1.2, color='grey')
 plt.savefig('fuel_energy_density.png', dpi=300, bbox_inches='tight')
+plt.savefig('../images/simplified_fuel_energy_density.png', dpi=300, bbox_inches='tight')
 print("\nPlot saved as 'fuel_energy_density.png'")
 
 # Print summary statistics

@@ -54,6 +54,12 @@
       "mass_energy_density": 5.5,
       "engine_efficiency": 0.5
     },
+    "LPG": {
+      "name": "LPG",
+      "density": 0.537,
+      "mass_energy_density": 13.7,
+      "engine_efficiency": 0.5
+    },
     "Fe_ref": {
       "name": "Iron (ref)",
       "density": 7.9,
