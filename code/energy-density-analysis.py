@@ -16,6 +16,9 @@ fuel_names = []
 mass_energy_densities = []
 volumetric_energy_densities = []
 
+eff_mass_energy_densities = []
+eff_volumetric_energy_densities = []
+
 categories = []
 
 for fuel_key, fuel_data in fuels.items():
@@ -65,6 +68,10 @@ for fuel_key, fuel_data in fuels.items():
     if display_name in name_simplifications:
         display_name = name_simplifications[display_name]
 
+    # Default calculation
+    eff_mass_energy_density = mass_energy * efficiency
+    eff_volumetric_energy_density = vol_energy * efficiency
+
     # Determine category for coloring
     if display_name in ["H2", "NH3"]:
         category = "Simple Electro-fuels"
@@ -82,6 +89,8 @@ for fuel_key, fuel_data in fuels.items():
     fuel_names.append(display_name)
     mass_energy_densities.append(mass_energy)
     volumetric_energy_densities.append(vol_energy)
+    eff_mass_energy_densities.append(eff_mass_energy_density)
+    eff_volumetric_energy_densities.append(eff_volumetric_energy_density)
     categories.append(category)
 
 # Create scatter plot
@@ -145,3 +154,95 @@ print("=" * 70)
 for i in range(len(fuel_names)):
     print(f"{fuel_names[i]:<25} {mass_energy_densities[i]:<15.2f} {volumetric_energy_densities[i]:<20.2f}")
 print("=" * 70)
+
+# Adjust metal fuels to use their oxide effective energy densities
+metal_oxide_map = {
+    "Fe": "Fe3O4",
+    "Al": ["Al2O3", "AlOOH"],  # Al has two oxides
+    "Mg": "MgO",
+    "B": "B2O3",
+    "Si": "SiO2",
+    "Zn": "ZnO"
+}
+
+# For Al, we'll need to process both oxides separately
+adjusted_fuel_names = []
+adjusted_eff_mass_energy = []
+adjusted_eff_vol_energy = []
+adjusted_categories = []
+
+for i, name in enumerate(fuel_names):
+    if name in metal_oxide_map:
+        # This is a simple metal fuel, replace with oxide(s)
+        oxide_names = metal_oxide_map[name]
+        if not isinstance(oxide_names, list):
+            oxide_names = [oxide_names]
+
+        for oxide_name in oxide_names:
+            # Find the oxide in the original fuels data
+            oxide_fuel = next((fuels[k] for k in fuels if fuels[k]['name'] == oxide_name), None)
+            if oxide_fuel:
+                oxide_density = oxide_fuel['density']
+                oxide_mass_energy = oxide_fuel['mass_energy_density']
+                oxide_efficiency = oxide_fuel['engine_efficiency']
+
+                adjusted_fuel_names.append(oxide_name)
+                adjusted_eff_mass_energy.append(oxide_mass_energy * oxide_efficiency)
+                adjusted_eff_vol_energy.append(oxide_mass_energy * oxide_efficiency * oxide_density)
+                adjusted_categories.append(categories[i])
+    else:
+        # Keep non-metal fuels as is
+        adjusted_fuel_names.append(name)
+        adjusted_eff_mass_energy.append(eff_mass_energy_densities[i])
+        adjusted_eff_vol_energy.append(eff_volumetric_energy_densities[i])
+        adjusted_categories.append(categories[i])
+
+# Replace the original lists with adjusted ones for the second plot
+fuel_names_for_plot2 = adjusted_fuel_names
+eff_mass_energy_densities = adjusted_eff_mass_energy
+eff_volumetric_energy_densities = adjusted_eff_vol_energy
+categories_for_plot2 = adjusted_categories
+
+plt.figure(figsize=(12, 8))
+for category in color_map.keys():
+    mask = [cat == category for cat in categories_for_plot2]
+    x = [eff_mass_energy_densities[i] for i in range(len(mask)) if mask[i]]
+    y = [eff_volumetric_energy_densities[i] for i in range(len(mask)) if mask[i]]
+    plt.scatter(x, y, s=50, alpha=0.6, color=color_map[category], label=category)
+
+plt.legend(loc='best', fontsize=10)
+
+# Add labels for each point with adjustText to avoid overlap
+# Calculate offset distance based on data range
+x_range = max(eff_mass_energy_densities) - min(eff_mass_energy_densities)
+y_range = max(eff_volumetric_energy_densities) - min(eff_volumetric_energy_densities)
+offset_x = x_range * 0.00375  # 0.375% of x range
+offset_y = y_range * 0.00375  # 0.375% of y range
+
+texts = []
+for i, name in enumerate(fuel_names_for_plot2):
+    # Start text at an offset position from the point
+    txt = plt.text(eff_mass_energy_densities[i] + offset_x,
+                   eff_volumetric_energy_densities[i] + offset_y,
+                   name,
+                   fontsize=11, fontweight='bold', alpha=0.8)
+    texts.append(txt)
+
+# Adjust text positions to avoid overlap with much larger spacing
+adjust_text(texts,
+            eff_mass_energy_densities, eff_volumetric_energy_densities,
+            arrowprops=dict(arrowstyle='->', color='gray', lw=0.5, alpha=0.6),
+            expand_points=(1.25, 1.25),
+            expand_text=(1, 1),
+            force_points=0.625,
+            force_text=0.625,
+            lim=50,
+            only_move={'points':'xy', 'text':'xy'})
+
+plt.xlabel('Eff. Mass Energy Density (kWh/kg)', fontsize=12)
+plt.ylabel('Eff. Volumetric Energy Density (kWh/L)', fontsize=12)
+plt.title('Eff. Fuel Energy Density Comparison', fontsize=14, fontweight='bold')
+plt.grid(True, alpha=0.7, linestyle='-', linewidth=1.2, color='grey')
+plt.savefig('eff_fuel_energy_density.png', dpi=300, bbox_inches='tight')
+plt.savefig('../images/eff_fuel_energy_density.png', dpi=300, bbox_inches='tight')
+print("\nPlot saved as 'eff_fuel_energy_density.png'")
