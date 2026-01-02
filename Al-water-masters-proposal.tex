@@ -17,6 +17,8 @@
 \usepackage{matlab-prettifier}
 \usepackage{enumitem}
 \usepackage{url}
+\usepackage{booktabs}
+\usepackage{array}
 
 \usepackage{xurl} % Allows line breaks at any point in URLs
 
@@ -232,6 +234,43 @@ The reaction rate and hydrogen yield can be enhanced through:
 \break
 
 \subsubsection{Low-Temp vs High-Temp Metal-Water Reactor}
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{|>{\centering\arraybackslash}p{3.5cm}|>{\centering\arraybackslash}p{5.5cm}|>{\centering\arraybackslash}p{5.5cm}|}
+\hline
+\textbf{Parameter} & \textbf{LT-MWR} & \textbf{HT-MWR} \\
+\hline
+\textbf{Particle Size} & Nano-sized particles & Micron-sized particles \\
+\hline
+\textbf{Catalysts} & Range of special alloys (lithium, gallium, mercury, etc.) & No catalysts \\
+\hline
+\textbf{Temperature and Pressure} & Below 120°C (can operate at room temperature depending on catalyst) & 250--400°C and 15--25 MPa \\
+\hline
+\textbf{Metal By-product} & Al(OH)$_3$ or AlOOH & AlOOH or Al$_2$O$_3$ \\
+\hline
+\textbf{Worst Case Mass Energy Density (kWh/kg)} & 0.60 or 0.78 & 1.55 or 1.82 \\
+\hline
+\textbf{Worst Case Volumetric Energy Density (kWh/L)} & 1.44 or 2.35 & 4.70 or 7.23 \\
+\hline
+\textbf{Thermal Heat Utilization} & Difficult due to low temperature & Possible with simple steam turbines \\
+\hline
+\textbf{Fuel Production Costs} & Higher (smaller particles and ball milling alloys) & Lower (larger particles and low catalysts) \\
+\hline
+\textbf{Round-trip Energy Efficiency} & 11--13\% (if no heat is utilized) & 23--25\% \\
+\hline
+\textbf{Fuel Transport Costs} & Higher (exothermic reaction with water at room temperature) & Lower (mostly inert due to Al$_2$O$_3$ layer at room temperature) \\
+\hline
+\textbf{Fuel Handling Safety} & Lower & Higher \\
+\hline
+\textbf{Reactor Manufacturing Costs} & Lower & Higher (needs to withstand high temperature and pressure) \\
+\hline
+\textbf{Reactor Start-up Time} & Lower (ability to load follow) & 15--30 minutes (better for baseloads) \\
+\hline
+\end{tabular}
+\caption{Comparison of Low Temperature Metal-Water Reactors (LT-MWR) and High Temperature Metal-Water Reactors (HT-MWR)}
+\label{tab:mwr_comparison}
+\end{table}
 
 \break
 
