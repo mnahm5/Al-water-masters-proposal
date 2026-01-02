@@ -181,15 +181,59 @@ As demonstrated in Figure \ref{fig:eff_fuel_energy_density}, metal fuels remain 
 
 \subsection{Aluminium-Water Combustion}
 
+Using the energy density analysis from the previous sub-section, aluminium metal emerges as the most promising candidate for use in marine applications. Although it cannot match HFO and other fossil fuels in terms of mass energy density, it demonstrates competitive performance with respect to volumetric energy density. The higher volumetric energy density of aluminium fuel is particularly advantageous for marine applications where space is at a premium, such as yachts, cruise ships, and container ships. Additionally, in practice, the vessel will utilise two storage tanks—one for storing the aluminium powder fuel and another for storing the aluminium oxide by-product, which can be collected later at ports or refuelling stations for recycling.
+
+Aluminium offers several other significant advantages that make it an attractive fuel candidate. It is the third most abundant metal in the Earth's crust, ensuring long-term availability and resource security \cite{Al-H20-economics, metal-hydrides-review}. Furthermore, aluminium production is already a massive global industry, as the metal's properties make it exceptionally useful across numerous applications. There exists a well-established electrochemical process for producing aluminium from aluminium oxide, known as the Hall-Héroult process. This industrial process can be rendered entirely zero-carbon if the electricity is sourced from renewable energy and the electrolysers make use of inert anodes, thereby eliminating carbon emissions from the production cycle \cite{aluminium-inert-anodes}.
+
+\begin{equation}
+	\label{eq:Al-H2O}
+	\ce{2Al + 3H2O -> Al2O3 + 3H2 + 15.152 MJ/kg-Al}
+\end{equation}
+
+\begin{equation}
+	\label{eq:H2-O2}
+	\ce{3H2 + 3/2O2 -> 3H2O + 15.840 MJ/kg-Al}
+\end{equation}
+
+Equation \ref{eq:Al-H2O} demonstrates how aluminium reacts with water to produce heat and hydrogen gas. Equation \ref{eq:H2-O2} subsequently shows how this hydrogen gas can then be combusted to produce water and additional heat. Together, these equations reveal that to utilise the full chemical energy potential of the aluminium-water system, both the heat generated from the metal-water reaction and the heat produced from the hydrogen combustion must be harnessed. This metal-water reaction, also known as wet cycle combustion, has already found application in several specialized domains, including ALICE rockets developed for NASA \cite{alice-rockets} and underwater propulsion applications employed by the American and Russian militaries \cite{Al-H2O-UUV}.
+
+\break
+
 \subsection{Reactor Design}
 
 \subsubsection*{Overview}
 
-\subsubsection{Low-Temp Metal-Water Reactor}
+\begin{figure}[h!]
+\centering
+  \includegraphics[width=0.45\linewidth]{./images/Al-H2O-Engine-single-circuit-after-steam-generator.png}
+  \caption{Simplified Overview of Metal-Water Propulsion System (R = metal-water reactor, G = steam generator, C = hydrogen combustion chamber) \cite{Al-steam}}
+  \label{fig:metal-water-propulsion-system}
+\end{figure}
 
-\subsubsection{High-Temp Metal-Water Reactor}
+The metal-water propulsion system, as illustrated in Fig \ref{fig:metal-water-propulsion-system}, demonstrates a novel approach to maritime propulsion. In this system, seawater from the ocean is mixed with aluminium powder from the fuel tank within a specialized metal-water reactor. The resulting reaction generates three key outputs: hydrogen, thermal heat, and aluminium oxide by-product, with the latter being separated into a dedicated storage tank. The system harnesses energy through two pathways: the thermal heat is utilized to drive a steam engine, while the produced hydrogen can be combusted in a separate chamber to generate high-temperature steam for powering an additional steam engine.
 
-\subsubsection{Summary and Comparison}
+\begin{figure}[h!]
+\centering
+  \includegraphics[width=0.65\linewidth]{./images/Al-H2O reaction stages.jpg}
+  \caption{Schematic of the three reaction stages of aluminium with water at low temperatures, including a sketch of the initial dry particle for reference. Also sketched is the characteristic hydrogen-production curve showing the induction, rapid oxidation, and quenching stages \cite{energy-densitie-JMB}}
+  \label{fig:metal-water-reaction-stages}
+\end{figure}
+
+Fig \ref{fig:metal-water-reaction-stages} illustrates the reaction pathway for the low temperature aluminium-water reaction, depicting an aluminium particle encased by a thin, inert aluminium oxide coating that must be overcome to facilitate metal-water oxidation. The metal-water reactor design requires careful optimization to achieve appropriate reaction rates for marine propulsion applications, while simultaneously maximizing hydrogen yield to enhance both the efficiency and mass energy density of the aluminium fuel.
+
+The reaction rate and hydrogen yield can be enhanced through:
+\begin{itemize}
+\item Increased temperature and/or pressure conditions
+\item Reduced aluminium powder particle size
+\item Reduced aluminium powder to water ratio
+\item Implementation of various catalysts (detailed in following sub-section) \cite{energy-densitie-JMB, Al-steam, Al-water-reaction-pathways-review}
+\end{itemize}
+
+\break
+
+\subsubsection{Low-Temp vs High-Temp Metal-Water Reactor}
+
+\break
 
 \subsection{Economics of Aluminium Fuel}
 
