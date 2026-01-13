@@ -259,32 +259,72 @@ Although the low-grade heat cannot be used for engine power, it can be used for 
 
 \subsubsection{High Temperature Metal-Water Reactor}
 
-High-temperature metal-water reactors operate at 250--400\textdegree C and 15--25 MPa for optimal reaction rates. These reactors can use micron-sized particles instead of nano-sized particles as in the case of low-temperature metal-water reactors. Although high-temperature metal-water reactors have garnered less research focus relative to low-temperature reactors, they come with some significant advantages, especially relating to marine shipping applications:
+High-temperature metal-water reactors operate at 250--400\textdegree C and 15--25 MPa for optimal reaction rates \cite{high-temp-Al-H2O}. These reactors can use micron-sized particles instead of nano-sized particles as in the case of low-temperature metal-water reactors. Although high-temperature metal-water reactors have garnered less research focus relative to low-temperature reactors, they come with some significant advantages, especially relating to marine shipping applications:
 
 \begin{itemize}
-    \item \textbf{Lower fuel production costs}: Micron-sized particles are much cheaper and simpler to produce industrially compared to nano-sized particles.
+    \item \textbf{Lower fuel production costs}: Micron-sized particles are much cheaper and simpler to produce industrially compared to nano-sized particles \cite{high-temp-Al-H2O, Al-steam, metal-water-temp-JMB}.
     
     \item \textbf{Improved fuel handling and transport}: The micron-sized particles are also inert at room temperature and pressure, as opposed to nano-sized particles which can readily react with water at room temperature (depending on the catalytic process that is being used). Because of the fuel's inert nature, it makes them easier to transport and handle, which further improves the economic case for these reactors.
     
-    \item \textbf{High-grade heat output and improved energy efficiency}: High-temperature reactors produce high-grade heat output in the form of a steam and hydrogen mixture. This high-grade heat can be used to power high-efficiency steam engines, which nearly doubles the round-trip energy efficiency of aluminium as a secondary energy carrier. It also increases the mass and volumetric energy densities of the aluminium fuel as more useful energy can be created using the same kg of fuel.
+    \item \textbf{High-grade heat output and improved energy efficiency}: High-temperature reactors produce high-grade heat output in the form of a steam and hydrogen mixture. This high-grade heat can be used to power high-efficiency steam engines, which nearly doubles the round-trip energy efficiency of aluminium as a secondary energy carrier \cite{metal-water-temp-JMB}. It also increases the mass and volumetric energy densities of the aluminium fuel as more useful energy can be created using the same kilogram of fuel.
     
-    \item \textbf{Superior metal oxide by-product}: The aluminium-water reaction can produce three main by-products: Al(OH)$_3$, AlOOH, and Al$_2$O$_3$. The by-product produced can change the effective mass energy density of the fuel system. The lowest energy density happens with Al(OH)$_3$, while the highest is with Al$_2$O$_3$, as shown in Table X. In Fig X we can see that as temperature and pressure increase, the probability of producing Al$_2$O$_3$ instead of Al(OH)$_3$ increases, thus further increasing the effective mass and volumetric energy density of the aluminium fuel system. Al$_2$O$_3$ can also be used directly as the input in the Hall-H\'eroult process, as opposed to Al(OH)$_3$, which needs to be processed into Al$_2$O$_3$ first.
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|l|c|c|c|c|}
+        \hline
+        \textbf{Fuel Type} & \textbf{\begin{tabular}[c]{@{}c@{}}Fuel Mass\\Density\\(kWh/kg)\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}Engine\\Efficiency\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}By-Product to\\Fuel Weight\\Ratio\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}Final Energy\\Density\\(kWh/kg)\end{tabular}} \\
+        \hline
+        Al powder (ref.) & 8.61 & 0.40 (ass.) & x & 3.44 \\
+        \hline
+        \ce{Al(OH)3} by-product & 8.61 & 0.40 (ass.) & 2.89 & 1.19\\
+        \hline
+        \ce{AlOOH} by-product & 8.61 & 0.40 (ass.) & 2.22 & 1.55\\
+        \hline
+        \ce{Al2O3} by-product & 8.61 & 0.40 (ass.) & 1.89 & 1.82\\
+        \hline
+    \end{tabular}
+    \caption{Comparison of different \ce{Al-H2O} by-product scenarios. Adapted from \cite{battery-density, battey-density-autos, Al-steam, gasoline-energy-density, energy-densitie-JMB, Al-H20-economics}}
+    \label{tab:Al-by-products-comparison}
+\end{table}
+
+\begin{table}[h]
+   \centering
+   \small
+   \begin{tabular}{|l|c|c|}
+       \hline
+       \textbf{Fuel Type} & \textbf{Volume} & \textbf{Final Volumetric} \\
+       \textbf{} & \textbf{Density (kg/L)} & \textbf{Energy Density (kWh/L)} \\
+       \hline
+       Al powder (ref.) & 2.7 & 9.30\\
+       \hline
+       \ce{Al(OH)3} by-product & 2.42 & 2.88\\
+       \hline
+       \ce{AlOOH} by-product & 3.03 & 4.70\\
+       \hline
+       \ce{Al2O3} by-product & 3.97 & 7.23\\
+       \hline
+   \end{tabular}
+   \caption{Volumetric Energy Densities of different \ce{Al-H2O} combustion scenarios. Adapted from \cite{battery-density, battey-density-autos, gasoline-volume-density, Al-volume-density, AlOH3-volume-density, AlOOH-volume-density, Al2O3-volume-density}}
+   \label{tab:fuel-volume-density}
+\end{table}
+
+\begin{figure}[h!]
+\centering
+  \includegraphics[width=0.65\linewidth]{./images/Al-H2O reaction by-products.jpg}
+  \caption{\ce{Al-H2O} reaction transition diagram extrapolated to 10 MPa. Labels E1-E4 show conditions used for experimental validation \cite{Al-H2O-byproducts}}
+  \label{fig:Al-H2O-by-products}
+\end{figure}
+    
+    \item \textbf{Superior metal oxide by-product}: The aluminium-water reaction can produce three main by-products: Al(OH)$_3$, AlOOH, and Al$_2$O$_3$. The by-product produced can change the effective mass energy density of the fuel system. The lowest energy density happens with Al(OH)$_3$, while the highest is with Al$_2$O$_3$, as shown in Tables \ref{tab:Al-by-products-comparison} and \ref{tab:fuel-volume-density}. In Fig \ref{fig:Al-H2O-by-products} we can see that as temperature and pressure increase, the probability of producing Al$_2$O$_3$ instead of Al(OH)$_3$ increases, thus further increasing the effective mass and volumetric energy density of the aluminium fuel system. Al$_2$O$_3$ can also be used directly as the input in the Hall-H\'eroult process, as opposed to Al(OH)$_3$, which needs to be processed into Al$_2$O$_3$ first \cite{Al-H20-CHP}.
 \end{itemize}
 
 However, high-temperature reactors come with their own disadvantages:
 
 \begin{itemize}
-    \item \textbf{Extended reactor start-up time}: It could take some time for the reactor to heat up, which can be up to 15--30 minutes depending on the size of the reactor. This problem can be mitigated by the use of hybrid electric propulsion using electrochemical batteries that work as a buffer storage system as the reactor heats up. Hybrid electric systems can mitigate the impact on performance and manoeuvrability caused by the longer start-up time. These hybrid electric systems have been widely used in the automotive sector for decades and have already been gaining traction in the marine shipping sector.
+    \item \textbf{Extended reactor start-up time}: It could take some time for the reactor to heat up, which can be up to 15--30 minutes depending on the size of the reactor. This problem can be mitigated by the use of hybrid electric propulsion using electrochemical batteries that work as a buffer storage system as the reactor heats up. Hybrid electric systems can mitigate the impact on performance and manoeuvrability caused by the longer start-up time. These hybrid electric systems have been widely used in the automotive sector for decades and have already been gaining traction in the marine shipping sector \cite{hybrid-electric-ships}. Hybrid electric designs were also used to manage the longer start-up time for aluminium powder powered submarine and UUV systems that were researched by the American military \cite{Al-H2O-UUV}.
     
     \item \textbf{Higher reactor manufacturing costs}: The reactor for the high-temperature system is likely to be more expensive since it needs to handle the higher temperature and pressure.
 \end{itemize}
-
-\begin{figure}[h!]
-\centering
-  \includegraphics[width=0.75\linewidth]{./images/Al-H2O reaction by-products.jpg}
-  \caption{\ce{Al-H2O} reaction transition diagram extrapolated to 10 MPa. Labels E1-E4 show conditions used for experimental validation \cite{Al-H2O-byproducts}}
-  \label{fig:Al-H2O-by-products}
-\end{figure}
 
 \break
 
