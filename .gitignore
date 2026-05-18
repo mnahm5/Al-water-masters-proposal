@@ -304,3 +304,49 @@ TSWLatexianTemp*
 # option is specified. Footnotes are the stored in a file with suffix Notes.bib.
 # Uncomment the next line to have this generated file ignored.
 #*Notes.bib
+
+# --- Linux / editor backup files ---
+*~
+*.swp
+*.swo
+.DS_Store          # if you ever move to macOS
+Thumbs.db          # if you ever move to Windows
+.directory         # KDE folder metadata
+
+# --- LibreOffice Impress (.odp, .fodp) ---
+.~lock.*.odp#
+.~lock.*.fodp#
+*.odp.tmp
+*.fodp.tmp
+
+# --- LaTeX Beamer ---
+*.aux
+*.log
+*.out
+*.toc
+*.nav
+*.snm
+*.vrb
+*.synctex.gz
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.xdv
+_build/
+*.pdf              # Be careful: only ignore if the PDF is the compiled output,
+                   # not if it's a hand-made asset you're tracking.
+
+# --- reveal.js / Marp / slidev (Node-based) ---
+node_modules/
+dist/
+.cache/
+
+# --- General build/output folders ---
+build/
+out/
+
+# --- Temporary files from other presentation tools ---
+~$*.pptx           # PowerPoint lock files
+*.ppt.tmp
+*.pptx.tmp
