@@ -492,44 +492,87 @@ However, the performance requirements for an aluminium‑water reactor vary sign
 
 \subsection{Metal-Water Reactor Design}
 
-Metal-water combustion can be calibrated by the following factors:
+Based on the analysis presented in Section~1.3, this research explicitly adopts the
+high-temperature metal-water reactor (HT-MWR) as the design architecture for
+investigation. The economic, energy density, and by-product arguments developed in
+that section collectively make the case for this path over low-temperature alternatives,
+and the research questions below are all framed within this context.
+
+The central research question for this component of the study is:
+
+\begin{quote}
+\textit{At what combinations of temperature, pressure, particle size, and fuel-to-water
+ratio does a high-temperature aluminium-water reactor produce
+Al\textsubscript{2}O\textsubscript{3} as the dominant by-product, while generating a
+steam-hydrogen output mixture at 440--500\textdegree C sufficient to meet the power
+output requirements of the target superyacht class identified in Section~2.1?}
+\end{quote}
+
+This overarching question decomposes into the following specific investigations:
+
 \begin{itemize}
-    \item Combustion temperature and pressure
-    \item Aluminium powder particle size
-    \item Precise fuel-to-water ratio
-    \item Use of catalysts
+
+    \item \textbf{Reaction parameter optimisation.} How do temperature (250--400\textdegree C),
+    pressure (up to 25~MPa), aluminium powder particle size (10--500~micrometres), and
+    fuel-to-water ratio individually and jointly influence hydrogen yield, heat output, and
+    by-product composition? What is the coarsest particle size that still achieves the
+    reaction rates required to meet the power demand profile from Section~2.1, given that
+    larger particles are substantially cheaper to produce?
+
+    \item \textbf{By-product pathway control.} Under what specific temperature and pressure
+    conditions does the reaction shift from producing Al(OH)\textsubscript{3} or AlOOH
+    toward Al\textsubscript{2}O\textsubscript{3} as the dominant by-product? Achieving
+    Al\textsubscript{2}O\textsubscript{3} is a priority because it maximises both mass and
+    volumetric energy density, as shown in Tables~1 and~2, and can be fed directly into the
+    Hall--H\'{e}roult recycling process without intermediate processing.
+
+    \item \textbf{Seawater reactant characterisation.} Does substituting distilled water
+    with seawater --- the readily available reactant during marine operation --- materially
+    alter reaction kinetics, by-product composition, or reactor corrosion behaviour?
+    Seawater introduces dissolved chloride ions, sulphates, magnesium salts, and biological
+    matter, all of which may modify the passivation behaviour of the aluminium oxide layer
+    and affect the induction, rapid oxidation, and quenching stages described in
+    Figure~10. What pre-treatment or filtration requirements follow from these effects?
+
+    \item \textbf{Reactor start-up time characterisation.} What is the transient thermal
+    behaviour of the HT-MWR during start-up, and over what time period and under what
+    operating conditions can the reactor reach steady-state output? This question is
+    explicitly scoped to characterise the reactor's behaviour rather than to design the
+    battery buffer that will mitigate it --- battery sizing is identified as a topic for
+    future work.
+
+    \item \textbf{Marine safety systems.} What handling, containment, and emergency
+    response protocols are required for aluminium powder fuel in a marine environment?
+    Aluminium powder presents the following hazards that are not fully addressed by
+    existing maritime fuel codes:
+
+    \begin{itemize}
+        \item Acute fire and explosion risks due to high dust cloud combustibility
+        \item Exothermic reaction with moisture, liberating flammable hydrogen
+        \item Chronic inhalation risk causing pulmonary fibrosis (aluminosis)
+        \item Safe handling requires inert atmospheres, rigorous housekeeping, and
+        Class~D extinguishing agents
+    \end{itemize}
+
+    The development and validation of safety protocols covering bunkering, leak
+    detection, dust control, and emergency response forms a distinct research deliverable
+    of this study, conducted in consultation with Registro Italiano Navale (RINA),
+    Lloyd's Register (LR), and DNV to ensure alignment with risk-based certification
+    frameworks.
+
 \end{itemize}
 
-However, any practical design must also address the safety hazards of aluminium powder:
-\begin{itemize}
-    \item Acute fire and explosion risks due to high dust cloud combustibility.
-    \item Exothermic reaction with moisture, liberating flammable hydrogen.
-    \item Chronic inhalation can cause pulmonary fibrosis (aluminosis).
-    \item Safe handling requires inert atmospheres, rigorous housekeeping, and Class D extinguishing agents (water is strictly forbidden).
-\end{itemize}
+The following research areas are explicitly outside the scope of this study and are
+identified as topics for future work: selection and integration of steam engines or
+turbines; sizing and specification of the electrochemical battery buffer; control system
+development; and full-scale stress testing and classification society approval. The
+outputs of this study --- particularly the reactor transient data, the steam output
+characterisation, and the safety protocol documentation --- are specifically structured
+to serve as inputs to each of these subsequent research phases.
 
-For marine environments, proper safety protocols – covering bunkering, leak detection, dust control, and emergency response – must be developed as part of this research.
-
-Compared to traditional diesel (well-understood but carbon-intensive) and other electro-fuels like ammonia (toxic) and hydrogen (highly flammable, prone to embrittlement), aluminium powder offers no acute toxicity or high-pressure storage risks, but its dust and moisture reactivity demand novel marine safety systems. This study will develop and validate those systems alongside the reactor design.
-
-Comprehensive research discussed in previous sections provides nuanced insights into reaction pathways, critically examining their implications for mass energy and volumetric energy densities resulting from the different fuel by-products.
-
-This study aims to establish a rigorous framework for determining optimal metal-water reactor operating parameters for superyacht applications through experimental verification. The reactor design must simultaneously satisfy multifaceted performance criteria, including:
-\begin{itemize}
-    \item Compliance with power output requirements for different superyacht classes
-    \item Maximisation of energy density metrics within spatial constraints
-    \item Minimisation of aluminium fuel production costs
-    \item Reduction of reactor start-up time
-    \item Optimisation of reactor manufacturing costs
-\end{itemize}
-
-A central component of this research is the development of a control system with integrated feedback loops to ensure optimal metal-water combustion for hydrogen and heat production. As noted in the research background, high-temperature metal-water reactors require extended start-up periods of 15–30 minutes. To mitigate this limitation and ensure responsive power delivery, the propulsion system will necessarily incorporate electrochemical batteries as a buffer. However, the design and sizing of these batteries are beyond the scope of this project; instead, the focus is on characterising the reactor's transient behaviour such that future engine development efforts can specify appropriate battery requirements.
-
-Accordingly, the research will investigate and optimise the reactor's start-up time and dynamic response during mode switching. The goal is to demonstrate that the metal-water reactor can meet the operational and system requirements of commercial superyachts, particularly the need for rapid load changes during manoeuvring and varying cruising demands.
-
-The present study is primarily concerned with the design, construction, and experimental validation of the metal-water reactor and its associated control system. The downstream conversion of reactor outputs (hydrogen and high-grade heat) into mechanical propulsion – including steam engine or turbine selection, as well as battery sizing – is explicitly outside the scope of this work. As with any real-world system, trade-offs need to be made when designing the metal-water reactor for superyacht propulsion. All such trade-offs must be documented and justified as part of this study.
-
-Taken together, the system requirements analysis (Section 2.1) and the metal-water reactor research presented here will form the backbone for subsequent research into engine development and system optimisation for aluminium powder fuel in superyacht propulsion applications.
+As with any real-world system, trade-offs will arise when designing the metal-water
+reactor for superyacht propulsion. All such trade-offs will be documented and justified
+as part of this study.
 
 \break
 
@@ -769,20 +812,12 @@ High-level estimates from lab-scale work inform the economic feasibility case \\
 \label{tab:scope}
 \end{table}
 
-The reactor start-up time deserves particular attention as a bridging output between this
-study and future work. As noted in Section~1.3.2, high-temperature reactors require
-15--30~minutes to reach operating conditions, and the mitigation strategy --- a
-hybrid-electric buffer using electrochemical batteries --- is well-established in both the
-automotive sector and prior military aluminium-fuel programmes. The
-battery sizing and selection for the superyacht system are explicitly outside the scope of
-this study; however, characterising the reactor's transient thermal behaviour under
-realistic start-up conditions is within scope, and this data will be the primary input that
+The reactor start-up time deserves particular attention as a bridging output between this study and future work. As noted in Section~1.3.2, high-temperature reactors require
+15--30~minutes to reach operating conditions, and the mitigation strategy --- a hybrid-electric buffer using electrochemical batteries --- is well-established in both the automotive sector and prior military aluminium-fuel programmes. Thebattery sizing and selection for the superyacht system are explicitly outside the scope of
+this study; however, characterising the reactor's transient thermal behaviour under realistic start-up conditions is within scope, and this data will be the primary input that
 enables future work to specify and size the battery buffer correctly.
 
-The outcomes of Section~3.1 and the experimental work described here will together form
-the backbone for the subsequent research phases into engine development, control system
-integration, and full-scale system optimisation for aluminium powder propulsion in the
-superyacht market.
+The outcomes of Section~3.1 and the experimental work described here will together form the backbone for the subsequent research phases into engine development, control system integration, and full-scale system optimisation for aluminium powder propulsion in the superyacht market.
 
 
 \break
