@@ -496,6 +496,7 @@ However, the performance requirements for an aluminium‑water reactor vary sign
 \break
 
 \subsection{Metal-Water Reactor Design}
+\label{sec:metal-water-research-questions}
 
 Based on the analysis presented in Section~\ref{sec:reactor-design}, this research 
 explicitly adopts the high-temperature metal-water reactor (HT-MWR) as the design 
@@ -771,6 +772,7 @@ deployment.
 \section{Methodology}
 
 \subsection{Industry Research}
+\label{sec:industry-research}
 
 To develop a robust understanding of system requirements for the superyacht market, this research will involve structured outreach to key industry participants, including yacht builders, classification societies (Registro Italiano Navale, Lloyd’s Register, and DNV), naval architects, and vessel owners (Ultra‑High‑Net‑Worth Individuals). Semi‑structured interviews will be conducted with each group and, with consent, recorded for later transcription and thematic analysis.
 
@@ -807,8 +809,258 @@ The insights from all interviews will be synthesised into a formal requirements 
 \break
 
 \subsection{Metal-Water Reactor Design}
+\label{subsec:reactor-methodology}
 
+This section describes the experimental programme for the high-temperature 
+metal-water reactor (HT-MWR) component of this research. The programme is 
+structured to address each of the six research deliverables identified in 
+Section~\ref{sec:metal-water-research-questions}, building on the system 
+requirements established through the industry research in 
+Section~\ref{sec:industry-research}.
 
+\subsubsection*{Reactor Vessel and Instrumentation}
+
+The central piece of experimental equipment is a laboratory-scale high-pressure 
+reactor vessel designed to operate at temperatures of 250--400\textdegree C and 
+pressures up to 25~MPa. The reactor body will be constructed from SS316L stainless 
+steel, which provides the required tensile strength, corrosion resistance in 
+high-temperature steam environments, and wide commercial availability of 
+pressure-rated fittings. All pressurised components will be specified with pressure 
+ratings exceeding 300~bar at 450\textdegree C. For seawater experiments, reactor 
+sections in contact with the fluid will be constructed from or lined with Hastelloy 
+C-276 or Inconel 625 to resist chloride-induced stress corrosion cracking. The 
+reactor will be heated externally using a resistance heater, with thermal insulation 
+applied along its full length to minimise heat loss.
+
+The following instrumentation will be installed as standard across all experiments:
+
+\begin{itemize}
+    \item \textbf{Temperature}: Four K-type thermocouples distributed axially along 
+    the reactor exterior, with the average reading used as the representative reactor 
+    temperature, consistent with the approach of Vlaskin et al.~\cite{high-temp-Al-H2O}
+
+    \item \textbf{Pressure}: Two calibrated high-pressure transducers --- one on the 
+    pump inlet and one measuring direct reactor pressure --- with continuous 
+    high-frequency data logging
+
+    \item \textbf{Real-time gas flow}: A thermal mass flow controller on the gas 
+    outlet line, providing continuous volumetric measurement of gas leaving the 
+    reactor
+
+    \item \textbf{Hydrogen concentration}: An electrochemical hydrogen sensor 
+    positioned in the gas outlet stream and exhaust ventilation line, serving both 
+    as a safety monitor and a supplementary yield measurement
+
+    \item \textbf{Slurry injection}: A variable-speed high-pressure plunger pump 
+    with remote speed control, enabling precise and adjustable mass flow rates of 
+    aluminium--water slurry into the reactor
+\end{itemize}
+
+All sensor outputs will be logged centrally from a remote data acquisition console 
+outside the reactor enclosure.
+
+\subsubsection*{Aluminium Powder Characterisation}
+
+Seven discrete particle size grades will be tested, spanning the 10--500~micrometre 
+range, with target nominal sizes of approximately 10, 25, 50, 100, 200, 350, and 
+500~\textmu m. These will be selected from commercially available aluminium powder 
+products, covering the size range studied in prior high-temperature aluminium--water 
+research in Russia~\cite{high-temp-Al-H2O} and Canada~\cite{high-temp-metal-water-reactor-exp-Canada}. Before use in 
+any reaction experiment, each powder batch will be characterised using:
+
+\begin{itemize}
+    \item \textbf{Laser diffraction particle size analysis}: To verify actual size 
+    distributions (D10, D50, and D90 values) against nominal supplier specifications
+
+    \item \textbf{Scanning electron microscopy (SEM)}: To inspect particle 
+    morphology, surface condition, and the native aluminium oxide passivation layer
+
+    \item \textbf{Inductively coupled plasma optical emission spectroscopy 
+    (ICP-OES)}: To quantify elemental impurities, particularly silicon and iron 
+    content
+\end{itemize}
+
+Silicon content will be screened carefully, as Boudreau et al.~\cite{high-temp-metal-water-reactor-exp-Canada} 
+demonstrated that increasing silicon mass fraction from 0.06\% to 0.54\% reduced 
+aluminium oxidation rate by an order of magnitude under supercritical water 
+conditions. Only powders with silicon content below 0.1\% by mass will be used in 
+the primary parameter optimisation experiments.
+
+\subsubsection*{Reaction Parameter Optimisation}
+
+Experiments will systematically vary temperature (250--400\textdegree C), pressure 
+(saturated vapour pressure at each temperature, with supplementary runs up to 
+25~MPa), water-to-aluminium mass ratio (5, 7, 9, and 12), and all seven particle 
+size grades. Each parameter combination will be repeated a minimum of three times 
+to establish repeatability. The primary measured outputs are:
+
+\begin{enumerate}
+    \item \textbf{Hydrogen yield}: Calculated from reactor pressure rise using the 
+    ideal gas law and cross-validated against the mass flow controller reading on 
+    the gas outlet
+    
+    \item \textbf{Thermal heat output}: Derived from the reactor temperature--time 
+    curves recorded by the four thermocouples
+\end{enumerate}
+
+The target output condition is a steam--hydrogen mixture at 400--500\textdegree C. 
+The coarsest particle size that still achieves this target while meeting the power 
+demand requirements of the superyacht class from 
+Section~\ref{sec:industry-research} will be identified as the most commercially 
+attractive operating point.
+
+\subsubsection*{By-product Composition Analysis}
+
+Following each experiment, solid products will be extracted, cooled, and 
+vacuum-dried before analysis using two complementary methods:
+
+\begin{itemize}
+    \item \textbf{Powder X-ray diffraction (PXRD)}: To identify and quantify the 
+    crystalline phases present --- specifically \ce{Al(OH)3}, AlOOH, and the 
+    \ce{Al2O3} polymorphs --- with phase proportions quantified by Rietveld 
+    refinement of the diffraction patterns
+
+    \item \textbf{Thermogravimetric analysis (TGA)}: As a complementary method to 
+    cross-validate phase composition based on characteristic mass loss temperatures
+\end{itemize}
+
+Residual unreacted aluminium will also be quantified by PXRD, providing a direct 
+conversion degree measurement alongside the hydrogen yield calculations. By-product 
+phase data will be mapped against the temperature and pressure conditions of each 
+experiment to identify the threshold conditions required to shift the reaction 
+toward \ce{Al2O3} as the dominant product.
+
+\subsubsection*{Seawater Reactant Characterisation}
+
+Rather than a simple binary comparison between distilled water and seawater, this 
+research defines four distinct water treatment categories to isolate which components 
+of seawater affect the reaction:
+
+\begin{itemize}
+    \item \textbf{Category A --- Distilled water}: The baseline case
+
+    \item \textbf{Category B --- Synthetic seawater}: Distilled water with dissolved 
+    salts at open-ocean concentration (${\approx}$35~g/L, ASTM D1141), isolating 
+    ionic effects from biological and particulate contamination
+
+    \item \textbf{Category C --- Coarse-filtered natural seawater}: Natural seawater 
+    passed through a 50~\textmu m filter, removing organisms and macro-particulates 
+    while retaining dissolved ions and fine particles
+
+    \item \textbf{Category D --- Fine-filtered natural seawater}: Natural seawater 
+    passed through a 50~\textmu m pre-filter followed by a 1~\textmu m membrane 
+    filter, removing virtually all suspended particulates while retaining dissolved 
+    ions
+\end{itemize}
+
+Natural seawater samples for Categories C and D will be collected at both 
+open-ocean (${\approx}$35~g/L) and coastal (${\approx}$15~g/L) salinities. The 
+hydrogen yield, thermal output, and by-product composition for each water type will 
+be compared against the distilled water baseline. The filtration complexity and 
+estimated cost of each category will be documented, enabling a cost-benefit analysis 
+of onboard seawater pre-treatment for a deployed marine system.
+
+\subsubsection*{Reactor Start-up and Transient Load Characterisation}
+
+This is the most novel component of the experimental programme. Prior 
+high-temperature aluminium--water reactor research --- including work conducted at 
+McGill University --- has focused on baseload electricity generation for stationary 
+applications where the reactor reaches a steady state and holds it. No prior work 
+has characterised HT-MWR behaviour under the dynamic load-following conditions 
+required for marine propulsion, where power demand changes continuously as the 
+vessel manoeuvres, accelerates, cruises, and docks.
+
+The reactor's output will be characterised across four discrete power settings that 
+reflect the operational modes of a marine propulsion system:
+
+\begin{itemize}
+    \item \textbf{Off}: No aluminium injection; reactor held at thermal standby 
+    temperature
+
+    \item \textbf{Low}: Approximately 25\% of rated hydrogen output, corresponding 
+    to harbour manoeuvring and low-speed transit conditions
+
+    \item \textbf{Medium}: Approximately 50\% of rated hydrogen output, 
+    corresponding to moderate cruising
+
+    \item \textbf{High}: 100\% of rated hydrogen output, corresponding to full 
+    cruising speed
+\end{itemize}
+
+The absolute output targets for each level will be derived from the superyacht power 
+demand profiles established in Section~\ref{sec:industry-research}.
+
+Real-time hydrogen yield will be measured continuously throughout all transient 
+experiments using two simultaneous methods:
+
+\begin{enumerate}
+    \item \textbf{Pressure--time derivative method}: The rate of pressure change 
+    (d$P$/d$t$) from the high-frequency pressure transducer, combined with the 
+    known gas space volume, gives the instantaneous molar hydrogen production rate 
+    via a modified ideal gas equation, consistent with the computational procedure 
+    of Vlaskin et al.~\cite{high-temp-Al-H2O}. This provides high temporal resolution.
+
+    \item \textbf{Mass flow controller method}: The gas outlet thermal mass flow 
+    controller provides a direct real-time volumetric measurement of gas leaving the 
+    reactor, cross-validated against hydrogen concentration from the in-line 
+    electrochemical sensor.
+\end{enumerate}
+
+Both measurement streams will be logged with timestamps synchronised to the pump 
+control input signals, enabling direct calculation of the lag time between a control 
+input change and the corresponding output change --- the primary dataset required by 
+future engineers designing control systems for this reactor.
+
+Three power modulation techniques will be investigated, each chosen for its 
+relevance to real-world continuous marine propulsion rather than the batch operation 
+characterised in prior research:
+
+\begin{enumerate}
+    \item \textbf{Slurry injection rate modulation}: Adjusting the pump speed to 
+    change the aluminium mass flow rate entering the reactor. This is the most direct 
+    analogue to fuel injection control in a conventional engine and is expected to 
+    produce the fastest dynamic response, making it the most commercially viable 
+    approach for a deployed marine system.
+
+    \item \textbf{Fuel-to-water ratio modulation}: Adjusting the aluminium slurry 
+    and water supply rates independently to tune the fuel-to-water ratio while 
+    holding total throughput approximately constant. This may help maintain reactor 
+    pressure stability during load transitions without requiring large changes in 
+    total flow rate.
+
+    \item \textbf{Temperature modulation}: Varying heater power to shift the reactor 
+    operating temperature within the 250--400\textdegree C range, exploiting the 
+    strong temperature-dependence of aluminium oxidation kinetics. This method has 
+    the slowest response time due to reactor thermal mass, but may serve as a coarse 
+    power adjustment complementing injection rate control.
+\end{enumerate}
+
+Each technique will be tested independently, and promising combinations will be 
+tested together. For each transition between power settings, the response lag, rise 
+time, steady-state output, and any overshoot or undershoot in hydrogen production 
+will be recorded and reported. The results will be compared directly against the 
+superyacht power demand profiles from Section~\ref{sec:industry-research}, and 
+will form the primary dataset enabling future researchers and engineers to design 
+control systems, size battery buffers, and select engine configurations for this 
+propulsion architecture.
+
+\subsubsection*{Safety, Verification, and Approval}
+
+The experimental programme involves concurrent hazards from aluminium powder 
+handling, continuous hydrogen gas production, and high-pressure and high-temperature 
+reactor operation. A comprehensive safety protocol addressing each risk category, 
+together with the plan for independent peer review and formal university approval 
+of the experimental design, is provided in full in 
+Appendix~\ref{appendix:safety-verification}. In summary, all experimental work will 
+be conducted in a dedicated ventilated enclosure with Class~D fire suppression, 
+continuous hydrogen monitoring with automatic equipment interlocks, and a minimum 
+of two researchers present at all times. A detailed laboratory experimental proposal 
+incorporating the full safety protocol, risk register, and reactor specifications 
+will be submitted for independent review by experienced academics and for formal 
+approval by the university's laboratory safety committee. No high-pressure or 
+high-temperature experimental work will commence before this approval is granted. 
+This comprehensive proposal and its approval will be completed by the \textbf{end 
+of the first quarter} of the research project.
 
 \break
 
@@ -877,5 +1129,115 @@ The insights from all interviews will be synthesised into a formal requirements 
 
 \bibliography{references} 
 \bibliographystyle{ieeetr}
+
+\break
+
+\appendix
+\section{Laboratory Safety Protocols and Experimental Plan Verification}
+\label{appendix:safety-verification}
+
+\subsection{Safety Protocols}
+
+The experimental programme involves three concurrent categories of hazard that must 
+each be addressed before any laboratory work begins.
+
+\subsubsection*{Aluminium Powder Hazards}
+
+Micron-sized aluminium powder presents four distinct hazards in a laboratory 
+environment. First, aluminium dust clouds are highly combustible and can detonate 
+if ignited above the minimum ignition energy threshold. All powder transfers will 
+therefore be conducted inside a dedicated enclosed glove box maintained under a dry 
+nitrogen atmosphere, with strict prohibition of open flames, electrical sparks, and 
+non-antistatic equipment within five metres of all powder handling areas. Second, 
+aluminium reacts exothermically with ambient moisture, liberating flammable hydrogen 
+gas. All powder handling operations will be conducted under inert atmosphere or with 
+active humidity control maintained below 30\% relative humidity, and the reactor 
+will be nitrogen-purged before each loading operation. Third, chronic inhalation of 
+aluminium dust causes pulmonary fibrosis (aluminosis). P100 full-face respirators 
+are mandatory during all powder handling operations; an enclosed handling system is 
+preferred wherever practicable, and post-experiment reactor cleaning will be 
+conducted under wet-suppression conditions to prevent dust re-entrainment. Fourth, 
+standard water-based fire extinguishers are strictly prohibited in any area where 
+aluminium powder is present, as water reacts with aluminium to produce hydrogen. 
+Class~D dry-powder extinguishers --- copper powder or sodium chloride type --- will 
+be stationed at all powder handling positions.
+
+\subsubsection*{Hydrogen Gas Hazards}
+
+Hydrogen has a lower explosive limit (LEL) of 4\% in air. A dedicated 
+forced-ventilation exhaust hood will be installed over the reactor gas outlet, 
+maintaining hydrogen concentration below 1\% (25\% of LEL) at all monitoring 
+points. Electrochemical hydrogen sensors will be positioned in the gas outlet stream 
+and at multiple points within the reactor enclosure, with audible alarms activating 
+at 1\% hydrogen concentration and automatic equipment shutdown interlocks engaging 
+at 2\%. All equipment will be bonded and earthed to prevent static discharge 
+ignition, antistatic flooring will be installed throughout the reactor area, and 
+synthetic clothing will be prohibited during experiments. All gas line connections 
+will be made with pressure-rated compression fittings rated to at least twice 
+operating pressure, and a nitrogen leak check will be performed before every 
+experiment. All hydrogen produced during experiments that is not captured for 
+measurement will be routed through a catalytic oxidiser before venting to 
+atmosphere, eliminating both the ignition risk and the indirect climate impact of 
+hydrogen release.
+
+\subsubsection*{High-Pressure and High-Temperature Hazards}
+
+All pressurised components will be rated to a minimum of twice the maximum 
+operating pressure (${\geq}$50~MPa). The reactor vessel will undergo third-party 
+hydrostatic pressure testing annually. A spring-loaded pressure relief valve set 
+at 1.25$\times$ operating pressure will be installed, with an independent secondary 
+burst disc as a redundant protection layer. The reactor will be operated from behind 
+a rated polycarbonate blast shield at all times. All reactor external surfaces will 
+be thermally insulated, and heat-resistant gloves and a face shield are mandatory 
+during setup and any access to the reactor area during operation. A formal cooldown 
+and pressure equalisation protocol will be documented and followed before any 
+reactor valve is opened; an interlock will prevent opening any reactor valve while 
+internal pressure exceeds 0.5~MPa. All steam outlet lines will be thermally 
+insulated, labelled with appropriate warning markings, and routed through a 
+condensate trap before reaching the gas measurement instruments.
+
+\subsubsection*{General Laboratory Controls}
+
+A minimum of two researchers must be present during all experimental sessions. A 
+dedicated safety observer role will be assigned for each session, responsible for 
+monitoring all sensor readings in real time and activating the emergency shutdown 
+procedure if any parameter exceeds its safe operating limit. Emergency shutdown 
+procedures will be formally documented and prominently displayed within the 
+laboratory. All researchers involved in the project will complete formal training 
+on these procedures before participating in any experimental work.
+
+\subsection{Experimental Plan Verification and University Approval}
+\label{appendix:verification}
+
+The experimental programme described in Section~\ref{subsec:reactor-methodology} 
+represents the high-level research plan appropriate for a Master's proposal. Before 
+any laboratory work begins, this plan must undergo two independent layers of review.
+
+\subsubsection*{Internal Peer Review}
+
+Following completion of the industry research phase in the first six to eight weeks 
+of the project, the detailed experimental design --- including the reactor vessel 
+specification, instrumentation layout, full experimental sequences, and safety 
+protocol --- will be submitted for review to a panel of at least two independent 
+academics from the university's mechanical and chemical engineering departments with 
+direct experience in high-pressure reactor systems. This review is intended to 
+identify blind spots in experimental design, instrumentation, and safety provisions 
+that may not be apparent from within the research team. All reviewer comments will 
+be formally documented and the experimental plan revised accordingly before being 
+finalised.
+
+\subsubsection*{University Laboratory Safety Approval}
+
+A comprehensive laboratory experimental proposal --- incorporating the full safety 
+protocol, risk register, emergency response procedures, chemical waste disposal 
+plan, and detailed reactor specifications --- will be formally submitted to the 
+university's laboratory safety committee and the relevant departmental review body. 
+This submission will include evidence of compliance with applicable pressure vessel 
+standards and will reference the safety framework developed in consultation with 
+Registro Italiano Navale (RINA), Lloyd's Register (LR), and DNV as described in 
+Section~\ref{sec:metal-water-research-questions}. No high-pressure or 
+high-temperature experimental work will commence before this approval is formally 
+granted. The comprehensive proposal and its associated university approval will be 
+completed by the \textbf{end of the first quarter} of the research project.
 
 \end{document}
