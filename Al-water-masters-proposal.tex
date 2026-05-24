@@ -24,6 +24,7 @@
 \usepackage{tabularx}
 \usepackage{longtable}
 \usepackage{caption}
+\usepackage{tcolorbox}
 
 \usepackage{xurl} % Allows line breaks at any point in URLs
 
@@ -1289,111 +1290,443 @@ of the first quarter} of the research project.
 \break
 
 \appendix
-\section{Laboratory Safety Protocols and Experimental Plan Verification}
-\label{appendix:safety-verification}
+\section*{Appendix A: Laboratory Safety Protocols and Experimental Plan Verification}
+\addcontentsline{toc}{section}{Appendix A: Laboratory Safety Protocols and Experimental Plan Verification}
 
-\subsection{Safety Protocols}
+%===============================================================================
+\subsection*{A.1\quad Safety Protocols}
+%===============================================================================
 
-The experimental programme involves three concurrent categories of hazard that must 
-each be addressed before any laboratory work begins.
+The experimental programme involves four concurrent categories of hazard. Each must
+be fully addressed before any laboratory work begins.
 
-\subsubsection*{Aluminium Powder Hazards}
+%-------------------------------------------------------------------------------
+\subsubsection*{A.1.1\quad Aluminium Powder Hazards}
+%-------------------------------------------------------------------------------
 
-Micron-sized aluminium powder presents four distinct hazards in a laboratory 
-environment. First, aluminium dust clouds are highly combustible and can detonate 
-if ignited above the minimum ignition energy threshold. All powder transfers will 
-therefore be conducted inside a dedicated enclosed glove box maintained under a dry 
-nitrogen atmosphere, with strict prohibition of open flames, electrical sparks, and 
-non-antistatic equipment within five metres of all powder handling areas. Second, 
-aluminium reacts exothermically with ambient moisture, liberating flammable hydrogen 
-gas. All powder handling operations will be conducted under inert atmosphere or with 
-active humidity control maintained below 30\% relative humidity, and the reactor 
-will be nitrogen-purged before each loading operation. Third, chronic inhalation of 
-aluminium dust causes pulmonary fibrosis (aluminosis). P100 full-face respirators 
-are mandatory during all powder handling operations; an enclosed handling system is 
-preferred wherever practicable, and post-experiment reactor cleaning will be 
-conducted under wet-suppression conditions to prevent dust re-entrainment. Fourth, 
-standard water-based fire extinguishers are strictly prohibited in any area where 
-aluminium powder is present, as water reacts with aluminium to produce hydrogen. 
-Class~D dry-powder extinguishers --- copper powder or sodium chloride type --- will 
-be stationed at all powder handling positions.
+Micron-sized aluminium powder presents four distinct hazards:
 
-\subsubsection*{Hydrogen Gas Hazards}
+\begin{enumerate}[label=\textbf{\arabic*.}, leftmargin=*, itemsep=6pt]
 
-Hydrogen has a lower explosive limit (LEL) of 4\% in air. A dedicated 
-forced-ventilation exhaust hood will be installed over the reactor gas outlet, 
-maintaining hydrogen concentration below 1\% (25\% of LEL) at all monitoring 
-points. Electrochemical hydrogen sensors will be positioned in the gas outlet stream 
-and at multiple points within the reactor enclosure, with audible alarms activating 
-at 1\% hydrogen concentration and automatic equipment shutdown interlocks engaging 
-at 2\%. All equipment will be bonded and earthed to prevent static discharge 
-ignition, antistatic flooring will be installed throughout the reactor area, and 
-synthetic clothing will be prohibited during experiments. All gas line connections 
-will be made with pressure-rated compression fittings rated to at least twice 
-operating pressure, and a nitrogen leak check will be performed before every 
-experiment. All hydrogen produced during experiments that is not captured for 
-measurement will be routed through a catalytic oxidiser before venting to 
-atmosphere, eliminating both the ignition risk and the indirect climate impact of 
-hydrogen release.
+    \item \textbf{Dust cloud combustion.} Aluminium dust clouds are highly
+    combustible and can detonate if ignited above the minimum ignition energy
+    threshold.
+    \begin{itemize}[itemsep=2pt]
+        \item All powder transfers will be conducted inside a dedicated enclosed
+              glove box maintained under a dry nitrogen atmosphere.
+        \item Open flames, electrical sparks, and non-antistatic equipment are
+              strictly prohibited within five metres of all powder handling areas.
+    \end{itemize}
 
-\subsubsection*{High-Pressure and High-Temperature Hazards}
+    \item \textbf{Exothermic reaction with moisture.} Aluminium reacts
+    exothermically with ambient moisture, liberating flammable hydrogen gas.
+    \begin{itemize}[itemsep=2pt]
+        \item All powder handling will be conducted under inert atmosphere or with
+              active humidity control maintained below 30\% relative humidity.
+        \item The reactor will be nitrogen-purged before each loading operation.
+    \end{itemize}
 
-All pressurised components will be rated to a minimum of twice the maximum 
-operating pressure (${\geq}$50~MPa). The reactor vessel will undergo third-party 
-hydrostatic pressure testing annually. A spring-loaded pressure relief valve set 
-at 1.25$\times$ operating pressure will be installed, with an independent secondary 
-burst disc as a redundant protection layer. The reactor will be operated from behind 
-a rated polycarbonate blast shield at all times. All reactor external surfaces will 
-be thermally insulated, and heat-resistant gloves and a face shield are mandatory 
-during setup and any access to the reactor area during operation. A formal cooldown 
-and pressure equalisation protocol will be documented and followed before any 
-reactor valve is opened; an interlock will prevent opening any reactor valve while 
-internal pressure exceeds 0.5~MPa. All steam outlet lines will be thermally 
-insulated, labelled with appropriate warning markings, and routed through a 
-condensate trap before reaching the gas measurement instruments.
+    \item \textbf{Inhalation risk (aluminosis).} Chronic inhalation of aluminium
+    dust causes pulmonary fibrosis.
+    \begin{itemize}[itemsep=2pt]
+        \item P100 full-face respirators are mandatory during all powder handling.
+        \item An enclosed handling system is preferred wherever practicable.
+        \item Post-experiment reactor cleaning will be conducted under
+              wet-suppression conditions to prevent dust re-entrainment.
+    \end{itemize}
 
-\subsubsection*{General Laboratory Controls}
+    \item \textbf{Prohibition on water-based extinguishers.} Water reacts with
+    aluminium to produce hydrogen and is strictly prohibited as an extinguishing
+    agent in any area where aluminium powder is present.
+    \begin{itemize}[itemsep=2pt]
+        \item Class~D dry-powder extinguishers (copper powder or sodium chloride
+              type) will be stationed at all powder handling positions.
+    \end{itemize}
 
-A minimum of two researchers must be present during all experimental sessions. A 
-dedicated safety observer role will be assigned for each session, responsible for 
-monitoring all sensor readings in real time and activating the emergency shutdown 
-procedure if any parameter exceeds its safe operating limit. Emergency shutdown 
-procedures will be formally documented and prominently displayed within the 
-laboratory. All researchers involved in the project will complete formal training 
-on these procedures before participating in any experimental work.
+\end{enumerate}
 
-\subsection{Experimental Plan Verification and University Approval}
-\label{appendix:verification}
+%-------------------------------------------------------------------------------
+\subsubsection*{A.1.2\quad Hydrogen Gas Hazards}
+%-------------------------------------------------------------------------------
 
-The experimental programme described in Section~\ref{subsec:reactor-methodology} 
-represents the high-level research plan appropriate for a Master's proposal. Before 
-any laboratory work begins, this plan must undergo two independent layers of review.
+Hydrogen has a lower explosive limit (LEL) of 4\% in air. The following controls
+will be maintained throughout all experimental sessions.
 
-\subsubsection*{Internal Peer Review}
+\medskip
+\noindent\textbf{Ventilation and monitoring:}
+\begin{itemize}[itemsep=3pt]
+    \item A dedicated forced-ventilation exhaust hood will be installed over the
+          reactor gas outlet, maintaining hydrogen concentration below 1\%
+          (25\% of LEL) at all monitoring points.
+    \item Electrochemical hydrogen sensors will be positioned in the gas outlet
+          stream and at multiple points within the reactor enclosure.
+    \item Audible alarms will activate at 1\% hydrogen concentration.
+    \item Automatic equipment shutdown interlocks will engage at 2\%.
+\end{itemize}
 
-Following completion of the industry research phase in the first six to eight weeks 
-of the project, the detailed experimental design --- including the reactor vessel 
-specification, instrumentation layout, full experimental sequences, and safety 
-protocol --- will be submitted for review to a panel of at least two independent 
-academics from the university's mechanical and chemical engineering departments with 
-direct experience in high-pressure reactor systems. This review is intended to 
-identify blind spots in experimental design, instrumentation, and safety provisions 
-that may not be apparent from within the research team. All reviewer comments will 
-be formally documented and the experimental plan revised accordingly before being 
-finalised.
+\medskip
+\noindent\textbf{Ignition prevention:}
+\begin{itemize}[itemsep=3pt]
+    \item All equipment will be bonded and earthed to prevent static discharge
+          ignition.
+    \item Antistatic flooring will be installed throughout the reactor area.
+    \item Synthetic clothing is prohibited during all experimental sessions.
+\end{itemize}
 
-\subsubsection*{University Laboratory Safety Approval}
+\medskip
+\noindent\textbf{Containment and disposal:}
+\begin{itemize}[itemsep=3pt]
+    \item All gas line connections will use pressure-rated compression fittings
+          rated to at least twice operating pressure.
+    \item A nitrogen leak check will be performed before every experiment.
+    \item All hydrogen not captured for measurement will be routed through a
+          catalytic oxidiser before venting to atmosphere, eliminating both the
+          ignition risk and the indirect climate impact of hydrogen release.
+\end{itemize}
 
-A comprehensive laboratory experimental proposal --- incorporating the full safety 
-protocol, risk register, emergency response procedures, chemical waste disposal 
-plan, and detailed reactor specifications --- will be formally submitted to the 
-university's laboratory safety committee and the relevant departmental review body. 
-This submission will include evidence of compliance with applicable pressure vessel 
-standards and will reference the safety framework developed in consultation with 
-Registro Italiano Navale (RINA), Lloyd's Register (LR), and DNV as described in 
-Section~\ref{sec:metal-water-research-questions}. No high-pressure or 
-high-temperature experimental work will commence before this approval is formally 
-granted. The comprehensive proposal and its associated university approval will be 
-completed by the \textbf{end of the first quarter} of the research project.
+%-------------------------------------------------------------------------------
+\subsubsection*{A.1.3\quad High-Pressure and High-Temperature Hazards}
+%-------------------------------------------------------------------------------
+
+\noindent\textbf{Pressure vessel integrity:}
+\begin{itemize}[itemsep=3pt]
+    \item All pressurised components will be rated to a minimum of twice the
+          maximum operating pressure ($\geq$50\,MPa).
+    \item The reactor vessel will undergo third-party hydrostatic pressure testing
+          annually.
+    \item A spring-loaded pressure relief valve set at 1.25$\times$ operating
+          pressure will be installed, with an independent secondary burst disc as
+          a redundant protection layer.
+\end{itemize}
+
+\medskip
+\noindent\textbf{Operational controls:}
+\begin{itemize}[itemsep=3pt]
+    \item The reactor will be operated from behind a rated polycarbonate blast
+          shield at all times.
+    \item All reactor external surfaces will be thermally insulated.
+    \item Heat-resistant gloves and a face shield are mandatory during setup and
+          any access to the reactor area during operation.
+    \item A formal cooldown and pressure equalisation protocol will be followed
+          before any reactor valve is opened.
+    \item An interlock will prevent opening any reactor valve while internal
+          pressure exceeds 0.5\,MPa.
+\end{itemize}
+
+\medskip
+\noindent\textbf{Steam outlet management:}
+\begin{itemize}[itemsep=3pt]
+    \item All steam outlet lines will be thermally insulated and labelled with
+          appropriate warning markings.
+    \item All steam outlet lines will be routed through a condensate trap before
+          reaching any gas measurement instruments.
+\end{itemize}
+
+%-------------------------------------------------------------------------------
+\subsubsection*{A.1.4\quad Reactor Fouling Control and Cleaning Protocol}
+%-------------------------------------------------------------------------------
+
+\paragraph{Background and justification.}
+
+The experimental programme uses a continuous-flow architecture: aluminium-water
+slurry is injected continuously via the variable-speed high-pressure plunger pump,
+the aluminium-water reaction proceeds within the pressurised reactor vessel, and the
+product stream --- a mixture of hydrogen gas, steam, and aluminium oxide slurry ---
+exits continuously.
+
+\ce{Al2O3} (corundum) has a Mohs hardness of approximately~9, making it one of the
+most abrasive ceramic materials encountered in process
+engineering~\cite{finnie1960}. In a continuous-flow system it forms continuously at
+the reaction interface and must be carried out of the reactor by the product stream.
+The critical fouling locations are:
+
+\begin{itemize}[itemsep=4pt]
+    \item \textbf{Product outlet valve and withdrawal line} --- progressive
+          blockage reduces product withdrawal flow rate and causes reactor pressure
+          to rise at constant injection rate.
+    \item \textbf{Slurry injection nozzle} --- erosive wear progressively
+          enlarges the nozzle bore, changing the injection flow rate at any given
+          pump speed.
+    \item \textbf{Plunger pump head and check valves} --- continuous exposure to
+          abrasive slurry at high pressure accelerates wear of valve seats and the
+          plunger seal.
+\end{itemize}
+
+If fouling is not actively managed, it introduces drift in injection rate and reactor
+pressure during experimental runs, constituting an uncontrolled variable that
+directly corrupts transient load data~\cite{levenspiel1999}.
+
+\bigskip
+\noindent\textbf{Pre-experiment fouling baseline characterisation}
+
+\medskip
+Before the main parameter sweep begins, three to five continuous-flow baseline runs
+will be conducted at representative steady-state conditions:
+
+\begin{itemize}[itemsep=2pt]
+    \item Temperature: 350\textdegree C \quad Pressure: 20\,MPa
+    \item Particle size: 100\,\textmu m \quad Water-to-aluminium mass ratio: 9
+    \item Run duration: minimum 60~minutes at constant pump speed
+\end{itemize}
+
+\medskip
+The following measurements will be recorded at 5-minute intervals throughout each
+baseline run:
+
+\medskip
+\begin{tabularx}{\linewidth}{@{} l l X @{}}
+    \toprule
+    \textbf{Parameter} & \textbf{Instrument} & \textbf{Fouling indicator} \\
+    \midrule
+    Pump delivery flow rate
+        & Pump speed vs.\ calibration curve
+        & Injection nozzle or check valve blockage \\[4pt]
+    Reactor pressure
+        & High-pressure transducer
+        & Product outlet blockage \\[4pt]
+    Gas outlet flow rate
+        & Thermal mass flow controller
+        & Product withdrawal line restriction \\
+    \bottomrule
+\end{tabularx}
+
+\medskip
+The rate of drift in each parameter per hour of continuous operation establishes:
+\begin{enumerate}[label=\arabic*., itemsep=2pt]
+    \item The maximum safe run duration before a flush is required.
+    \item Which fouling location is the binding constraint under these conditions.
+\end{enumerate}
+
+This is determined empirically before the parameter sweep begins, so that flush
+intervals are set by evidence rather than assumption.
+
+\bigskip
+\noindent\textbf{Between-condition flush protocol}
+
+\medskip
+A flush will be performed at the end of every experimental condition --- defined as
+a complete steady-state run plus any transient load modulation sequence at a given
+combination of temperature, pressure, particle size, and fuel-to-water ratio ---
+before changing to the next set of conditions.
+
+\begin{enumerate}[label=\textbf{Step \arabic*.}, leftmargin=*, itemsep=6pt]
+
+    \item \textbf{Water purge (pressurised).}
+    Cease aluminium slurry injection. Continue pumping deionised water at the same
+    flow rate for a minimum of 10~minutes to flush residual \ce{Al2O3} slurry from
+    the reactor body, product outlet line, and withdrawal valve.
+
+    \item \textbf{Controlled cool-down.}
+    Reduce reactor temperature to below 200\textdegree C using a controlled heater
+    ramp-down, while maintaining pressure via the back-pressure regulator to prevent
+    flash vaporisation of residual water in the product line.
+
+    \item \textbf{Controlled depressurisation.}
+    Once below 200\textdegree C, slowly equalise reactor pressure to atmospheric
+    through the back-pressure regulator over a minimum of 15~minutes.
+
+    \item \textbf{Alkaline flush.}
+    Circulate a dilute alkaline flush solution (1--2\% NaOH in deionised water) at
+    low temperature ($<$60\textdegree C) and atmospheric pressure through the
+    reactor body, product outlet line, and withdrawal valve for 30~minutes. This
+    exploits the amphoteric chemistry of aluminium oxide:
+    \begin{equation}
+        \ce{Al2O3 + 2NaOH -> 2NaAlO2 + H2O}
+    \end{equation}
+    dissolving deposited \ce{Al2O3} and \ce{Al(OH)3} from internal
+    surfaces~\cite{eremin2004}. The NaOH concentration is deliberately conservative
+    to avoid corrosive attack on the SS316L reactor body.
+
+    \item \textbf{Deionised water rinse.}
+    Flush with a minimum of five system volumes of deionised water. The pH of the
+    final rinse water must be within $\pm$0.2 of the deionised water baseline
+    (pH~$\approx$~6.5--7.0) before re-pressurisation begins.
+
+    \item \textbf{Blank verification run.}
+    Conduct a continuous-flow run using deionised water only (no aluminium) at the
+    target temperature and pressure for the next experimental condition, to:
+    \begin{itemize}[itemsep=2pt]
+        \item Confirm complete removal of alkaline residue.
+        \item Re-establish the thermal steady-state baseline before slurry
+              injection resumes.
+    \end{itemize}
+
+\end{enumerate}
+
+\begin{tcolorbox}[
+    colback=orange!8,
+    colframe=orange!60!black,
+    title={\textbf{Waste Disposal Note}},
+    fonttitle=\bfseries
+]
+The spent NaOH/\ce{NaAlO2} flush solution is a dilute alkaline waste stream. It
+will be collected in a labelled chemical waste container and disposed of in
+accordance with the university's chemical waste management procedures.
+Chemical-resistant gloves and eye protection are mandatory during all flushing
+operations.
+\end{tcolorbox}
+
+\bigskip
+\noindent\textbf{Pump head and injection nozzle inspection}
+
+\medskip
+\begin{tabularx}{\linewidth}{@{} >{\raggedright\arraybackslash}X
+                                   >{\raggedright\arraybackslash}X
+                                   >{\raggedright\arraybackslash}X
+                                   >{\raggedright\arraybackslash}X @{}}
+    \toprule
+    \textbf{Component} & \textbf{Frequency} & \textbf{Threshold} & \textbf{Action} \\
+    \midrule
+    Pump delivery flow rate
+        & Start of every session
+        & $>{\pm}3\%$ from calibration
+        & Pump head disassembly and inspection \\[4pt]
+    Check valves and plunger seal
+        & End of every experimental day
+        & Any visible wear or deposit
+        & Component replacement \\[4pt]
+    Injection nozzle bore diameter
+        & Start of every experimental week
+        & $>5\%$ increase from original spec
+        & Nozzle replacement \\
+    \bottomrule
+\end{tabularx}
+
+\medskip
+\noindent\textit{Note: The pump flow rate tolerance of $\pm$3\% is tighter than
+used in intermittent operation (typically $\pm$5\%) because the transient load
+characterisation experiments depend on accurate, stable injection rates throughout
+sustained continuous-flow runs~\cite{levenspiel1999}.}
+
+\bigskip
+\noindent\textbf{Sensor drift monitoring during continuous-flow runs}
+
+\medskip
+Because transient load data is collected in real time during sustained runs, sensor
+drift must be detected and bounded \textit{during} a run, not only between runs:
+
+\begin{enumerate}[label=\textbf{\arabic*.}, leftmargin=*, itemsep=6pt]
+
+    \item \textbf{Pressure transducers.}
+    The pump inlet transducer and reactor pressure transducer will be cross-checked
+    against each other at the start and end of every run.
+    \begin{itemize}[itemsep=2pt]
+        \item Divergence of $>{\pm}2\%$ of full scale at steady state $\rightarrow$
+              flush before next run.
+    \end{itemize}
+
+    \item \textbf{Hydrogen yield cross-validation.}
+    The mass flow controller reading on the gas outlet will be cross-validated
+    against the pressure-time derivative method ($\mathrm{d}P/\mathrm{d}t$) at
+    steady state at the start of each run.
+    \begin{itemize}[itemsep=2pt]
+        \item Discrepancy of $>{\pm}5\%$ between the two methods $\rightarrow$
+              terminate run, inspect system for fouling or developing leak before
+              continuing.
+    \end{itemize}
+
+    \item \textbf{Thermocouple array.}
+    The four axial thermocouples will be cross-checked against each other at steady
+    state.
+    \begin{itemize}[itemsep=2pt]
+        \item Any thermocouple deviating $>{\pm}5$\textdegree C from the profile
+              established during the blank calibration run at the same temperature
+              setpoint $\rightarrow$ flag for inspection at end of that run.
+    \end{itemize}
+
+\end{enumerate}
+
+%-------------------------------------------------------------------------------
+\subsubsection*{A.1.5\quad General Laboratory Controls}
+%-------------------------------------------------------------------------------
+
+\begin{itemize}[itemsep=4pt]
+    \item A minimum of two researchers must be present during all experimental
+          sessions.
+    \item A dedicated safety observer will be assigned for each session, responsible
+          for monitoring all sensor readings in real time and activating the emergency
+          shutdown procedure if any parameter exceeds its safe operating limit.
+    \item Emergency shutdown procedures will be formally documented and prominently
+          displayed within the laboratory.
+    \item All researchers will complete formal training on emergency procedures
+          before participating in any experimental work.
+\end{itemize}
+
+%===============================================================================
+\subsection*{A.2\quad Experimental Plan Verification and University Approval}
+%===============================================================================
+
+The experimental programme described in Section~3.2 represents the high-level
+research plan appropriate for a Master's proposal. Before any laboratory work begins,
+this plan must undergo two independent layers of review.
+
+%-------------------------------------------------------------------------------
+\subsubsection*{A.2.1\quad Internal Peer Review}
+%-------------------------------------------------------------------------------
+
+\noindent\textbf{Process:}
+\begin{enumerate}[label=\arabic*., itemsep=4pt]
+    \item Following completion of the industry research phase (Months~1--4), the
+    detailed experimental design will be submitted for internal peer review. This
+    submission will include:
+    \begin{itemize}[itemsep=2pt]
+        \item Reactor vessel specification.
+        \item Instrumentation layout and calibration methodology.
+        \item Full experimental sequences for all Tier~1, 2, and~3 experiment
+              streams.
+        \item The complete safety protocol from Section~A.1, including the fouling
+              control procedures in Section~A.1.4.
+    \end{itemize}
+    \item Review will be conducted by a panel of at least two independent academics
+          from the university's mechanical and chemical engineering departments with
+          direct experience in high-pressure reactor systems.
+    \item All reviewer comments will be formally documented and the experimental plan
+          revised accordingly before being finalised.
+\end{enumerate}
+
+\medskip
+\noindent\textbf{Purpose:} To identify blind spots in experimental design,
+instrumentation, and safety provisions that may not be apparent from within the
+research team.
+
+%-------------------------------------------------------------------------------
+\subsubsection*{A.2.2\quad University Laboratory Safety Approval}
+%-------------------------------------------------------------------------------
+
+\noindent\textbf{Submission requirements:}
+
+\medskip
+A comprehensive laboratory experimental proposal will be submitted to the
+university's laboratory safety committee and the relevant departmental review body.
+This submission will include:
+
+\begin{itemize}[itemsep=3pt]
+    \item Full safety protocol (this appendix, as revised).
+    \item Risk register covering all four hazard categories in Section~A.1.
+    \item Emergency response and shutdown procedures.
+    \item Chemical waste disposal plan for spent NaOH/\ce{NaAlO2} flush solution
+          and aluminium oxide solid waste.
+    \item Detailed reactor specifications including pressure vessel ratings, relief
+          valve sizing, and instrumentation layout.
+    \item Evidence of compliance with applicable pressure vessel standards.
+    \item Reference to the safety framework developed in consultation with RINA,
+          Lloyd's Register, and DNV (Section~2.2).
+\end{itemize}
+
+\medskip
+\begin{tcolorbox}[
+    colback=red!6,
+    colframe=red!60!black,
+    title={\textbf{Hard Stop}},
+    fonttitle=\bfseries
+]
+No high-pressure or high-temperature experimental work will commence before this
+approval is formally granted.
+\end{tcolorbox}
+
+\medskip
+\noindent\textbf{Target date:} University approval will be completed by the end of
+Month~4 (Quarter~1 of the research programme), consistent with the Gate~1 milestone
+in the project timeline.
 
 \end{document}
