@@ -1,0 +1,1866 @@
+\documentclass[12pt]{article}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    allcolors=blue
+    }
+
+\usepackage{graphicx}
+\usepackage[version=4]{mhchem}
+\usepackage{subfig}
+\usepackage{pgfgantt}
+\usepackage{pdflscape}
+\usepackage{afterpage}
+\usepackage{geometry}
+\usepackage{gensymb}
+\usepackage{matlab-prettifier}
+\usepackage{enumitem}
+\usepackage{url}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{fancyhdr}
+\usepackage{pdflscape}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{caption}
+\usepackage{tcolorbox}
+
+\usepackage{xurl} % Allows line breaks at any point in URLs
+
+\usepackage[english]{babel}
+\addto\captionsenglish{% Replace "english" with the language you use
+  \renewcommand{\contentsname}%
+    {Table of Contents}%
+}
+\usepackage[nottoc,numbib]{tocbibind}
+
+\widowpenalties 1 10000
+\raggedbottom
+
+\usepackage{tocbibind}
+
+\usepackage[expansion=false]{microtype}
+\usepackage{textcomp} % For \textmu
+
+% Color definitions for Gantt Chart
+\definecolor{phase0col}{RGB}{189, 215, 238}
+\definecolor{phase1col}{RGB}{197, 224, 180}
+\definecolor{phase2col}{RGB}{255, 230, 153}
+\definecolor{tier1col} {RGB}{255, 199, 206}
+\definecolor{tier2col} {RGB}{226, 239, 218}
+\definecolor{tier3col} {RGB}{242, 242, 242}
+\definecolor{thesiscol}{RGB}{218, 202, 230}
+\definecolor{gatecol}  {RGB}{255, 0, 0}
+\definecolor{safetycol}{RGB}{255, 192, 0}
+
+\title{Aluminium-Water Combustion for Zero Carbon Marine Shipping: Masters Proposal}
+
+\author{Md Nadim Ahmed}
+
+\begin{document}
+
+\maketitle
+
+\begin{figure}[h!]
+\centering
+  \includegraphics[width=\linewidth]{./images/Al-H20 for maritime.png}
+  \caption{Aluminium powder as maritime shipping fuel (Energy Life-cycle). Adapted from \cite{Al-H20-economics}}
+  \label{fig:Al-H2O-maritime}
+\end{figure}
+
+\break
+
+\section*{Abstract}
+
+Maritime shipping accounts for 2–3\% of global greenhouse gas emissions, with deep-sea routes responsible for approximately 70\% of the sector’s fuel consumption. Existing electrofuel alternatives — hydrogen, ammonia, and synthetic hydrocarbons — all exhibit significantly lower volumetric energy densities than the heavy fuel oil they must displace, and lithium-ion batteries remain wholly impractical at ocean scale. This study investigates aluminium water combustion via a high-temperature metal-water reactor (HT-MWR) as a zero-carbon marine propulsion technology, addressing three specific gaps
+in the published literature that currently prevent its development.
+ 
+First, no validated engineering requirements dataset exists for aluminium-water propulsion in any marine vessel class. This study produces the first such matrix through semi-structured interviews with superyacht builders, naval architects, classification societies, and vessel owners. The superyacht segment is identified as the optimal commercialisation beachhead: unlike container shipping — where IMO certification demands a decade-long approval process — superyacht classification by RINA, Lloyd’s Register, and DNV operates under a flexible, risk-based framework designed for novel one-off builds. This regulatory contrast, combined with Ultra- High-Net-Worth client tolerance for a green premium, mirrors the pathway pioneered by Tesla in the automotive sector and provides a credible route to eventual deep-sea deployment. 
+
+Second, prior HT-MWR research — principally from McGill University and the Russian Academy of Sciences — has addressed exclusively stationary baseload applications. This study provides the first characterisation of HT-MWR dynamic load-following behaviour under marine propulsion conditions,
+directly enabling future control system design, battery buffer specification, and engine selection. 
+
+Third, the influence of seawater chemistry on HT-MWR performance has not previously been studied. A four-category water treatment design — from distilled water through synthetic and natural seawater — isolates ionic, biological, and particulate effects on hydrogen yield, thermal output, and by product composition. Together, these contributions establish the technical and commercial foundation required for the first prototype aluminium-water marine propulsion system. 
+
+\break
+
+\tableofcontents
+
+\break
+
+\listoftables
+
+\listoffigures
+
+\break
+
+\section{Research Background}
+
+\subsection*{Overview}
+
+Maritime shipping plays a crucial role in global trade, facilitating around 80\% of all commerce \cite{owid-co2-emissions-from-transport}. This makes it essential for globalization, economic development, and maintaining living standards. However, the sector also contributes significantly to global greenhouse gas emissions, accounting for 2-3\% of global emissions and approximately 10\% of all transport-related emissions \cite{owid-ghg-emissions-by-sector, owid-co2-emissions-from-transport}.
+
+In response, the International Maritime Organization (IMO) has set ambitious targets to curb emissions from international shipping. By 2030, the IMO aims to reduce annual greenhouse gas emissions by 20-30\% compared to 2008 levels, with a more aggressive target of 70-80\% reduction by 2040 \cite{imo-target}.
+
+\subsection{Preliminary Analysis of Electro-Fuels Options}
+
+\subsubsection*{Overview}
+
+\begin{figure}[h!]
+\centering
+  \includegraphics[width=0.45\linewidth]{./images/Falling Solar Prices.png}
+  \caption{Falling cost of solar electricity vs Fossil Fuels \cite{owid-cheap-renewables-growth}}
+  \label{fig:solar-vs-fossil-fuels}
+\end{figure}
+
+Recent years have witnessed a dramatic decline in the cost of low-carbon electricity sources, particularly solar and wind power, as illustrated in Figure \ref{fig:solar-vs-fossil-fuels}. This cost reduction has significantly enhanced the viability of transitioning to a low-carbon economy, yet substantial challenges persist in the so-called hard-to-abate sectors, among which marine shipping features prominently.
+
+\begin{figure}[h!]
+\centering
+  \includegraphics[width=0.9\linewidth]{./images/lithium-battery-prices-fall-bnef.jpg}
+  \caption{Falling cost of lithium ion battery packs \cite{bnef-lithium-battery-price-fall}}
+  \label{fig:falling-lithium-battery-prices}
+\end{figure}
+
+The predominant method for storing electrical energy remains electrochemical batteries, with lithium-ion technology leading the charge. These batteries have increasingly displaced fossil fuels in passenger vehicles and, more recently, have begun penetrating short and medium-distance trucking applications \cite{bnef-clean-trucks-china}. This transformation has been driven largely by the precipitous decline in lithium battery prices, as demonstrated in Figure \ref{fig:falling-lithium-battery-prices}. The technology's reach has even extended to inland shipping routes, where standardized and swappable battery packs are being deployed in China \cite{mb-china-battery-swapping-ships}. Major battery manufacturers such as CATL are making substantial investments in these markets, signaling confidence in the technology's continued expansion \cite{Maersk-CATL-partnerships}.
+
+However, despite remarkable advances in both price and energy density, lithium-ion batteries remain largely impractical for deep-sea shipping, which accounts for approximately 70\% of marine shipping emissions \cite{share-of-different-range-ships}. The fundamental constraint lies in the current energy density limitations of lithium-ion technology, which ranges from 0.1 to 0.5 kWh/kg \cite{battery-density, battey-density-autos}—substantially lower than gasoline, which can exceed 10 kWh/kg \cite{energy-densitie-JMB}. This considerable disparity in energy density presents a formidable barrier to the electrification of long-distance maritime transport.
+
+In response to the energy density limitations of lithium-ion batteries, researchers and policymakers have increasingly explored the use of abundant and inexpensive solar electricity to produce alternative fuels, primarily through electrolysis. This approach has given rise to a diverse landscape of electro-fuel options, which can be systematically organized into four broad classifications:
+
+\begin{itemize}
+    \item \textbf{Simple electro-fuels} - hydrogen and ammonia, which represent the most straightforward products of electrolytic processes
+    
+    \begin{figure}[h!]
+		\centering
+		\includegraphics[width=\linewidth]{./images/synthetic-hydrocarbons-process-diagram.jpg}
+		\caption{High Level Process Diagram for synthetic hydrocarbon production from renewable electricity \cite{synthetic-hydrocarbon-process-diagram}}
+		\label{fig:synthetic-hydrocarbon-process-diagram}
+	\end{figure}
+    
+    \item \textbf{Synthetic hydrocarbons} - primarily methane and methanol, whose production pathways are illustrated in Figure \ref{fig:synthetic-hydrocarbon-process-diagram}, which depicts the high-level process for synthesizing these fuels from low-carbon electricity
+    
+    \begin{figure}[h!]
+		\centering
+		\includegraphics[width=\linewidth]{./images/idea of metal powder electrofuels.jpg}
+		\caption{Metal based electro-fuels as secondary energy carriers \cite{metal-fuels-JMB}}
+		\label{fig:metal-electro-fuels-diagram}
+	\end{figure}
+    
+    \item \textbf{Metal-based electro-fuels} - including iron, aluminium, magnesium, silicon, and boron. Figure \ref{fig:metal-electro-fuels-diagram} demonstrates the high-level process by which these metal-based electro-fuels can function as recyclable secondary energy carriers, offering a distinctive closed-loop energy storage paradigm
+    
+    \item \textbf{Metal hydrides (hydrogen carriers)} - such as MgH$_2$, AlH$_3$, LiBH$_4$, and NaAlH$_4$, providing an alternative means of storing and transporting hydrogen in a more dense and stable form than its gaseous state
+\end{itemize}
+
+In the following subsections, a preliminary analysis is conducted to compare the mass energy and volumetric energy densities of these various electro-fuel options in order to understand their viability for marine shipping applications.
+
+\break
+
+\subsubsection{High Level Energy Density Analysis}
+
+\begin{figure}[h!]
+\centering
+  \includegraphics[width=\linewidth]{./images/simplified_fuel_energy_density.png}
+  \caption{Simplified Energy Density Analysis. Data Analysis can be found in the Appendix. Adapted from \cite{combustion-fuels-info}}
+  \begin{minipage}{12cm} % Adjust the length as needed
+	\vspace{0.1cm} % Space between table and notes
+	\small \textit{Note: 1) Pressure Cylinder H2 is 25\degree Celsius 500 bar\\
+	2) Liquid NH3 is -33\degree Celsius 1 bar. Energy needed for cracking for NH3 to H2 is ignored in this table and all subsequent calculations.
+	}
+  \end{minipage}
+  \label{fig:simplified_fuel_energy_density}
+\end{figure}
+
+Figure \ref{fig:simplified_fuel_energy_density} presents the fuel energy density calculations for the various electro-fuel options currently under investigation for marine applications. Heavy Fuel Oil (HFO) serves as the reference fuel in these comparisons, as it remains the dominant fuel source for global marine shipping due to its low cost and widespread availability. 
+
+Hydrogen, which is being explored as a potential solution for several hard-to-decarbonise sectors including shipping and aviation, requires pressurisation at approximately 500 bar. This compression requirement drastically diminishes the fuel's energy density, presenting significant challenges for practical implementation. Even methanol, which is considered a relatively straightforward drop-in replacement for marine shipping and has garnered substantial support from major shipping companies such as Maersk \cite{methanol-ships}, exhibits significantly lower mass and volumetric energy densities compared to HFO.
+
+\begin{figure}[h!]
+\centering
+  \includegraphics[width=0.45\linewidth]{./images/metal fuels bunkering procedure.jpg}
+  \caption{Proposed bunkering procedure for metal fuels (iron powder in this specific case) \cite{iron-powder-container-ships}}
+  \label{fig:metal-fuels-bunkering-procedure}
+\end{figure}
+
+As illustrated in Figure \ref{fig:simplified_fuel_energy_density}, metal fuels demonstrate considerable promise in terms of both mass and volumetric energy densities, despite the relatively limited research effort devoted to their development. All metal fuels examined display higher volumetric energy densities than HFO, with boron demonstrating superior performance across all available electro-fuel options and surpassing even HFO itself. However, metal fuels present numerous complications that must be addressed for practical deployment. To make metal fuels economically viable, the metal oxide by-products generated during combustion cannot simply be discharged into the ocean. Instead, these by-products must be retained onboard the vessel and offloaded at ports for subsequent recycling using renewable energy sources, as shown in Fig \ref{fig:metal-electro-fuels-diagram}. The bunkering procedure for a metal fuels system is depicted in Figure \ref{fig:metal-fuels-bunkering-procedure}. It is crucial to recognise that energy density calculations which fail to account for the mass and volume of the metal oxide by-products can be highly misleading and do not reflect the true practical performance of these fuel systems.
+
+\subsubsection{Effective Energy Density Analysis}
+
+\begin{figure}[htbp]
+\centering
+  \includegraphics[width=\linewidth]{./images/eff_fuel_energy_density.png}
+  \caption{Effective Energy Density Analysis. Data Analysis can be found in the Appendix. Adapted from \cite{combustion-fuels-info}}
+  \begin{minipage}{12cm} % Adjust the length as needed
+	\vspace{0.1cm} % Space between table and notes
+	\small \textit{Note: 1) Pressure Cylinder H2 is 25\degree Celsius 500 bar\\
+	2) Liquid NH3 is -33\degree Celsius 1 bar. Energy needed for cracking for NH3 to H2 is ignored in this table and all subsequent calculations.\\
+	3) The engine efficiency for hydrogen and hydrocarbon combustion is assumed to be around 50\%\\
+	4) The engine efficiency for the metal fuels is assumed to be 40\%. This number is theortically as no such system currently exists for marine shipping. More information about the metal combustion will be discuessed in the following sections.\\
+	5) For the metal hydrides, the energy needed to free the stored hydrogen is not considered in this calculation.
+	}
+  \end{minipage}
+  \label{fig:eff_fuel_energy_density}
+\end{figure}
+
+To gain a more comprehensive understanding of the practicality of the different electro-fuel options, an analysis of effective energy densities must be conducted. Effective energy density is defined as the energy density after accounting for engine efficiency, but in the case of metal fuels, it additionally incorporates the weight and volume associated with carrying the metal oxide by-products post-combustion. Figure \ref{fig:eff_fuel_energy_density} presents the results from the effective energy density analysis for the various electro-fuel options available. For metal fuels, the effective energy density represents the worst-case scenario of continuously carrying the by-products post-combustion throughout the voyage. In practice, the effective energy density for metal fuels will likely be higher than these calculations suggest, since the by-products can be partially offloaded at ports for collection and subsequent processing at metal reduction facilities.
+
+It should be noted that this is a highly simplified analysis, as the mass and volume of the engines and metal reactors have been deliberately excluded from consideration. Furthermore, there is currently no real-world commercially available marine engine that utilises metal fuels, and therefore an efficiency of approximately 40\% has been assumed for these calculations. The complete methodology and detailed calculations for the effective energy density analysis can be found in the Appendix.
+
+As demonstrated in Figure \ref{fig:eff_fuel_energy_density}, metal fuels remain competitive with the energy density of HFO even after accounting for the metal oxide by-products, particularly with respect to volumetric energy density. Although the mass energy density of the most promising metal fuel candidates, such as aluminium and silicon, remains lower than that of methanol, it is still substantially higher than commercially available electrochemical batteries. The superior volumetric energy densities are of particular significance, given that in practice the metal fuel system will necessitate two sets of storage tanks—one for storing the fuel and another for storing the by-products. This characteristic is also likely to prove advantageous for marine applications where space is at a premium, such as yachts, cruise ships, and container shipping. In later sections, the viability of using aluminium as a marine fuel is discussed in detail, given its promising performance following the effective energy density calculations.
+
+\break
+
+\subsection{Aluminium-Water Combustion}
+
+Using the energy density analysis from the previous sub-section, aluminium metal emerges as the most promising candidate for use in marine applications. Although it cannot match HFO and other fossil fuels in terms of mass energy density, it demonstrates competitive performance with respect to volumetric energy density. The higher volumetric energy density of aluminium fuel is particularly advantageous for marine applications where space is at a premium, such as yachts, cruise ships, and container ships. Additionally, in practice, the vessel will utilise two storage tanks—one for storing the aluminium powder fuel and another for storing the aluminium oxide by-product, which can be collected later at ports or refuelling stations for recycling.
+
+Aluminium offers several other significant advantages that make it an attractive fuel candidate. It is the third most abundant metal in the Earth's crust, ensuring long-term availability and resource security \cite{Al-H20-economics, metal-hydrides-review}. Furthermore, aluminium production is already a massive global industry, as the metal's properties make it exceptionally useful across numerous applications. There exists a well-established electrochemical process for producing aluminium from aluminium oxide, known as the Hall-Héroult process. This industrial process can be rendered entirely zero-carbon if the electricity is sourced from renewable energy and the electrolysers make use of inert anodes, thereby eliminating carbon emissions from the production cycle \cite{aluminium-inert-anodes}.
+
+\begin{equation}
+	\label{eq:Al-H2O}
+	\ce{2Al + 3H2O -> Al2O3 + 3H2 + 4.21 kWh/kg-Al}
+\end{equation}
+
+\begin{equation}
+	\label{eq:H2-O2}
+	\ce{3H2 + 3/2O2 -> 3H2O + 4.40 kWh/kg-Al}
+\end{equation}
+
+Equation \ref{eq:Al-H2O} demonstrates how aluminium reacts with water to produce heat and hydrogen gas. Equation \ref{eq:H2-O2} subsequently shows how this hydrogen gas can then be combusted to produce water and additional heat. Together, these equations reveal that to utilise the full chemical energy potential of the aluminium-water system, both the heat generated from the metal-water reaction and the heat produced from the hydrogen combustion must be harnessed. This metal-water reaction, also known as wet cycle combustion, has already found application in several specialized domains, including ALICE rockets developed for NASA \cite{alice-rockets} and underwater propulsion applications employed by the American and Russian militaries \cite{Al-H2O-UUV}.
+
+\break
+
+\subsection{Reactor Design}
+\label{sec:reactor-design}
+
+\subsubsection*{Overview}
+
+\begin{figure}[h!]
+\centering
+  \includegraphics[width=0.45\linewidth]{./images/Al-H2O-Engine-single-circuit-after-steam-generator.png}
+  \caption{Simplified Overview of Metal-Water Propulsion System\cite{Al-steam}}
+  \begin{minipage}{12cm} % Adjust the length as needed
+	\vspace{0.1cm} % Space between table and notes
+	\small \textit{
+		Note: R = metal-water reactor, 
+		G = steam generator, 
+		C = hydrogen combustion chamber
+	}
+  \end{minipage}
+  \label{fig:metal-water-propulsion-system}
+\end{figure}
+
+The metal-water propulsion system, as illustrated in Fig \ref{fig:metal-water-propulsion-system}, demonstrates a novel approach to maritime propulsion. In this system, seawater from the ocean is mixed with aluminium powder from the fuel tank within a specialized metal-water reactor. The resulting reaction generates three key outputs: hydrogen, thermal heat, and aluminium oxide by-product, with the latter being separated into a dedicated storage tank. The system harnesses energy through two pathways: the thermal heat is utilized to drive a steam engine, while the produced hydrogen can be combusted in a separate chamber to generate high-temperature steam for powering an additional steam engine.
+
+\begin{figure}[h!]
+\centering
+  \includegraphics[width=0.65\linewidth]{./images/Al-H2O reaction stages.jpg}
+  \caption{Schematic of the three reaction stages of aluminium with water at low temperatures, including a sketch of the initial dry particle for reference. Also sketched is the characteristic hydrogen-production curve showing the induction, rapid oxidation, and quenching stages \cite{energy-densitie-JMB}}
+  \label{fig:metal-water-reaction-stages}
+\end{figure}
+
+Fig \ref{fig:metal-water-reaction-stages} illustrates the reaction pathway for the low temperature aluminium-water reaction, depicting an aluminium particle encased by a thin, inert aluminium oxide coating that must be overcome to facilitate metal-water oxidation. The metal-water reactor design requires careful optimization to achieve appropriate reaction rates for marine propulsion applications, while simultaneously maximizing hydrogen yield to enhance both the efficiency and mass energy density of the aluminium fuel.
+
+The reaction rate and hydrogen yield can be enhanced through:
+\begin{itemize}
+\item Increased temperature and/or pressure conditions
+\item Reduced aluminium powder particle size
+\item Reduced aluminium powder to water ratio
+\item Implementation of various catalysts (detailed in following sub-section) \cite{energy-densitie-JMB, Al-steam, Al-water-reaction-pathways-review}
+\end{itemize}
+
+\break
+
+\subsubsection{Low Temperature Metal-Water Reactors}
+
+The aluminium-water reaction pathway for hydrogen generation has garnered significant international research attention, with most approaches focusing on nano-sized aluminium powder combined with catalysts at low temperatures. This approach involves reducing the aluminium powder to nano-sized particles and employing various catalytic methods such as alkaline solutions and ball milling the aluminium powder with other metals such as lithium and gallium, or salts such as NaCl. The primary aim of these methods is to increase the exposed surface area of the aluminium particles and prevent the protective layer of aluminium oxide from stopping or slowing down the reaction \cite{metal-water-temp-JMB, Al-water-reaction-pathways-review}. This enables the metal-water reaction to take place below 120\textdegree C. Companies such as Found Energy are working to facilitate the metal-water reaction at room temperature and pressure \cite{found-energy-website}.
+
+This metal-water reactor design comes with both advantages and disadvantages. One advantage is that the reaction takes place quickly and enables the system to rapidly increase or decrease energy output to meet shifting load demands. However, this design also presents significant disadvantages:
+
+\begin{itemize}
+    \item \textbf{High fuel production costs}: The production of nano-sized particles that also need to be ball milled with catalyst metals or salts requires an entire production chain and is likely to increase fuel costs substantially \cite{high-temp-Al-H2O}.
+    
+    \item \textbf{Elevated transport and handling costs}: The high reactivity of the nano-sized particles with water is likely to make transport and handling costs very high, as the metal reacts with water to produce hydrogen, which is a highly combustible gas and can independently contribute to climate change \cite{hydrogen-impact-on-climate}. The higher production and handling costs for the fuel are likely to damage the economic case for this technology, since fuel costs constitute a large percentage of the operating costs for marine shipping, which is also a low-margin industry.
+    
+    \item \textbf{Low-grade heat output and reduced energy density}: As discussed in the previous sections, approximately half of the chemical potential energy of the aluminium metal is released as heat when reacted with water (as shown in equations \ref{eq:Al-H2O} and \ref{eq:H2-O2}). To maximise the round-trip efficiency of the metal-water reactor, this heat energy must be utilised for engine power. However, in these low-temperature reactors, the heat output is low-grade and unsuitable for use in traditional and high-efficiency steam engines \cite{metal-water-temp-JMB}. The low-grade heat could be used by Stirling engines, but these engines have low power-to-weight ratios and have not been mass-produced so far like other heat engines such as diesel or gas turbines have \cite{stirling-engine-low-grade-heat}. The low-grade heat could also perhaps be upgraded using heat pumps and used in conjunction with Organic Rankine Cycle engines, but this increases the system complexity and the technology risks for the entire system \cite{low-grade-waste-heat-recovery-heat-pump}. The inability to utilise the low-grade heat also reduces the effective mass and volumetric energy density of the metal fuel by half.
+\end{itemize}
+
+Although the low-grade heat cannot be used for engine power, it can be used for other heating applications such as hot water production or indoor spas \cite{Al-H20-CHP}. These applications are particularly useful in the yacht and cruise ship markets.
+
+\subsubsection{High Temperature Metal-Water Reactor}
+
+High-temperature metal-water reactors operate at 250--400\textdegree C and 15--25 MPa for optimal reaction rates \cite{high-temp-Al-H2O}. These reactors can use micron-sized particles instead of nano-sized particles as in the case of low-temperature metal-water reactors. Although high-temperature metal-water reactors have garnered less research focus relative to low-temperature reactors, they come with some significant advantages, especially relating to marine shipping applications:
+
+\begin{itemize}
+    \item \textbf{Lower fuel production costs}: Micron-sized particles are much cheaper and simpler to produce industrially compared to nano-sized particles \cite{high-temp-Al-H2O, Al-steam, metal-water-temp-JMB}.
+    
+    \item \textbf{Improved fuel handling and transport}: The micron-sized particles are also inert at room temperature and pressure, as opposed to nano-sized particles which can readily react with water at room temperature (depending on the catalytic process that is being used). Because of the fuel's inert nature, it makes them easier to transport and handle, which further improves the economic case for these reactors.
+    
+    \item \textbf{High-grade heat output and improved energy efficiency}: High-temperature reactors produce high-grade heat output in the form of a steam and hydrogen mixture. This high-grade heat can be used to power high-efficiency steam engines, which nearly doubles the round-trip energy efficiency of aluminium as a secondary energy carrier \cite{metal-water-temp-JMB}. It also increases the mass and volumetric energy densities of the aluminium fuel as more useful energy can be created using the same kilogram of fuel.
+    
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|l|c|c|c|c|}
+        \hline
+        \textbf{Fuel Type} & \textbf{\begin{tabular}[c]{@{}c@{}}Fuel Mass\\Density\\(kWh/kg)\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}Engine\\Efficiency\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}By-Product to\\Fuel Weight\\Ratio\end{tabular}} & \textbf{\begin{tabular}[c]{@{}c@{}}Final Energy\\Density\\(kWh/kg)\end{tabular}} \\
+        \hline
+        Al powder (ref.) & 8.61 & 0.40 (ass.) & x & 3.44 \\
+        \hline
+        \ce{Al(OH)3} by-product & 8.61 & 0.40 (ass.) & 2.89 & 1.19\\
+        \hline
+        \ce{AlOOH} by-product & 8.61 & 0.40 (ass.) & 2.22 & 1.55\\
+        \hline
+        \ce{Al2O3} by-product & 8.61 & 0.40 (ass.) & 1.89 & 1.82\\
+        \hline
+    \end{tabular}
+    \caption{Comparison of different \ce{Al-H2O} by-product scenarios. Adapted from \cite{battery-density, battey-density-autos, Al-steam, gasoline-energy-density, energy-densitie-JMB, Al-H20-economics}}
+    \label{tab:Al-by-products-comparison}
+\end{table}
+
+\begin{table}[h]
+   \centering
+   \small
+   \begin{tabular}{|l|c|c|}
+       \hline
+       \textbf{Fuel Type} & \textbf{Volume} & \textbf{Final Volumetric} \\
+       \textbf{} & \textbf{Density (kg/L)} & \textbf{Energy Density (kWh/L)} \\
+       \hline
+       Al powder (ref.) & 2.7 & 9.30\\
+       \hline
+       \ce{Al(OH)3} by-product & 2.42 & 2.88\\
+       \hline
+       \ce{AlOOH} by-product & 3.03 & 4.70\\
+       \hline
+       \ce{Al2O3} by-product & 3.97 & 7.23\\
+       \hline
+   \end{tabular}
+   \caption{Volumetric Energy Densities of different \ce{Al-H2O} combustion scenarios. Adapted from \cite{battery-density, battey-density-autos, gasoline-volume-density, Al-volume-density, AlOH3-volume-density, AlOOH-volume-density, Al2O3-volume-density}}
+   \label{tab:fuel-volume-density}
+\end{table}
+
+\begin{figure}[h!]
+\centering
+  \includegraphics[width=0.65\linewidth]{./images/Al-H2O reaction by-products.jpg}
+  \caption{\ce{Al-H2O} reaction transition diagram extrapolated to 10 MPa. Labels E1-E4 show conditions used for experimental validation \cite{Al-H2O-byproducts}}
+  \label{fig:Al-H2O-by-products}
+\end{figure}
+    
+    \item \textbf{Superior metal oxide by-product}: The aluminium-water reaction can produce three main by-products: Al(OH)$_3$, AlOOH, and Al$_2$O$_3$. The by-product produced can change the effective mass energy density of the fuel system. The lowest energy density happens with Al(OH)$_3$, while the highest is with Al$_2$O$_3$, as shown in Tables \ref{tab:Al-by-products-comparison} and \ref{tab:fuel-volume-density}. In Fig \ref{fig:Al-H2O-by-products} we can see that as temperature and pressure increase, the probability of producing Al$_2$O$_3$ instead of Al(OH)$_3$ increases, thus further increasing the effective mass and volumetric energy density of the aluminium fuel system. Al$_2$O$_3$ can also be used directly as the input in the Hall-H\'eroult process, as opposed to Al(OH)$_3$, which needs to be processed into Al$_2$O$_3$ first \cite{Al-H20-CHP}.
+\end{itemize}
+
+However, high-temperature reactors come with their own disadvantages:
+
+\begin{itemize}
+    \item \textbf{Extended reactor start-up time}: It could take some time for the reactor to heat up, which can be up to 15--30 minutes depending on the size of the reactor. This problem can be mitigated by the use of hybrid electric propulsion using electrochemical batteries that work as a buffer storage system as the reactor heats up. Hybrid electric systems can mitigate the impact on performance and manoeuvrability caused by the longer start-up time. These hybrid electric systems have been widely used in the automotive sector for decades and have already been gaining traction in the marine shipping sector \cite{hybrid-electric-ships}. Hybrid electric designs were also used to manage the longer start-up time for aluminium powder powered submarine and UUV systems that were researched by the American military \cite{Al-H2O-UUV}.
+    
+    \item \textbf{Higher reactor manufacturing costs}: The reactor for the high-temperature system is likely to be more expensive since it needs to handle the higher temperature and pressure.
+\end{itemize}
+
+\break
+
+\subsubsection{Summary Tables}
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{|>{\centering\arraybackslash}p{3.5cm}|>{\centering\arraybackslash}p{5.5cm}|>{\centering\arraybackslash}p{5.5cm}|}
+\hline
+\textbf{Parameter} & \textbf{LT-MWR} & \textbf{HT-MWR} \\
+\hline
+\textbf{Particle Size} & Nano-sized particles & Micron-sized particles \\
+\hline
+\textbf{Catalysts} & Range of special alloys (Li, Ga, Hg, etc.) & No catalysts \\
+\hline
+\textbf{Temperature and Pressure} & Below 120°C (can operate at room temperature depending on catalyst) & 250--400°C and 15--25 MPa \\
+\hline
+\textbf{Metal By-product} & Al(OH)$_3$ or AlOOH & AlOOH or Al$_2$O$_3$ \\
+\hline
+\textbf{Worst Case Mass Energy Density} & 0.60 or 0.78 kWh/kg & 1.55 or 1.82 kWh/kg\\
+\hline
+\textbf{Worst Case Volumetric Energy Density} & 1.44 or 2.35 kWh/L & 4.70 or 7.23 kWh/L\\
+\hline
+\textbf{Thermal Heat Utilization} & Difficult due to low temperature & Possible with simple steam turbines \\
+\hline
+\textbf{Fuel Production Costs} & Higher (smaller particles and ball milling alloys) & Lower (larger particles and low catalysts) \\
+\hline
+\textbf{Round-trip Energy Eff.} & 11--13\% (if no heat is utilized) & 23--25\% \\
+\hline
+\textbf{Fuel Transport Costs} & Higher (very reactive at room temp.) & Lower (mostly inert at room temperature) \\
+\hline
+\textbf{Fuel Handling Safety} & Lower & Higher \\
+\hline
+\textbf{Reactor Costs} & Lower & Higher (to withstand high temperature \& pressure) \\
+\hline
+\textbf{Reactor Start-up Time} & Lower (ability to load follow) & 15--30 minutes (better for baseloads) \\
+\hline
+\end{tabular}
+\caption{Comparison of Low Temperature Metal-Water Reactors (LT-MWR) and High Temperature Metal-Water Reactors (HT-MWR)}
+\label{tab:mwr_comparison}
+\end{table}
+
+\break
+
+\subsection{Economics of Aluminium Fuel}
+
+\subsubsection{The Long Term Trends}
+
+\begin{figure}[h!]
+\centering
+  \includegraphics[width=0.65\linewidth]{./images/Al-H20 vs other electrofuels.jpg}
+  \caption{Aluminium fuel vs other electrofuels and diesel (The bars show the price of energy derived from low-carbon energy carriers, if the input electricity price were set to \$36/MWh (dark blue) or \$26/MWh (light blue). The pale region at the top of each bar represents the uncertainty related to the required inputs.) \cite{Al-H20-economics}}
+  \label{fig:Al-H20-economics}
+\end{figure}
+
+According to researchers at McGill University, Canada, if both the heat and hydrogen from the aluminium-water reaction are utilized for power generation at 40\% efficiency, aluminium's round-trip efficiency as an electro-fuel reaches approximately 23-25\%, making it comparable to hydrogen \cite{hydrogen-roundtrip-efficiency} and superior to ammonia \cite{ammonia-electro-fuel}.
+
+The cost of electro-fuels like aluminium can be estimated based on electricity prices, while diesel is tied to crude oil prices. As shown in Figure \ref{fig:Al-H20-economics}, aluminium becomes cost-competitive with diesel when electricity prices fall between \$26-36/MWh and oil prices range from \$50-100 per barrel.
+
+Aluminium also holds a cost advantage over rival electro-fuels such as hydrogen (both gas and liquefied forms) and ammonia. In OECD countries, industrial electricity rates range from \$45-143/MWh, with an average of \$100/MWh \cite{iea-electricity-prices}. In regions with abundant renewable energy, such as Norway and Quebec, where rates are as low as \$45/MWh and \$27/MWh, aluminium becomes even more competitive in these markets \cite{quebue-hydro-prices}.
+
+\subsubsection{The Emerging Green Aluminium Supply Chain}
+
+The economic case for aluminium as a recyclable energy carrier depends not only on electricity prices and round‑trip efficiency, but also on the carbon intensity of aluminium production itself. For decades, the conventional Hall-Héroult process has been highly carbon‑intensive for two fundamental reasons:
+
+\begin{itemize}
+\item \textbf{Very high electricity consumption} – Primary aluminium smelting typically requires 14–16 MWh of electricity per tonne of metal produced. In coal‑dependent grids, this translates into a large carbon footprint.
+\item \textbf{Consumable carbon anodes} – The anodes used in conventional cells are made of baked carbon. During normal operation, these anodes oxidise to release carbon dioxide directly from the process, not just from the electricity source.
+\end{itemize}
+
+Together, these factors have made virgin aluminium one of the most emission‑heavy industrial metals. Furthermore, the Hall-Héroult process was traditionally thought to require stable, inflexible baseload electricity. Aluminium smelters were designed to run continuously at a fixed power draw, making them a poor match for variable renewable electricity from solar and wind power.
+
+However, several recent projects are challenging these long‑held assumptions, pointing toward a future green aluminium supply chain that is both low‑carbon and grid‑interactive.
+
+\textbf{Photovoltaic direct‑current (DC) aluminium smelting in Yunnan, China} \\
+A novel DC‑powered smelting system has been demonstrated that directly integrates photovoltaic generation with aluminium electrolysis. Key achievements include:
+
+\begin{itemize}
+\item DC power supply efficiency of at least \textbf{98\%}, a significant improvement over the \(\sim80\%\) efficiency of traditional AC‑coupled photovoltaic systems \cite{dc-aluminium-basic}.
+\item Stabilisation of the electrolytic process by controlling current fluctuations on the DC bus to within \textbf{±1.5\%}, overcoming a major technical barrier to direct solar‑powered smelting \cite{dc-aluminium-basic}.
+\end{itemize}
+
+This technology has already been deployed at \textbf{eight plant sites}, with a total installed capacity of \textbf{252 MW}, demonstrating that direct solar‑powered aluminium production is scaling beyond the laboratory \cite{dc-aluminium-scaling}.
+
+\break
+
+\textbf{The EnPot process from New Zealand} \\
+The EnPot system provides, for the first time, dynamic control of the heat balance of aluminium smelting pots across an entire potline. Key capabilities include:
+
+\begin{itemize}
+\item Energy consumption and aluminium production can be increased or decreased by as much as \textbf{±30\% almost instantaneously} \cite{en-pot-basics}.
+\item Smelters can reduce power draw during periods of grid stress or low renewable output, and increase draw when surplus renewable electricity is available.
+\item This transforms the smelter from a passive end‑user of power into a \textbf{“virtual battery”} for the electricity network, enabling deeper penetration of wind and solar generation \cite{en-pot-basics}.
+\end{itemize}
+
+Crucially, the EnPot process is no longer a theoretical concept. It is being deployed in \textbf{real‑world projects in Germany and China}, proving that flexible aluminium smelting can operate alongside heavy industrial demand and variable renewable grids \cite{en-pot-scaling}. \\
+
+\textbf{Ceramic‑based inert anodes} \\
+Perhaps the most transformative development is the ongoing commercialisation of inert anodes (ceramic or metal‑based) to replace the century‑old consumable carbon anodes. Inert anodes do not oxidise during electrolysis, eliminating the direct CO\(_2\) emissions from the anode reaction. When paired with renewable electricity, the entire Hall-Héroult process becomes \textbf{completely zero‑carbon} \cite{aluminium-inert-anodes}. Several consortia (including Rusal, Alcoa, and Rio Tinto’s ELYSIS partnership) are now scaling this technology \cite{inert-anode-scaling}.
+
+Taken together, these three innovations – DC photovoltaic smelting, EnPot’s load‑flexible potlines, and inert anodes – are rapidly removing the historical carbon penalty from aluminium production. For the aluminium‑water propulsion system proposed in this work, an emerging green aluminium supply chain means that the fuel can be truly low‑carbon from well‑to‑wake, not only during onboard combustion. This strengthens both the environmental and economic case for aluminium as a marine fuel, particularly as renewable electricity becomes cheaper and more widespread.
+
+\break
+
+\subsection{Technology Development Pathway}
+
+\subsubsection{Barriers to Entry in Container Shipping}
+
+The maritime shipping industry has historically been conservative in its adoption of new propulsion technologies. This reluctance stems from the sector’s high capital costs and persistently low operating margins, which leave little room for experimental or unproven systems. Consequently, any novel engine or fuel system must first obtain certification from the International Maritime Organization (IMO), a process that typically requires extensive operational data and can take up to a decade. This lengthy and expensive approval pathway presents a formidable barrier to the introduction of a completely new fuel–engine combination, even in scenarios where high carbon taxes or stringent emissions regulations might otherwise favour low‑carbon alternatives.
+
+Given these challenges, a direct assault on the container shipping market with aluminium‑water propulsion is unlikely to succeed in the near term. Moreover, while solar and battery costs are falling sharply, a robust green aluminium production industry has yet to emerge. Realistic projections suggest that at least 10–15 years will be required for this supply chain to mature and for aluminium fuel to reach cost parity with heavy fuel oil (HFO) and other hydrocarbons. Therefore, a beachhead market must be identified—one in which the technology can be developed, demonstrated, and refined through a “learning by doing” process, while generating the operational track record needed for eventual IMO certification. \cite{tesla-beachhead}
+
+\subsubsection{Luxury Yachts and Superyachts as an Ideal Beachhead}
+
+The most promising initial market for aluminium‑water propulsion systems is the luxury yacht and superyacht segment. These vessels are typically purchased by Ultra‑High‑Net‑Worth Individuals (UHNWIs), defined as individuals with a net worth of US\$30 million or more. The global UHNWI population is expected to grow by approximately 33\% between 2025 and 2030 \cite{high-net-worth-individuals-growth}, driving strong demand for bespoke, high‑end vessels.
+
+Unlike container shipping, which is a commoditised market driven almost exclusively by cost per tonne‑mile, the superyacht market places a premium on product differentiation, innovation, and environmental stewardship. UHNWIs are also more likely to tolerate a significant green premium during the early years of technology development, while the aluminium‑water propulsion system is being refined and while green aluminium fuel has yet to reach cost parity with conventional fuels. This tolerance for higher upfront costs provides a critical financial bridge for the technology.
+
+\begin{figure}[h!]
+\centering
+  \includegraphics[width=0.85\linewidth]{./images/solar-powered-yachts.jpg}
+  \caption{Modern Electric Yachts with Integrated Solar Panels \cite{solar-yachts}}
+  \label{fig:solar-yachts}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+  \includegraphics[width=0.85\linewidth]{./images/Austal-hydrogen-superyacht.jpg}
+  \caption{The Gotland Horizon X By Austal Panels \cite{Austal-hydrogen-superyacht}}
+  \label{fig:Austal-hydrogen-superyacht}
+\end{figure}
+
+Indeed, several green yachting options already exist, including fully battery‑electric yachts powered by integrated solar panels (as shown in Fig \ref{fig:solar-yachts}). Furthermore, Austal—Australia’s largest shipbuilder—is developing a catamaran ferry called the Gotland Horizon X (as shown in Fig \ref{fig:Austal-hydrogen-superyacht}), which features a lightweight “green aluminium” hull and can be powered entirely by green hydrogen \cite{Austal-hydrogen-superyacht}. These developments indicate a strong and growing appetite for low‑carbon, novel vessel designs within the premium marine segment.
+
+\subsubsection{Regulatory Pathway and Certification Advantages}
+
+Equally important are the regulatory differences between commercial shipping and the superyacht sector. IMO certification for container shipping follows a rigid, top‑down process that demands extensive pre‑approved data. In contrast, superyacht certification is handled primarily by private classification societies such as Registro Italiano Navale (RINA), Lloyd’s Register (LR), and DNV. These societies employ a flexible, bottom‑up, risk‑based approach, often engaging in bespoke negotiations with builders and owners. They are specifically equipped to approve novel systems and one‑off builds, making them far more accommodating to innovative propulsion technologies \cite{novel-ships-approval, yacht-certification-societies}.
+
+\subsubsection{Pathway to Broader Adoption}
+
+If aluminium‑water combustion systems can be successfully commercialised in the luxury yacht market, the operational data generated will greatly simplify the subsequent IMO certification process for container shipping applications. This strategy mirrors the path taken by Tesla in the automotive industry: the original Tesla Roadster—a high‑performance, low‑volume sports car—served as a beachhead to develop battery and electric drivetrain technology, generate real‑world data, and build brand credibility before moving into mass‑market vehicles \cite{telsa-roadster-mit, tesla-beachhead}. By targeting yachts and superyachts as the initial product development segment, the aluminium fuel system can follow an analogous learning‑by‑doing trajectory, ultimately paving the way for large‑scale deployment in deep‑sea shipping.
+
+\break
+
+\section{Research Questions}
+
+\subsection{System Requirements for Yacht Applications}
+\label{sec-system-requirements-questions}
+
+While deep‑sea shipping remains the ultimate decarbonisation target, accounting for approximately 70\% of the industry’s fuel consumption and carbon emissions \cite{share-of-different-range-ships}, the luxury yacht and superyacht segment offers an ideal beachhead for the development of aluminium‑water propulsion systems. This market allows for iterative technology refinement, real‑world operational data collection, and the establishment of flexible regulatory pathways.
+
+However, the performance requirements for an aluminium‑water reactor vary significantly across the different classes of superyachts that are popular in the market today. These include motor yachts, sailing superyachts, explorer yachts, and pocket superyachts (24–40 metres). To guide engineering design effectively, the following technical parameters must be systematically determined for each class:
+
+\begin{itemize}
+    \item Minimum mass energy density
+    \item Minimum volumetric energy density
+    \item Power demand profile (minimum, maximum, and average power)
+    \item Minimum range
+    \item Total energy demand between refuelling stops
+    \item Detailed energy demand profile for marine engine operations
+\end{itemize}
+
+\break
+
+\subsection{Metal-Water Reactor Design}
+\label{sec:metal-water-research-questions}
+
+Based on the analysis presented in Section~\ref{sec:reactor-design}, this research 
+explicitly adopts the high-temperature metal-water reactor (HT-MWR) as the design 
+architecture under investigation. The case for this choice over low-temperature 
+alternatives rests on four compounding advantages:
+
+\begin{enumerate}
+    \item \textbf{Lower fuel production costs.} The HT-MWR operates with 
+    micron-sized aluminium particles, which are substantially cheaper and simpler 
+    to produce industrially than the nano-sized particles required by low-temperature 
+    designs.
+
+    \item \textbf{Safer and cheaper fuel transport and handling.} Micron-sized 
+    particles are inert at room temperature and pressure, unlike nano-sized 
+    particles, which can react readily with ambient moisture. This inert character 
+    significantly reduces transport and handling costs and improves the overall 
+    economic case for aluminium as a marine fuel.
+
+    \item \textbf{Higher round-trip energy efficiency.} The HT-MWR produces 
+    high-grade thermal output---heat at temperatures suitable for use in steam 
+    engines and other external heat engines. Harnessing this thermal output 
+    alongside the hydrogen combustion effectively doubles the round-trip energy 
+    efficiency of the aluminium fuel cycle, and correspondingly increases its 
+    effective mass and volumetric energy density, as demonstrated in 
+    Section~\ref{sec:reactor-design}.
+
+    \item \textbf{Superior by-product for recycling.} At the elevated temperatures 
+    and pressures of the HT-MWR, the aluminium-water reaction preferentially 
+    produces \ce{Al2O3} rather than \ce{Al(OH)3} or AlOOH. As shown in 
+    Tables~\ref{tab:Al-by-products-comparison} and~\ref{tab:fuel-volume-density}, \ce{Al2O3} gives 
+    the most favourable effective energy density of any by-product scenario. 
+    Crucially, it can also be fed directly into the Hall--H\'{e}roult recycling 
+    process with minimal pre-processing, which reduces costs and complexity across 
+    the entire aluminium fuel supply chain.
+\end{enumerate}
+
+\break
+
+\subsubsection*{Scope of This Research}
+
+The overarching research question this project addresses is:
+
+\begin{quote}
+    \textit{Can a high-temperature aluminium-water reactor be designed and operated 
+    to provide reliable propulsion power for superyachts, and under what conditions 
+    does it do so safely and efficiently?}
+\end{quote}
+
+However, given the timeframe of a Master's research programme, the scope must be 
+carefully bounded. Table~\ref{tab:scope} formalises what falls within and outside 
+the scope of this study, and identifies how the outputs of this work will directly 
+enable each downstream research activity.
+
+\begin{longtable}{p{3.2cm} p{1.8cm} p{1.8cm} p{7.2cm}}
+\hline
+\textbf{Research Activity} & 
+\textbf{In Scope} & 
+\textbf{Out of Scope} & 
+\textbf{How This Study Enables Future Work} \\
+\hline
+\endfirsthead
+
+\hline
+\textbf{Research Activity} & 
+\textbf{In Scope} & 
+\textbf{Out of Scope} & 
+\textbf{How This Study Enables Future Work} \\
+\hline
+\endhead
+
+\hline
+\multicolumn{4}{r}{\textit{Continued on next page\ldots}} \\
+\endfoot
+
+\hline
+\endlastfoot
+
+Industry requirements matrix & 
+Yes & --- & 
+Defines power, range, and energy density targets that bound all downstream 
+reactor design \\[6pt]
+
+Reaction parameter characterisation (T, P, particle size, fuel-to-water ratio) & 
+Yes & --- & 
+Produces the experimental dataset for reactor geometry and operating point 
+selection \\[6pt]
+
+By-product composition analysis (\ce{Al(OH)3}, AlOOH, \ce{Al2O3}) & 
+Yes & --- & 
+Determines achievable effective energy density and recycling compatibility 
+under real operating conditions \\[6pt]
+
+Seawater vs.\ distilled water reactant comparison & 
+Yes & --- & 
+Establishes whether onboard seawater can be used directly, and specifies 
+any pre-treatment or filtration requirements \\[6pt]
+
+Reactor start-up time and transient load characterisation & 
+Yes & --- & 
+Defines the battery buffer specification and informs control system design 
+required for hybrid-electric integration \\[6pt]
+
+Marine safety protocols (bunkering, dust control, emergency response) & 
+Yes & --- & 
+Provides the safety evidential basis for future certification submissions 
+to RINA, LR, and DNV \\[6pt]
+
+Reactor geometry and material selection & 
+Yes (lab-scale, indicative) & Full-scale design & 
+Lab-scale findings provide the basis for scaled engineering design in 
+future work \\[6pt]
+
+Preliminary cost estimation (reactor and aluminium fuel) & 
+Yes (indicative, order-of-magnitude) & Final production costs & 
+High-level estimates inform the economic feasibility case and identify 
+where further cost refinement is needed \\[6pt]
+
+Engine and turbine selection and integration & 
+--- & Yes & 
+Steam output conditions characterised here define turbine inlet 
+specifications for future work \\[6pt]
+
+Battery sizing for hybrid-electric buffer & 
+--- & Yes & 
+Reactor transient data from this study directly bounds the battery energy 
+and power requirements \\[6pt]
+
+Control system development & 
+--- & Yes & 
+Reactor transient data and power modulation results from this study 
+provide the input requirements for control system design \\[6pt]
+
+Full-scale stress testing and classification society approval & 
+--- & Yes & 
+Experimental safety protocols and datasets developed here form the 
+evidential basis for future certification submissions \\
+
+\end{longtable}
+\addtocounter{table}{-1}
+\captionof{table}{Scope boundary for the metal-water reactor research and its relation to future work.}
+\label{tab:scope}
+
+Two points in the scope boundary deserve particular emphasis. First, the preliminary 
+cost estimates for the lab-scale reactor and aluminium powder fuel are intended to 
+give an indicative, order-of-magnitude picture of economic viability, not final 
+production costs. These numbers will need to be refined substantially once a 
+full-scale commercial system has been designed. Second, the reactor designed and 
+built in this project is a laboratory-scale prototype intended for systematic 
+parameter testing. It is not directly equivalent to the system that would eventually 
+be deployed aboard a commercial superyacht, and should not be interpreted as such.
+
+\subsubsection*{Reactor Research Deliverables}
+
+With this scope established, the research decomposes into the following primary 
+questions:
+
+\paragraph{1. Reaction parameter optimisation}
+
+How do temperature (250--400\textdegree C), pressure (up to 25~MPa), aluminium 
+particle size, and fuel-to-water ratio individually and jointly influence hydrogen 
+yield and thermal heat output? The target thermal output is a steam-hydrogen mixture 
+at 400--500\textdegree C---the temperature range required to drive external heat 
+engines such as steam turbines. The goal of this investigation is to identify the 
+combination of parameters that delivers stable, controllable output at this 
+temperature while maximising hydrogen yield.
+
+\paragraph{2. Aluminium particle size characterisation}
+
+The reaction rate of the aluminium-water system increases as particle size decreases, 
+but smaller particles are more expensive to produce and more difficult to handle 
+safely. This investigation will therefore identify the coarsest particle size that 
+still achieves the reaction rates and thermal output required to meet the power 
+demand profile of the target superyacht class identified in Section~\ref{sec-system-requirements-questions}, 
+since this coarsest viable size defines the most commercially attractive operating 
+point.
+
+\paragraph{3. By-product composition analysis}
+
+The by-product produced by the aluminium-water reaction---whether \ce{Al(OH)3}, 
+AlOOH, or \ce{Al2O3}---has a major impact on the practical performance of the fuel 
+system, for two reasons. First, the yacht must carry the by-product in a dedicated 
+storage tank throughout the voyage, so the mass and volume of the by-product directly 
+affects the effective energy density available for propulsion, as shown in 
+Tables~\ref{tab:Al-by-products-comparison} and~\ref{tab:fuel-volume-density}. Second, delivering 
+\ce{Al2O3} rather than \ce{Al(OH)3} to recycling facilities eliminates an 
+intermediate processing step before the Hall--H\'{e}roult process, reducing cost 
+and complexity across the supply chain.
+
+This investigation will therefore identify the specific temperature and pressure 
+conditions under which the reaction shifts from producing \ce{Al(OH)3} or AlOOH 
+toward \ce{Al2O3} as the dominant by-product, and will characterise how 
+fuel-to-water ratio and particle size interact with this shift.
+
+\paragraph{4. Seawater reactant characterisation}
+
+For a vessel operating at sea, seawater is the naturally available reactant. The 
+ability to use seawater directly as the oxidiser would deliver significant operational 
+and maintenance benefits for aluminium-powered marine vessels. However, seawater 
+introduces chemical variables that distilled water experiments cannot capture:
+
+\begin{itemize}
+    \item Dissolved chloride ions and sulphates, which may modify the passivation 
+    behaviour of the aluminium oxide layer and alter the induction, rapid oxidation, 
+    and quenching stages of the reaction
+    \item Magnesium and sodium salts, which could affect by-product composition
+    \item Biological matter and suspended particulates, which may affect reactor 
+    internals and feed systems over time
+\end{itemize}
+
+This investigation will compare the hydrogen yield and thermal output of the 
+aluminium-water reaction using distilled water versus seawater. Any filtration or 
+pre-treatment required for the seawater intake will be identified and documented, 
+since this information is essential for a proper cost-benefit analysis of seawater 
+as the operational oxidiser.
+
+\paragraph{5. Reactor start-up time and transient load characterisation}
+
+Much of the existing research on high-temperature aluminium-water reactors---including 
+work conducted at McGill University---is directed at baseload electricity generation 
+for remote communities or mining operations, where the reactor reaches a steady state 
+and holds it. A marine propulsion system operates in a fundamentally different 
+environment: power demand changes continuously as the vessel manoeuvres, accelerates, 
+cruises, and docks.
+
+This investigation will characterise the reactor's power modulation capability and 
+compare the results against the power demand profiles established for the target 
+superyacht class in Section~\ref{sec-system-requirements-questions}. This characterisation is 
+explicitly scoped to describe the reactor's transient behaviour, not to design the 
+battery buffer system that will bridge the gap during start-up and load 
+transitions---battery sizing is identified in Table~\ref{tab:scope} as future work. 
+However, the data produced here will be the primary input that enables future 
+researchers and engineers to correctly specify that buffer, design appropriate control 
+systems, and select compatible engine configurations.
+
+\paragraph{6. Marine safety systems}
+
+Aluminium powder introduces a set of hazards that are not commonly encountered in 
+conventional marine fuel systems and are not fully addressed by existing maritime 
+fuel codes:
+
+\begin{itemize}
+    \item \textbf{Fire and explosion risk} from highly combustible aluminium dust 
+    clouds
+    \item \textbf{Hydrogen liberation} from the exothermic reaction of aluminium 
+    powder with moisture, presenting both a fire risk and a potential contribution 
+    to climate change if vented
+    \item \textbf{Chronic inhalation risk}---prolonged exposure to aluminium dust 
+    can cause pulmonary fibrosis (aluminosis)
+    \item \textbf{Special extinguishing requirements}---water-based extinguishing 
+    agents are prohibited in areas where aluminium powder is present; Class~D agents 
+    and inert atmospheres are required
+\end{itemize}
+
+The development and validation of safety protocols covering bunkering procedures, 
+leak detection, dust control, and emergency response constitutes a distinct research 
+deliverable of this study. These protocols will be developed in consultation with 
+Registro Italiano Navale (RINA), Lloyd's Register (LR), and DNV, to ensure that the 
+procedures adopted are consistent with the risk-based certification frameworks that 
+will govern eventual onboard deployment, and that the documentation generated is 
+structured to support future certification submissions.
+
+\subsubsection*{Trade-offs and Design Decisions}
+
+As with any engineering system, the experimental results from this research will 
+surface trade-offs that cannot all be optimised simultaneously. All such trade-offs 
+will be transparently documented and justified as part of this study, providing 
+future engineers with the information they need to make informed design decisions 
+as the metal-water propulsion system is developed further toward commercial 
+deployment.
+
+\break
+
+\section{Methodology}
+
+\subsection{Industry Research}
+\label{sec:industry-research}
+
+\subsubsection*{Research Design}
+
+The industry research component of this study seeks to establish the quantitative 
+system requirements and qualitative market context that will bound the subsequent 
+reactor design work. The information required spans two distinct domains: technical 
+parameters such as power demand profiles, energy density targets, range requirements, 
+and refuelling constraints; and contextual parameters such as risk tolerance, 
+segment-specific adoption barriers, and willingness to pay a green premium. No 
+validated dataset exists for either domain in the context of aluminium--water 
+propulsion for superyachts, since the technology itself is novel. A fixed-format 
+survey instrument is therefore inappropriate at this stage --- the questions 
+themselves require contextual interpretation and the ability to pursue unexpectedly 
+informative responses in depth, neither of which a questionnaire can accommodate.
+
+Semi-structured interviews are the appropriate method for this type of exploratory 
+technical and commercial research. They ensure that a consistent set of core topics 
+is covered across all participants --- enabling structured comparison and synthesis 
+--- while preserving the flexibility to probe unexpected responses and allow 
+participants to introduce considerations the researcher had not anticipated 
+\cite{kvale2009}. This flexibility is especially important when interviewing across 
+multiple stakeholder groups with different professional languages and priorities, as 
+is the case here.
+
+\subsubsection*{Stakeholder Groups and Sampling Strategy}
+
+Participants will be drawn from four groups, each contributing a different 
+category of information:
+
+\begin{enumerate}
+    \item \textbf{Superyacht builders and shipyards} will provide technical data 
+    on vessel power systems, structural constraints, and storage configurations 
+    across the target vessel classes.
+
+    \item \textbf{Classification societies} --- specifically RINA, Lloyd's 
+    Register, and DNV --- will clarify the regulatory pathway for novel propulsion 
+    systems, documentation requirements for prototype approval, and specific 
+    concerns regarding aluminium powder handling and onboard hydrogen production.
+
+    \item \textbf{Naval architects} will supply quantitative power demand profiles, 
+    range calculations, and energy density constraints for specific vessel classes 
+    with a precision that neither builders nor owners can typically provide.
+
+    \item \textbf{Vessel owners and superyacht management companies} will contribute 
+    priorities around operational flexibility, risk tolerance, and the green premium 
+    threshold above which an aluminium--water system becomes commercially 
+    unacceptable.
+\end{enumerate}
+
+Participants within each group will be identified through purposive sampling --- a 
+deliberate, non-random selection strategy that targets individuals with specific 
+expertise, roles, or institutional knowledge relevant to the research questions 
+\cite{patton2002}. This is the appropriate sampling strategy when the goal is depth 
+of insight rather than statistical representativeness. Initial contacts will be 
+identified through industry directories, professional networks, and direct outreach 
+to relevant organisations. A snowball sampling component will supplement this within 
+each group: each participant will be asked to suggest other relevant contacts, 
+providing access to practitioners who may not be publicly visible through standard 
+directories. Key industry events --- including the Monaco Yacht Show, the Superyacht 
+Forum, and Europort --- will be attended where feasible to facilitate direct 
+introductions to potential participants.
+
+The target sample size is four to six participants per stakeholder group, giving a 
+total of 16--24 interviews across the study. Research on thematic saturation in 
+expert interview studies indicates that the majority of core themes are typically 
+identifiable within six interviews in a relatively homogeneous professional 
+population, and that saturation is rarely reached beyond twelve \cite{guest2006}. 
+Since each of the four groups is well-defined in terms of knowledge domain and 
+professional role, a target of four to six per group provides a reasonable 
+expectation of saturation within the first research quarter.
+
+\subsubsection*{Interview Guide Development}
+
+A separate semi-structured interview guide will be developed for each of the four 
+stakeholder groups. Each guide will share a common core covering the topics 
+essential to the requirements matrix but will be adapted in language, technical 
+emphasis, and sequencing to suit each group. The core topics across all guides are:
+
+\begin{itemize}
+    \item Typical energy demand profiles and power output requirements for the 
+    target vessel classes, across distinct operational phases including docking, 
+    harbour manoeuvring, coastal transit, and offshore cruising
+
+    \item Total energy demand between planned refuelling stops, and the maximum 
+    acceptable refuelling time and downtime per stop
+
+    \item Onboard space and weight constraints affecting fuel storage, by-product 
+    storage, and propulsion system footprint
+
+    \item Tolerance for novel technology risk and willingness to pay a green premium 
+    during the early commercialisation phase of the technology
+
+    \item Views on the regulatory and certification pathway for a novel propulsion 
+    fuel system
+\end{itemize}
+
+The classification society guide will additionally address the documentation 
+required for prototype approval on a one-off build, the operational data needed to 
+support progression toward type approval for series production, and specific 
+regulatory concerns related to aluminium powder bunkering and onboard hydrogen 
+management.
+
+Before deployment with research participants, the guide will be piloted with two 
+individuals who will not be included in the final analytical sample --- ideally 
+academics or industry consultants with superyacht or maritime propulsion experience. 
+Piloting serves to identify ambiguous or leading questions, test the logical flow of 
+the session, and calibrate the time required. The guide will be revised based on 
+pilot feedback before the main data collection begins.
+
+\subsubsection*{Data Collection}
+
+All interviews will be conducted by the principal researcher to ensure consistency 
+of facilitation. Where possible, interviews will be held in person at the 
+participant's place of work, as the professional environment can itself provide 
+contextual information and facilitates rapport. Where in-person meetings are 
+impractical due to geography or scheduling, video-conferencing will be used. Each 
+session will target 45--60 minutes.
+
+Before each interview, participants will receive a written information sheet 
+describing the research purpose, the voluntary nature of participation, the intended 
+use of the data, and their right to withdraw at any time without consequence. 
+Written informed consent will be obtained before the session begins. With consent, 
+all interviews will be audio-recorded and subsequently transcribed verbatim. Where 
+recording is declined --- which may occur with some classification society 
+representatives given institutional confidentiality obligations --- detailed 
+contemporaneous notes will be taken during the session and written up in full within 
+24 hours of the interview. All data will be stored in accordance with the 
+university's research data management policy, with participant identities anonymised 
+in all transcripts and analytical outputs. Organisations may be identified by type 
+(e.g.\ ``a major European classification society'') but not by name in any published 
+output, unless explicit permission is granted.
+
+\subsubsection*{Data Analysis}
+
+Transcripts will be analysed using reflexive thematic analysis, following the 
+six-phase process described by Braun and Clarke \cite{braun2006}: familiarisation 
+with the data, generating initial codes, searching for themes, reviewing themes, 
+defining and naming themes, and producing the final written analysis. This approach 
+is appropriate because the research is fundamentally exploratory --- the goal is to 
+identify patterns and points of convergence or divergence across stakeholder 
+perspectives, rather than to test a pre-specified hypothesis.
+
+Two distinct types of output will be extracted from the analysis. First, 
+quantitative parameters --- power demand values, range requirements, refuelling time 
+tolerances, storage volume constraints, and energy density targets --- will be drawn 
+directly from interview content, tabulated by vessel class, and where multiple 
+participants provide estimates, cross-validated and reconciled to produce working 
+values with documented uncertainty ranges. Second, qualitative themes --- covering 
+risk tolerance, green premium thresholds, segment-specific adoption barriers, and 
+regulatory pathway insights --- will be synthesised across participant groups, with 
+representative quotations used to illustrate key findings.
+
+To strengthen the credibility of the analysis, member checking will be conducted 
+once the initial thematic analysis is complete \cite{miles2014}. A summary of the 
+key findings and the draft requirements matrix will be shared with at least one 
+participant per stakeholder group for comment and correction before the matrix is 
+finalised. This practice reduces the risk of misinterpretation and ensures that the 
+technical parameters derived from the interviews are recognised as accurate by the 
+domain experts who provided them.
+
+\subsubsection*{Synthesis into the Requirements Matrix}
+
+The outputs of the thematic analysis will be synthesised into a formal requirements 
+matrix --- the primary deliverable of the industry research phase. This matrix will 
+document the minimum and maximum values for each technical parameter for each 
+superyacht class investigated, alongside the qualitative constraints and stakeholder 
+priorities identified across the four groups.
+
+The requirements matrix serves two functions within the broader research project. 
+First, it identifies which superyacht class or classes represent the most promising 
+initial deployment target for the aluminium--water propulsion system, based on the 
+combination of regulatory flexibility, risk tolerance, and alignment between 
+operational requirements and the known performance envelope of the HT-MWR. Second, 
+it directly bounds the experimental programme in 
+Section~\ref{subsec:reactor-methodology}: the power output targets for the transient 
+load characterisation, the energy density thresholds for the parameter optimisation 
+experiments, and the range requirements constraining by-product storage calculations 
+will all be set by the values documented in this matrix.
+
+\break
+
+\subsection{Metal-Water Reactor Design}
+\label{subsec:reactor-methodology}
+
+This section describes the experimental programme for the high-temperature 
+metal-water reactor (HT-MWR) component of this research. The programme is 
+structured to address each of the six research deliverables identified in 
+Section~\ref{sec:metal-water-research-questions}, building on the system 
+requirements established through the industry research in 
+Section~\ref{sec:industry-research}.
+
+\subsubsection*{Reactor Vessel and Instrumentation}
+
+The central piece of experimental equipment is a laboratory-scale high-pressure 
+reactor vessel designed to operate at temperatures of 250--400\textdegree C and 
+pressures up to 25~MPa. The reactor body will be constructed from SS316L stainless 
+steel, which provides the required tensile strength, corrosion resistance in 
+high-temperature steam environments, and wide commercial availability of 
+pressure-rated fittings. All pressurised components will be specified with pressure 
+ratings exceeding 300~bar at 450\textdegree C. For seawater experiments, reactor 
+sections in contact with the fluid will be constructed from or lined with Hastelloy 
+C-276 or Inconel 625 to resist chloride-induced stress corrosion cracking. The 
+reactor will be heated externally using a resistance heater, with thermal insulation 
+applied along its full length to minimise heat loss.
+
+The following instrumentation will be installed as standard across all experiments:
+
+\begin{itemize}
+    \item \textbf{Temperature}: Four K-type thermocouples distributed axially along 
+    the reactor exterior, with the average reading used as the representative reactor 
+    temperature, consistent with the approach of Vlaskin et al.~\cite{high-temp-Al-H2O}
+
+    \item \textbf{Pressure}: Two calibrated high-pressure transducers --- one on the 
+    pump inlet and one measuring direct reactor pressure --- with continuous 
+    high-frequency data logging
+
+    \item \textbf{Real-time gas flow}: A thermal mass flow controller on the gas 
+    outlet line, providing continuous volumetric measurement of gas leaving the 
+    reactor
+
+    \item \textbf{Hydrogen concentration}: An electrochemical hydrogen sensor 
+    positioned in the gas outlet stream and exhaust ventilation line, serving both 
+    as a safety monitor and a supplementary yield measurement
+
+    \item \textbf{Slurry injection}: A variable-speed high-pressure plunger pump 
+    with remote speed control, enabling precise and adjustable mass flow rates of 
+    aluminium--water slurry into the reactor
+\end{itemize}
+
+All sensor outputs will be logged centrally from a remote data acquisition console 
+outside the reactor enclosure.
+
+\subsubsection*{Aluminium Powder Characterisation}
+
+Seven discrete particle size grades will be tested, spanning the 10--500~micrometre 
+range, with target nominal sizes of approximately 10, 25, 50, 100, 200, 350, and 
+500~\textmu m. These will be selected from commercially available aluminium powder 
+products, covering the size range studied in prior high-temperature aluminium--water 
+research in Russia~\cite{high-temp-Al-H2O} and Canada~\cite{high-temp-metal-water-reactor-exp-Canada}. Before use in 
+any reaction experiment, each powder batch will be characterised using:
+
+\begin{itemize}
+    \item \textbf{Laser diffraction particle size analysis}: To verify actual size 
+    distributions (D10, D50, and D90 values) against nominal supplier specifications
+
+    \item \textbf{Scanning electron microscopy (SEM)}: To inspect particle 
+    morphology, surface condition, and the native aluminium oxide passivation layer
+
+    \item \textbf{Inductively coupled plasma optical emission spectroscopy 
+    (ICP-OES)}: To quantify elemental impurities, particularly silicon and iron 
+    content
+\end{itemize}
+
+Silicon content will be screened carefully, as Boudreau et al.~\cite{high-temp-metal-water-reactor-exp-Canada} 
+demonstrated that increasing silicon mass fraction from 0.06\% to 0.54\% reduced 
+aluminium oxidation rate by an order of magnitude under supercritical water 
+conditions. Only powders with silicon content below 0.1\% by mass will be used in 
+the primary parameter optimisation experiments.
+
+\subsubsection*{Reaction Parameter Optimisation}
+
+Experiments will systematically vary temperature (250--400\textdegree C), pressure 
+(saturated vapour pressure at each temperature, with supplementary runs up to 
+25~MPa), water-to-aluminium mass ratio (5, 7, 9, and 12), and all seven particle 
+size grades. Each parameter combination will be repeated a minimum of three times 
+to establish repeatability. The primary measured outputs are:
+
+\begin{enumerate}
+    \item \textbf{Hydrogen yield}: Calculated from reactor pressure rise using the 
+    ideal gas law and cross-validated against the mass flow controller reading on 
+    the gas outlet
+    
+    \item \textbf{Thermal heat output}: Derived from the reactor temperature--time 
+    curves recorded by the four thermocouples
+\end{enumerate}
+
+The target output condition is a steam--hydrogen mixture at 400--500\textdegree C. 
+The coarsest particle size that still achieves this target while meeting the power 
+demand requirements of the superyacht class from 
+Section~\ref{sec:industry-research} will be identified as the most commercially 
+attractive operating point.
+
+\subsubsection*{By-product Composition Analysis}
+
+Following each experiment, solid products will be extracted, cooled, and 
+vacuum-dried before analysis using two complementary methods:
+
+\begin{itemize}
+    \item \textbf{Powder X-ray diffraction (PXRD)}: To identify and quantify the 
+    crystalline phases present --- specifically \ce{Al(OH)3}, AlOOH, and the 
+    \ce{Al2O3} polymorphs --- with phase proportions quantified by Rietveld 
+    refinement of the diffraction patterns
+
+    \item \textbf{Thermogravimetric analysis (TGA)}: As a complementary method to 
+    cross-validate phase composition based on characteristic mass loss temperatures
+\end{itemize}
+
+Residual unreacted aluminium will also be quantified by PXRD, providing a direct 
+conversion degree measurement alongside the hydrogen yield calculations. By-product 
+phase data will be mapped against the temperature and pressure conditions of each 
+experiment to identify the threshold conditions required to shift the reaction 
+toward \ce{Al2O3} as the dominant product.
+
+\subsubsection*{Seawater Reactant Characterisation}
+
+Rather than a simple binary comparison between distilled water and seawater, this 
+research defines four distinct water treatment categories to isolate which components 
+of seawater affect the reaction:
+
+\begin{itemize}
+    \item \textbf{Category A --- Distilled water}: The baseline case
+
+    \item \textbf{Category B --- Synthetic seawater}: Distilled water with dissolved 
+    salts at open-ocean concentration (${\approx}$35~g/L, ASTM D1141), isolating 
+    ionic effects from biological and particulate contamination
+
+    \item \textbf{Category C --- Coarse-filtered natural seawater}: Natural seawater 
+    passed through a 50~\textmu m filter, removing organisms and macro-particulates 
+    while retaining dissolved ions and fine particles
+
+    \item \textbf{Category D --- Fine-filtered natural seawater}: Natural seawater 
+    passed through a 50~\textmu m pre-filter followed by a 1~\textmu m membrane 
+    filter, removing virtually all suspended particulates while retaining dissolved 
+    ions
+\end{itemize}
+
+Natural seawater samples for Categories C and D will be collected at both 
+open-ocean (${\approx}$35~g/L) and coastal (${\approx}$15~g/L) salinities. The 
+hydrogen yield, thermal output, and by-product composition for each water type will 
+be compared against the distilled water baseline. The filtration complexity and 
+estimated cost of each category will be documented, enabling a cost-benefit analysis 
+of onboard seawater pre-treatment for a deployed marine system.
+
+\subsubsection*{Reactor Start-up and Transient Load Characterisation}
+
+This is the most novel component of the experimental programme. Prior 
+high-temperature aluminium--water reactor research --- including work conducted at 
+McGill University --- has focused on baseload electricity generation for stationary 
+applications where the reactor reaches a steady state and holds it. No prior work 
+has characterised HT-MWR behaviour under the dynamic load-following conditions 
+required for marine propulsion, where power demand changes continuously as the 
+vessel manoeuvres, accelerates, cruises, and docks.
+
+The reactor's output will be characterised across four discrete power settings that 
+reflect the operational modes of a marine propulsion system:
+
+\begin{itemize}
+    \item \textbf{Off}: No aluminium injection; reactor held at thermal standby 
+    temperature
+
+    \item \textbf{Low}: Approximately 25\% of rated hydrogen output, corresponding 
+    to harbour manoeuvring and low-speed transit conditions
+
+    \item \textbf{Medium}: Approximately 50\% of rated hydrogen output, 
+    corresponding to moderate cruising
+
+    \item \textbf{High}: 100\% of rated hydrogen output, corresponding to full 
+    cruising speed
+\end{itemize}
+
+The absolute output targets for each level will be derived from the superyacht power 
+demand profiles established in Section~\ref{sec:industry-research}.
+
+Real-time hydrogen yield will be measured continuously throughout all transient 
+experiments using two simultaneous methods:
+
+\begin{enumerate}
+    \item \textbf{Pressure--time derivative method}: The rate of pressure change 
+    (d$P$/d$t$) from the high-frequency pressure transducer, combined with the 
+    known gas space volume, gives the instantaneous molar hydrogen production rate 
+    via a modified ideal gas equation, consistent with the computational procedure 
+    of Vlaskin et al.~\cite{high-temp-Al-H2O}. This provides high temporal resolution.
+
+    \item \textbf{Mass flow controller method}: The gas outlet thermal mass flow 
+    controller provides a direct real-time volumetric measurement of gas leaving the 
+    reactor, cross-validated against hydrogen concentration from the in-line 
+    electrochemical sensor.
+\end{enumerate}
+
+Both measurement streams will be logged with timestamps synchronised to the pump 
+control input signals, enabling direct calculation of the lag time between a control 
+input change and the corresponding output change --- the primary dataset required by 
+future engineers designing control systems for this reactor.
+
+Three power modulation techniques will be investigated, each chosen for its 
+relevance to real-world continuous marine propulsion rather than the batch operation 
+characterised in prior research:
+
+\begin{enumerate}
+    \item \textbf{Slurry injection rate modulation}: Adjusting the pump speed to 
+    change the aluminium mass flow rate entering the reactor. This is the most direct 
+    analogue to fuel injection control in a conventional engine and is expected to 
+    produce the fastest dynamic response, making it the most commercially viable 
+    approach for a deployed marine system.
+
+    \item \textbf{Fuel-to-water ratio modulation}: Adjusting the aluminium slurry 
+    and water supply rates independently to tune the fuel-to-water ratio while 
+    holding total throughput approximately constant. This may help maintain reactor 
+    pressure stability during load transitions without requiring large changes in 
+    total flow rate.
+
+    \item \textbf{Temperature modulation}: Varying heater power to shift the reactor 
+    operating temperature within the 250--400\textdegree C range, exploiting the 
+    strong temperature-dependence of aluminium oxidation kinetics. This method has 
+    the slowest response time due to reactor thermal mass, but may serve as a coarse 
+    power adjustment complementing injection rate control.
+\end{enumerate}
+
+Each technique will be tested independently, and promising combinations will be 
+tested together. For each transition between power settings, the response lag, rise 
+time, steady-state output, and any overshoot or undershoot in hydrogen production 
+will be recorded and reported. The results will be compared directly against the 
+superyacht power demand profiles from Section~\ref{sec:industry-research}, and 
+will form the primary dataset enabling future researchers and engineers to design 
+control systems, size battery buffers, and select engine configurations for this 
+propulsion architecture.
+
+\subsubsection*{Safety, Verification, and Approval}
+
+The experimental programme involves concurrent hazards from aluminium powder 
+handling, continuous hydrogen gas production, and high-pressure and high-temperature 
+reactor operation. A comprehensive safety protocol addressing each risk category, 
+together with the plan for independent peer review and formal university approval 
+of the experimental design, is provided in full in 
+Appendix~\ref{appendix:safety-verification}. In summary, all experimental work will 
+be conducted in a dedicated ventilated enclosure with Class~D fire suppression, 
+continuous hydrogen monitoring with automatic equipment interlocks, and a minimum 
+of two researchers present at all times. A detailed laboratory experimental proposal 
+incorporating the full safety protocol, risk register, and reactor specifications 
+will be submitted for independent review by experienced academics and for formal 
+approval by the university's laboratory safety committee. No high-pressure or 
+high-temperature experimental work will commence before this approval is granted. 
+This comprehensive proposal and its approval will be completed by the \textbf{end 
+of the first quarter} of the research project.
+
+\break
+
+\section{Proposed Project Time-line}
+
+\begin{landscape}
+\thispagestyle{empty}
+% --- Page 1 ---
+\begin{ganttchart}[
+    hgrid,
+    vgrid={*{11}{dotted}},
+    x unit=0.95cm,
+    y unit title=0.6cm,
+    y unit chart=0.65cm,
+    title height=1,
+    bar height=0.5,
+    bar top shift=0.25,
+    title label font=\small\bfseries,
+    bar label font=\small,
+    group label font=\small\bfseries,
+    milestone label font=\small\itshape,
+    bar/.append style={draw=black!60},
+    group/.append style={draw=black!70},
+    milestone/.append style={fill=red!70, draw=red!90},
+    bar label node/.append style={text width=5.5cm, align=right, anchor=east},
+    group label node/.append style={text width=5.5cm, align=right, anchor=east},
+    milestone label node/.append style={text width=5.5cm, align=right, anchor=east}
+]{1}{12}
+\gantttitle{M1}{1} \gantttitle{M2}{1} \gantttitle{M3}{1} \gantttitle{M4}{1} \gantttitle{M5}{1} \gantttitle{M6}{1} \gantttitle{M7}{1} \gantttitle{M8}{1} \gantttitle{M9}{1} \gantttitle{M10}{1} \gantttitle{M11}{1} \gantttitle{M12}{1} \\ 
+
+\ganttgroup[group/.append style={fill=phase0col}]{\textbf{Phase 0: Foundation}}{1}{4} \\
+\ganttbar[bar/.append style={fill=phase0col}]{Literature review}{1}{3} \\
+\ganttbar[bar/.append style={fill=phase0col}]{Interview guide dev.}{2}{4} \\
+\ganttbar[bar/.append style={fill=phase0col}]{Peer review: exp. design}{3}{4} \\
+\ganttbar[bar/.append style={fill=phase0col}]{Safety submission}{3}{4} \\
+\ganttbar[bar/.append style={fill=phase0col}]{Reactor procurement}{1}{4} \\
+\ganttmilestone[milestone/.append style={fill=gatecol}]{\textbf{Gate 1: Safety approval}}{4} \\
+
+\ganttgroup[group/.append style={fill=phase1col}]{\textbf{Phase 1: Industry Research}}{2}{7} \\
+\ganttbar[bar/.append style={fill=phase1col}]{Pilot interviews}{2}{3} \\
+\ganttbar[bar/.append style={fill=phase1col}]{Stakeholder interviews}{3}{6} \\
+\ganttbar[bar/.append style={fill=phase1col}]{Quantitative analysis}{4}{7} \\
+\ganttbar[bar/.append style={fill=phase1col}]{Requirements matrix}{5}{7} \\
+
+\end{ganttchart}
+
+\clearpage
+
+% --- Page 2 ---
+\thispagestyle{empty}
+\begin{ganttchart}[
+    hgrid,
+    vgrid={*{11}{dotted}},
+    x unit=0.95cm,
+    y unit title=0.6cm,
+    y unit chart=0.85cm,
+    title height=1,
+    bar height=0.5,
+    bar top shift=0.25,
+    title label font=\small\bfseries,
+    bar label font=\small,
+    group label font=\small\bfseries,
+    milestone label font=\small\itshape,
+    bar/.append style={draw=black!60},
+    group/.append style={draw=black!70},
+    milestone/.append style={fill=red!70, draw=red!90},
+    bar label node/.append style={text width=5.5cm, align=right, anchor=east},
+    group label node/.append style={text width=5.5cm, align=right, anchor=east},
+    milestone label node/.append style={text width=5.5cm, align=right, anchor=east}
+]{1}{12}
+\gantttitle{M1}{1} \gantttitle{M2}{1} \gantttitle{M3}{1} \gantttitle{M4}{1} \gantttitle{M5}{1} \gantttitle{M6}{1} \gantttitle{M7}{1} \gantttitle{M8}{1} \gantttitle{M9}{1} \gantttitle{M10}{1} \gantttitle{M11}{1} \gantttitle{M12}{1} \\ 
+
+\ganttmilestone[milestone/.append style={fill=gatecol}]{\textbf{Gate 2: Reqts. matrix finalised}}{7} \\
+
+\ganttgroup[group/.append style={fill=phase2col}]{\textbf{Phase 2: Reactor Commissioning}}{5}{6} \\
+\ganttbar[bar/.append style={fill=phase2col}]{Build \& commission reactor}{5}{6} \\
+\ganttbar[bar/.append style={fill=phase2col}]{Calibration runs (blank)}{6}{6} \\
+
+\ganttgroup[group/.append style={fill=tier1col}]{\textbf{Phase 3: Core Experiments}}{7}{10} \\
+\ganttbar[bar/.append style={fill=tier1col}]{Temp./pressure optimisation}{7}{8} \\
+\ganttbar[bar/.append style={fill=tier1col}]{Particle size:\\50, 100, 200 \textmu m}{7}{9} \\
+\ganttbar[bar/.append style={fill=tier1col}]{Distilled vs. synthetic seawater}{8}{9} \\
+\ganttbar[bar/.append style={fill=tier1col}]{By-product analysis (PXRD)}{9}{10} \\
+\ganttbar[bar/.append style={fill=tier1col}]{Steady-state load characterisation}{9}{10} \\
+
+\end{ganttchart}
+
+\clearpage
+
+% --- Page 3 ---
+\thispagestyle{empty}
+\begin{ganttchart}[
+    hgrid,
+    vgrid={*{11}{dotted}},
+    x unit=0.95cm,
+    y unit title=0.6cm,
+    y unit chart=0.85cm,
+    title height=1,
+    bar height=0.5,
+    bar top shift=0.25,
+    title label font=\small\bfseries,
+    bar label font=\small,
+    group label font=\small\bfseries,
+    milestone label font=\small\itshape,
+    bar/.append style={draw=black!60},
+    group/.append style={draw=black!70},
+    milestone/.append style={fill=red!70, draw=red!90},
+    bar label node/.append style={text width=5.5cm, align=right, anchor=east},
+    group label node/.append style={text width=5.5cm, align=right, anchor=east},
+    milestone label node/.append style={text width=5.5cm, align=right, anchor=east}
+]{1}{12}
+\gantttitle{M1}{1} \gantttitle{M2}{1} \gantttitle{M3}{1} \gantttitle{M4}{1} \gantttitle{M5}{1} \gantttitle{M6}{1} \gantttitle{M7}{1} \gantttitle{M8}{1} \gantttitle{M9}{1} \gantttitle{M10}{1} \gantttitle{M11}{1} \gantttitle{M12}{1} \\ 
+
+\ganttgroup[group/.append style={fill=tier2col}]{\textbf{Tier 2 — Extended (if on schedule)}}{7}{10} \\
+\ganttbar[bar/.append style={fill=tier2col}]{Particle size:10, 25, 350, 500 \textmu m}{7}{9} \\
+\ganttbar[bar/.append style={fill=tier2col}]{Natural seawater (coarse/fine)}{8}{10} \\
+\ganttbar[bar/.append style={fill=tier2col}]{Transient load tests}{9}{10} \\
+
+\ganttgroup[group/.append style={fill=tier3col}]{\textbf{Tier 3 — Optional (if ahead)}}{7}{10} \\
+\ganttbar[bar/.append style={fill=tier3col}]{TGA cross-validation}{7}{8} \\
+\ganttbar[bar/.append style={fill=tier3col}]{Fuel/water ratio transients}{8}{9} \\
+\ganttbar[bar/.append style={fill=tier3col}]{Temperature modulation transients}{9}{10} \\
+\ganttbar[bar/.append style={fill=tier3col}]{Repeat runs / troubleshooting}{10}{10} \\
+
+\ganttgroup[group/.append style={fill=safetycol}]{\textbf{Phase 4: Contingency Buffer}}{10}{10} \\
+\ganttbar[bar/.append style={fill=safetycol}]{Safety protocol \& cost est.}{10}{10} \\
+\ganttmilestone[milestone/.append style={fill=gatecol}]{\textbf{Gate 3: All Tier 1 complete}}{10} \\
+
+\end{ganttchart}
+
+\clearpage
+
+% --- Page 4 ---
+\thispagestyle{empty}
+\begin{ganttchart}[
+    hgrid,
+    vgrid={*{11}{dotted}},
+    x unit=0.95cm,
+    y unit title=0.6cm,
+    y unit chart=0.65cm,
+    title height=1,
+    bar height=0.5,
+    bar top shift=0.25,
+    title label font=\small\bfseries,
+    bar label font=\small,
+    group label font=\small\bfseries,
+    milestone label font=\small\itshape,
+    bar/.append style={draw=black!60},
+    group/.append style={draw=black!70},
+    milestone/.append style={fill=red!70, draw=red!90},
+    bar label node/.append style={text width=5.5cm, align=right, anchor=east},
+    group label node/.append style={text width=5.5cm, align=right, anchor=east},
+    milestone label node/.append style={text width=5.5cm, align=right, anchor=east}
+]{1}{12}
+\gantttitle{M1}{1} \gantttitle{M2}{1} \gantttitle{M3}{1} \gantttitle{M4}{1} \gantttitle{M5}{1} \gantttitle{M6}{1} \gantttitle{M7}{1} \gantttitle{M8}{1} \gantttitle{M9}{1} \gantttitle{M10}{1} \gantttitle{M11}{1} \gantttitle{M12}{1} \\ 
+
+\ganttgroup[group/.append style={fill=thesiscol}]{\textbf{Phase 5: Thesis Writing}}{8}{12} \\
+\ganttbar[bar/.append style={fill=thesiscol}]{Chapter drafting (ongoing)}{8}{10} \\
+\ganttbar[bar/.append style={fill=thesiscol}]{Analysis chapters}{10}{11} \\
+\ganttbar[bar/.append style={fill=thesiscol}]{Final draft + supervisor review}{11}{12} \\
+\ganttmilestone[milestone/.append style={fill=gatecol}]{\textbf{Thesis submission}}{12} \\
+
+\end{ganttchart}
+
+\vspace{1cm}
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{lllp{7cm}}
+\toprule
+\textbf{Gate} & \textbf{Month} & \textbf{Criterion} & \textbf{If not met} \\
+\midrule
+Gate 1 & M4  & Safety approval granted & Reduce particle size grades: 7 \textrightarrow 4 \\
+Gate 2 & M7  & Requirements matrix finalised & Use provisional targets; revise in thesis \\
+Gate 3 & M10 & All Tier 1 experiments complete & Tier 2 becomes future work \\
+Submission & M12 & Thesis submitted & --- \\
+\bottomrule
+\end{tabular}
+\caption*{Go/No-Go Gate Summary}
+\end{table}
+
+\end{landscape}
+
+\break
+
+\bibliography{references} 
+\bibliographystyle{ieeetr}
+
+\break
+
+\appendix
+\section*{Appendix A: Laboratory Safety Protocols and Experimental Plan Verification}
+\addcontentsline{toc}{section}{Appendix A: Laboratory Safety Protocols and Experimental Plan Verification}
+
+%===============================================================================
+\subsection*{A.1\quad Safety Protocols}
+%===============================================================================
+
+The experimental programme involves four concurrent categories of hazard. Each must
+be fully addressed before any laboratory work begins.
+
+%-------------------------------------------------------------------------------
+\subsubsection*{A.1.1\quad Aluminium Powder Hazards}
+%-------------------------------------------------------------------------------
+
+Micron-sized aluminium powder presents four distinct hazards:
+
+\begin{enumerate}[label=\textbf{\arabic*.}, leftmargin=*, itemsep=6pt]
+
+    \item \textbf{Dust cloud combustion.} Aluminium dust clouds are highly
+    combustible and can detonate if ignited above the minimum ignition energy
+    threshold.
+    \begin{itemize}[itemsep=2pt]
+        \item All powder transfers will be conducted inside a dedicated enclosed
+              glove box maintained under a dry nitrogen atmosphere.
+        \item Open flames, electrical sparks, and non-antistatic equipment are
+              strictly prohibited within five metres of all powder handling areas.
+    \end{itemize}
+
+    \item \textbf{Exothermic reaction with moisture.} Aluminium reacts
+    exothermically with ambient moisture, liberating flammable hydrogen gas.
+    \begin{itemize}[itemsep=2pt]
+        \item All powder handling will be conducted under inert atmosphere or with
+              active humidity control maintained below 30\% relative humidity.
+        \item The reactor will be nitrogen-purged before each loading operation.
+    \end{itemize}
+
+    \item \textbf{Inhalation risk (aluminosis).} Chronic inhalation of aluminium
+    dust causes pulmonary fibrosis.
+    \begin{itemize}[itemsep=2pt]
+        \item P100 full-face respirators are mandatory during all powder handling.
+        \item An enclosed handling system is preferred wherever practicable.
+        \item Post-experiment reactor cleaning will be conducted under
+              wet-suppression conditions to prevent dust re-entrainment.
+    \end{itemize}
+
+    \item \textbf{Prohibition on water-based extinguishers.} Water reacts with
+    aluminium to produce hydrogen and is strictly prohibited as an extinguishing
+    agent in any area where aluminium powder is present.
+    \begin{itemize}[itemsep=2pt]
+        \item Class~D dry-powder extinguishers (copper powder or sodium chloride
+              type) will be stationed at all powder handling positions.
+    \end{itemize}
+
+\end{enumerate}
+
+%-------------------------------------------------------------------------------
+\subsubsection*{A.1.2\quad Hydrogen Gas Hazards}
+%-------------------------------------------------------------------------------
+
+Hydrogen has a lower explosive limit (LEL) of 4\% in air. The following controls
+will be maintained throughout all experimental sessions.
+
+\medskip
+\noindent\textbf{Ventilation and monitoring:}
+\begin{itemize}[itemsep=3pt]
+    \item A dedicated forced-ventilation exhaust hood will be installed over the
+          reactor gas outlet, maintaining hydrogen concentration below 1\%
+          (25\% of LEL) at all monitoring points.
+    \item Electrochemical hydrogen sensors will be positioned in the gas outlet
+          stream and at multiple points within the reactor enclosure.
+    \item Audible alarms will activate at 1\% hydrogen concentration.
+    \item Automatic equipment shutdown interlocks will engage at 2\%.
+\end{itemize}
+
+\medskip
+\noindent\textbf{Ignition prevention:}
+\begin{itemize}[itemsep=3pt]
+    \item All equipment will be bonded and earthed to prevent static discharge
+          ignition.
+    \item Antistatic flooring will be installed throughout the reactor area.
+    \item Synthetic clothing is prohibited during all experimental sessions.
+\end{itemize}
+
+\medskip
+\noindent\textbf{Containment and disposal:}
+\begin{itemize}[itemsep=3pt]
+    \item All gas line connections will use pressure-rated compression fittings
+          rated to at least twice operating pressure.
+    \item A nitrogen leak check will be performed before every experiment.
+    \item All hydrogen not captured for measurement will be routed through a
+          catalytic oxidiser before venting to atmosphere, eliminating both the
+          ignition risk and the indirect climate impact of hydrogen release.
+\end{itemize}
+
+%-------------------------------------------------------------------------------
+\subsubsection*{A.1.3\quad High-Pressure and High-Temperature Hazards}
+%-------------------------------------------------------------------------------
+
+\noindent\textbf{Pressure vessel integrity:}
+\begin{itemize}[itemsep=3pt]
+    \item All pressurised components will be rated to a minimum of twice the
+          maximum operating pressure ($\geq$50\,MPa).
+    \item The reactor vessel will undergo third-party hydrostatic pressure testing
+          annually.
+    \item A spring-loaded pressure relief valve set at 1.25$\times$ operating
+          pressure will be installed, with an independent secondary burst disc as
+          a redundant protection layer.
+\end{itemize}
+
+\medskip
+\noindent\textbf{Operational controls:}
+\begin{itemize}[itemsep=3pt]
+    \item The reactor will be operated from behind a rated polycarbonate blast
+          shield at all times.
+    \item All reactor external surfaces will be thermally insulated.
+    \item Heat-resistant gloves and a face shield are mandatory during setup and
+          any access to the reactor area during operation.
+    \item A formal cooldown and pressure equalisation protocol will be followed
+          before any reactor valve is opened.
+    \item An interlock will prevent opening any reactor valve while internal
+          pressure exceeds 0.5\,MPa.
+\end{itemize}
+
+\medskip
+\noindent\textbf{Steam outlet management:}
+\begin{itemize}[itemsep=3pt]
+    \item All steam outlet lines will be thermally insulated and labelled with
+          appropriate warning markings.
+    \item All steam outlet lines will be routed through a condensate trap before
+          reaching any gas measurement instruments.
+\end{itemize}
+
+%-------------------------------------------------------------------------------
+\subsubsection*{A.1.4\quad Reactor Fouling Control and Cleaning Protocol}
+%-------------------------------------------------------------------------------
+
+\paragraph{Background and justification.}
+
+The experimental programme uses a continuous-flow architecture: aluminium-water
+slurry is injected continuously via the variable-speed high-pressure plunger pump,
+the aluminium-water reaction proceeds within the pressurised reactor vessel, and the
+product stream --- a mixture of hydrogen gas, steam, and aluminium oxide slurry ---
+exits continuously.
+
+\ce{Al2O3} (corundum) has a Mohs hardness of approximately~9, making it one of the
+most abrasive ceramic materials encountered in process
+engineering~\cite{finnie1960}. In a continuous-flow system it forms continuously at
+the reaction interface and must be carried out of the reactor by the product stream.
+The critical fouling locations are:
+
+\begin{itemize}[itemsep=4pt]
+    \item \textbf{Product outlet valve and withdrawal line} --- progressive
+          blockage reduces product withdrawal flow rate and causes reactor pressure
+          to rise at constant injection rate.
+    \item \textbf{Slurry injection nozzle} --- erosive wear progressively
+          enlarges the nozzle bore, changing the injection flow rate at any given
+          pump speed.
+    \item \textbf{Plunger pump head and check valves} --- continuous exposure to
+          abrasive slurry at high pressure accelerates wear of valve seats and the
+          plunger seal.
+\end{itemize}
+
+If fouling is not actively managed, it introduces drift in injection rate and reactor
+pressure during experimental runs, constituting an uncontrolled variable that
+directly corrupts transient load data~\cite{levenspiel1999}.
+
+\bigskip
+\noindent\textbf{Pre-experiment fouling baseline characterisation}
+
+\medskip
+Before the main parameter sweep begins, three to five continuous-flow baseline runs
+will be conducted at representative steady-state conditions:
+
+\begin{itemize}[itemsep=2pt]
+    \item Temperature: 350\textdegree C \quad Pressure: 20\,MPa
+    \item Particle size: 100\,\textmu m \quad Water-to-aluminium mass ratio: 9
+    \item Run duration: minimum 60~minutes at constant pump speed
+\end{itemize}
+
+\medskip
+The following measurements will be recorded at 5-minute intervals throughout each
+baseline run:
+
+\medskip
+\begin{tabularx}{\linewidth}{@{} l l X @{}}
+    \toprule
+    \textbf{Parameter} & \textbf{Instrument} & \textbf{Fouling indicator} \\
+    \midrule
+    Pump delivery flow rate
+        & Pump speed vs.\ calibration curve
+        & Injection nozzle or check valve blockage \\[4pt]
+    Reactor pressure
+        & High-pressure transducer
+        & Product outlet blockage \\[4pt]
+    Gas outlet flow rate
+        & Thermal mass flow controller
+        & Product withdrawal line restriction \\
+    \bottomrule
+\end{tabularx}
+
+\medskip
+The rate of drift in each parameter per hour of continuous operation establishes:
+\begin{enumerate}[label=\arabic*., itemsep=2pt]
+    \item The maximum safe run duration before a flush is required.
+    \item Which fouling location is the binding constraint under these conditions.
+\end{enumerate}
+
+This is determined empirically before the parameter sweep begins, so that flush
+intervals are set by evidence rather than assumption.
+
+\bigskip
+\noindent\textbf{Between-condition flush protocol}
+
+\medskip
+A flush will be performed at the end of every experimental condition --- defined as
+a complete steady-state run plus any transient load modulation sequence at a given
+combination of temperature, pressure, particle size, and fuel-to-water ratio ---
+before changing to the next set of conditions.
+
+\begin{enumerate}[label=\textbf{Step \arabic*.}, leftmargin=*, itemsep=6pt]
+
+    \item \textbf{Water purge (pressurised).}
+    Cease aluminium slurry injection. Continue pumping deionised water at the same
+    flow rate for a minimum of 10~minutes to flush residual \ce{Al2O3} slurry from
+    the reactor body, product outlet line, and withdrawal valve.
+
+    \item \textbf{Controlled cool-down.}
+    Reduce reactor temperature to below 200\textdegree C using a controlled heater
+    ramp-down, while maintaining pressure via the back-pressure regulator to prevent
+    flash vaporisation of residual water in the product line.
+
+    \item \textbf{Controlled depressurisation.}
+    Once below 200\textdegree C, slowly equalise reactor pressure to atmospheric
+    through the back-pressure regulator over a minimum of 15~minutes.
+
+    \item \textbf{Alkaline flush.}
+    Circulate a dilute alkaline flush solution (1--2\% NaOH in deionised water) at
+    low temperature ($<$60\textdegree C) and atmospheric pressure through the
+    reactor body, product outlet line, and withdrawal valve for 30~minutes. This
+    exploits the amphoteric chemistry of aluminium oxide:
+    \begin{equation}
+        \ce{Al2O3 + 2NaOH -> 2NaAlO2 + H2O}
+    \end{equation}
+    dissolving deposited \ce{Al2O3} and \ce{Al(OH)3} from internal
+    surfaces~\cite{eremin2004}. The NaOH concentration is deliberately conservative
+    to avoid corrosive attack on the SS316L reactor body.
+
+    \item \textbf{Deionised water rinse.}
+    Flush with a minimum of five system volumes of deionised water. The pH of the
+    final rinse water must be within $\pm$0.2 of the deionised water baseline
+    (pH~$\approx$~6.5--7.0) before re-pressurisation begins.
+
+    \item \textbf{Blank verification run.}
+    Conduct a continuous-flow run using deionised water only (no aluminium) at the
+    target temperature and pressure for the next experimental condition, to:
+    \begin{itemize}[itemsep=2pt]
+        \item Confirm complete removal of alkaline residue.
+        \item Re-establish the thermal steady-state baseline before slurry
+              injection resumes.
+    \end{itemize}
+
+\end{enumerate}
+
+\begin{tcolorbox}[
+    colback=orange!8,
+    colframe=orange!60!black,
+    title={\textbf{Waste Disposal Note}},
+    fonttitle=\bfseries
+]
+The spent NaOH/\ce{NaAlO2} flush solution is a dilute alkaline waste stream. It
+will be collected in a labelled chemical waste container and disposed of in
+accordance with the university's chemical waste management procedures.
+Chemical-resistant gloves and eye protection are mandatory during all flushing
+operations.
+\end{tcolorbox}
+
+\bigskip
+\noindent\textbf{Pump head and injection nozzle inspection}
+
+\medskip
+\begin{tabularx}{\linewidth}{@{} >{\raggedright\arraybackslash}X
+                                   >{\raggedright\arraybackslash}X
+                                   >{\raggedright\arraybackslash}X
+                                   >{\raggedright\arraybackslash}X @{}}
+    \toprule
+    \textbf{Component} & \textbf{Frequency} & \textbf{Threshold} & \textbf{Action} \\
+    \midrule
+    Pump delivery flow rate
+        & Start of every session
+        & $>{\pm}3\%$ from calibration
+        & Pump head disassembly and inspection \\[4pt]
+    Check valves and plunger seal
+        & End of every experimental day
+        & Any visible wear or deposit
+        & Component replacement \\[4pt]
+    Injection nozzle bore diameter
+        & Start of every experimental week
+        & $>5\%$ increase from original spec
+        & Nozzle replacement \\
+    \bottomrule
+\end{tabularx}
+
+\medskip
+\noindent\textit{Note: The pump flow rate tolerance of $\pm$3\% is tighter than
+used in intermittent operation (typically $\pm$5\%) because the transient load
+characterisation experiments depend on accurate, stable injection rates throughout
+sustained continuous-flow runs~\cite{levenspiel1999}.}
+
+\bigskip
+\noindent\textbf{Sensor drift monitoring during continuous-flow runs}
+
+\medskip
+Because transient load data is collected in real time during sustained runs, sensor
+drift must be detected and bounded \textit{during} a run, not only between runs:
+
+\begin{enumerate}[label=\textbf{\arabic*.}, leftmargin=*, itemsep=6pt]
+
+    \item \textbf{Pressure transducers.}
+    The pump inlet transducer and reactor pressure transducer will be cross-checked
+    against each other at the start and end of every run.
+    \begin{itemize}[itemsep=2pt]
+        \item Divergence of $>{\pm}2\%$ of full scale at steady state $\rightarrow$
+              flush before next run.
+    \end{itemize}
+
+    \item \textbf{Hydrogen yield cross-validation.}
+    The mass flow controller reading on the gas outlet will be cross-validated
+    against the pressure-time derivative method ($\mathrm{d}P/\mathrm{d}t$) at
+    steady state at the start of each run.
+    \begin{itemize}[itemsep=2pt]
+        \item Discrepancy of $>{\pm}5\%$ between the two methods $\rightarrow$
+              terminate run, inspect system for fouling or developing leak before
+              continuing.
+    \end{itemize}
+
+    \item \textbf{Thermocouple array.}
+    The four axial thermocouples will be cross-checked against each other at steady
+    state.
+    \begin{itemize}[itemsep=2pt]
+        \item Any thermocouple deviating $>{\pm}5$\textdegree C from the profile
+              established during the blank calibration run at the same temperature
+              setpoint $\rightarrow$ flag for inspection at end of that run.
+    \end{itemize}
+
+\end{enumerate}
+
+%-------------------------------------------------------------------------------
+\subsubsection*{A.1.5\quad General Laboratory Controls}
+%-------------------------------------------------------------------------------
+
+\begin{itemize}[itemsep=4pt]
+    \item A minimum of two researchers must be present during all experimental
+          sessions.
+    \item A dedicated safety observer will be assigned for each session, responsible
+          for monitoring all sensor readings in real time and activating the emergency
+          shutdown procedure if any parameter exceeds its safe operating limit.
+    \item Emergency shutdown procedures will be formally documented and prominently
+          displayed within the laboratory.
+    \item All researchers will complete formal training on emergency procedures
+          before participating in any experimental work.
+\end{itemize}
+
+%===============================================================================
+\subsection*{A.2\quad Experimental Plan Verification and University Approval}
+%===============================================================================
+
+The experimental programme described in Section~3.2 represents the high-level
+research plan appropriate for a Master's proposal. Before any laboratory work begins,
+this plan must undergo two independent layers of review.
+
+%-------------------------------------------------------------------------------
+\subsubsection*{A.2.1\quad Internal Peer Review}
+%-------------------------------------------------------------------------------
+
+\noindent\textbf{Process:}
+\begin{enumerate}[label=\arabic*., itemsep=4pt]
+    \item Following completion of the industry research phase (Months~1--4), the
+    detailed experimental design will be submitted for internal peer review. This
+    submission will include:
+    \begin{itemize}[itemsep=2pt]
+        \item Reactor vessel specification.
+        \item Instrumentation layout and calibration methodology.
+        \item Full experimental sequences for all Tier~1, 2, and~3 experiment
+              streams.
+        \item The complete safety protocol from Section~A.1, including the fouling
+              control procedures in Section~A.1.4.
+    \end{itemize}
+    \item Review will be conducted by a panel of at least two independent academics
+          from the university's mechanical and chemical engineering departments with
+          direct experience in high-pressure reactor systems.
+    \item All reviewer comments will be formally documented and the experimental plan
+          revised accordingly before being finalised.
+\end{enumerate}
+
+\medskip
+\noindent\textbf{Purpose:} To identify blind spots in experimental design,
+instrumentation, and safety provisions that may not be apparent from within the
+research team.
+
+%-------------------------------------------------------------------------------
+\subsubsection*{A.2.2\quad University Laboratory Safety Approval}
+%-------------------------------------------------------------------------------
+
+\noindent\textbf{Submission requirements:}
+
+\medskip
+A comprehensive laboratory experimental proposal will be submitted to the
+university's laboratory safety committee and the relevant departmental review body.
+This submission will include:
+
+\begin{itemize}[itemsep=3pt]
+    \item Full safety protocol (this appendix, as revised).
+    \item Risk register covering all four hazard categories in Section~A.1.
+    \item Emergency response and shutdown procedures.
+    \item Chemical waste disposal plan for spent NaOH/\ce{NaAlO2} flush solution
+          and aluminium oxide solid waste.
+    \item Detailed reactor specifications including pressure vessel ratings, relief
+          valve sizing, and instrumentation layout.
+    \item Evidence of compliance with applicable pressure vessel standards.
+    \item Reference to the safety framework developed in consultation with RINA,
+          Lloyd's Register, and DNV (Section~2.2).
+\end{itemize}
+
+\medskip
+\begin{tcolorbox}[
+    colback=red!6,
+    colframe=red!60!black,
+    title={\textbf{Hard Stop}},
+    fonttitle=\bfseries
+]
+No high-pressure or high-temperature experimental work will commence before this
+approval is formally granted.
+\end{tcolorbox}
+
+\medskip
+\noindent\textbf{Target date:} University approval will be completed by the end of
+Month~4 (Quarter~1 of the research programme), consistent with the Gate~1 milestone
+in the project timeline.
+
+\end{document}
