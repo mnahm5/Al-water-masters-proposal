@@ -25,6 +25,7 @@
 \usepackage{longtable}
 \usepackage{caption}
 \usepackage{tcolorbox}
+\usepackage{minted}
 
 \usepackage{xurl} % Allows line breaks at any point in URLs
 
@@ -1905,5 +1906,26 @@ approval is formally granted.
 \noindent\textbf{Target date:} University approval will be completed by the end of
 Month~4 (Quarter~1 of the research programme), consistent with the Gate~1 milestone
 in the project timeline.
+
+\section*{Appendix B: Energy Density Analysis Code}
+
+\subsection*{B.1\quad Python Analysis Script}
+
+\inputminted[
+    linenos=true,
+    breaklines=true,
+    frame=single,
+    fontsize=\small
+]{python}{code/energy-density-analysis.py}
+
+\subsection*{B.2\quad Fuel Dataset}
+
+\inputminted[
+    linenos=true,
+    breaklines=true,
+    breakbefore=/.?=\&,
+    frame=single,
+    fontsize=\small
+]{json}{code/fuel-dataset.json}
 
 \end{document}
