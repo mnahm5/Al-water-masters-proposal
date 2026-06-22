@@ -521,7 +521,7 @@ However, the performance requirements for an aluminium‑water reactor vary sign
 
 \break
 
-\subsection{Metal-Water Reactor Design}
+\subsection{Core Reactor Characterisation}
 \label{sec:metal-water-research-questions}
 
 Based on the analysis presented in Section~\ref{sec:reactor-design}, this research 
@@ -795,6 +795,54 @@ deployment.
 
 \break
 
+\subsection{Metal-Water Reactor Control Systems}
+\label{sec:control-questions}
+
+While the experimental characterisation described in Section~\ref{sec:metal-water-research-questions} will establish the steady-state and transient behaviour of the HT‑MWR under open-loop conditions, a marine propulsion system requires closed-loop regulation. A superyacht's power demand is not constant; it changes continuously during harbour manoeuvring, coastal transits, and open-sea cruising. To be practically useful, the reactor must be capable of receiving a power setpoint and adjusting its output accordingly, while maintaining safe and stable operation.
+
+However, a full continuous-flow reactor---with real-time fuel injection, dynamic slurry pumping, and continuous by-product extraction---introduces substantial mechanical complexity that is independent of the core thermal and kinetic control problem. Before attempting to regulate a continuous system, it is necessary to demonstrate that the reactor itself can be reliably stabilised at multiple power levels and transition between them with predictable dynamics. This research therefore scopes the control investigation to a \emph{fixed-batch} configuration, in which a known mass of aluminium fuel is loaded at the start of a run and the reaction proceeds until depletion. This simplification isolates the control problem to its essential core---modulating the reaction rate via accessible process variables---while deferring the mechanical engineering of continuous fuel and solids handling to future work.
+
+The control investigation addresses the following primary research questions:
+
+\begin{enumerate}
+    \item \textbf{Transient response characteristics.} When a step change in power output is demanded between two operating levels, what are the measured response lag, rise time, settling time, and overshoot or undershoot in hydrogen production and thermal output? How do these dynamic metrics vary depending on the direction of the transition (e.g., increasing power versus decreasing power)?
+
+    \item \textbf{Stability and controllability limits.} Across the range of output levels required for marine propulsion, does the reactor exhibit stable behaviour, or do certain operating regimes induce oscillatory, sluggish, or runaway tendencies? What is the maximum rate of change of power demand that the reactor can track without violating safe operating limits (e.g., pressure or temperature excursions)?
+
+    \item \textbf{Comparison against operational requirements.} How do the measured transient response times and stability limits compare against the power demand profiles and manoeuvring requirements established for the target superyacht class in Section~\ref{sec:industry-research}? This comparison determines whether the reactor, in its current configuration, can meet the dynamic performance expected of a marine propulsion system, or whether external buffering (such as battery storage) is essential to bridge the gap.
+
+    \item \textbf{Mode granularity optimisation.} The number and spacing of discrete power modes is a design choice, not a fixed constraint. What is the optimal mode granularity---for instance, three, five, or a continuously variable strategy---that balances controllability, manoeuvrability, and fuel utilisation? This investigation will assess whether a coarse discretisation is sufficient for smooth propulsion, or whether finer resolution is required to avoid unacceptable lags or instability.
+\end{enumerate}
+
+Critically, this research does \emph{not} design the battery buffer system that would compensate for reactor start-up and load-following limitations---that task is identified as future work in Table~\ref{tab:scope}. However, the dynamic characterisation produced here---the measured lag times, ramp rates, and stability boundaries---constitutes the primary quantitative input that future engineers will require to correctly size that battery buffer, select its chemistry, and specify its power electronics. By delivering a validated closed-loop characterisation of the HT‑MWR, this research transforms the reactor from a laboratory-scale demonstrator into an engineering subsystem with known, documented performance boundaries.
+
+\break
+
+\subsection{Engine and Battery System Analysis}
+\label{sec:engine-battery-questions}
+
+The HT‑MWR produces a high-temperature, high-pressure output stream composed of steam and hydrogen gas. This output must ultimately be converted into mechanical shaft power to drive a propeller. The reactor research in Sections~\ref{sec:metal-water-research-questions} and~\ref{sec:control-questions} establishes the thermodynamic state of that output---its temperature, pressure, mass flow rate, and hydrogen fraction---but it does not prescribe how that output should be transformed into propulsion. The choice of power conversion architecture is therefore a critical design decision that affects efficiency, weight, footprint, capital cost, and---most importantly for near-term deployment---regulatory certification risk.
+
+The analysis in this section is explicitly scoped as a \emph{requirements-definition and trade-off study}, not an engineering design. The goal is not to design a specific engine or battery system, but rather to survey the available options, apply a consistent set of selection criteria, and produce a clear, defensible recommendation for the most viable Generation‑1 propulsion architecture. Detailed simulation, integration, and prototype testing of the engine and battery systems are explicitly out of scope and are identified as future work in Table~\ref{tab:scope}.
+
+The analysis is guided by a single overarching principle: \textbf{minimise technical and certification risk for the metal‑water reactor and aluminium fuel system}. The reactor and its fuel cycle are the novel, unproven elements of the propulsion chain. The engine and battery, by contrast, should be as mature, standardised, and readily certifiable as possible. Any complexity or novelty allocated to the prime mover or energy storage subsystem increases the overall system risk and lengthens the pathway to regulatory approval. The analysis therefore deliberately favours components with existing marine service records, established classification society rules, and straightforward integration pathways, even if this means accepting lower thermal efficiency.
+
+The engine and battery analysis addresses the following primary research questions:
+
+\begin{enumerate}
+    \item \textbf{Optimal thermal integration pathway.} The steam-hydrogen mixture can be exploited either by direct thermal combustion (burning the hydrogen to superheat the steam for turbine expansion) or by condensing the steam and separating the hydrogen for use in a separate prime mover. Which pathway---direct thermal integration or hydrogen separation---minimises overall system complexity, weight, and certification risk while still meeting the performance requirements of the target superyacht class?
+
+    \item \textbf{Prime mover selection and interface specification.} Among commercially available, mature marine prime movers suitable for the selected thermal integration pathway, which offers the best combination of technical maturity, certification feasibility, and efficiency for a Generation‑1 prototype? What are the critical interface requirements---steam temperature, pressure, flow rate, hydrogen tolerance, and transient ramp-rate limits---that the reactor must deliver to interface with that prime mover? (Speculative or developmental prime movers with limited marine certification will be explicitly deprioritised.)
+
+    \item \textbf{Battery buffer specification.} Given the quantified reactor start-up and transient lag times from Section~\ref{sec:control-questions}, what are the minimum energy capacity (kWh) and power rating (kW) that a buffer battery must provide to ensure uninterrupted propulsion during mode transitions? Which commercially available marine battery chemistries and form factors are best suited to this duty cycle, and what is the simplest hybrid architecture (e.g., series, parallel, or combined) that meets the buffering requirement with the lowest system risk?
+
+    \item \textbf{Efficiency target relaxation.} The preliminary analysis in Section~1.1 assumed a 40\% engine efficiency for metal fuels, a value derived from theoretical projections rather than real-world demonstration. For a Generation‑1 prototype, what is a realistic, defensible efficiency target that balances technical feasibility against commercial viability? More specifically, can the system achieve acceptable performance and economic competitiveness if the prime mover efficiency is relaxed to the 20--30\% range, which is more readily attainable with mature, off-the-shelf components?
+\end{enumerate}
+
+The outputs of this analysis will be a set of \textbf{engineering specifications}---precise interface requirements between the reactor, the prime mover, and the battery buffer---and a \textbf{clear architectural recommendation} for the minimum viable Generation‑1 propulsion system. By defining these interfaces in terms of commercially available, certifiable components, the analysis reduces the overall technology risk and provides a concrete, actionable roadmap for the next phase of prototype development.
+
+\break
+
 \section{Methodology}
 
 \subsection{Industry Research}
@@ -973,20 +1021,20 @@ initial deployment target for the aluminium--water propulsion system, based on t
 combination of regulatory flexibility, risk tolerance, and alignment between 
 operational requirements and the known performance envelope of the HT-MWR. Second, 
 it directly bounds the experimental programme in 
-Section~\ref{subsec:reactor-methodology}: the power output targets for the transient 
+Section~\ref{subsec:core-reactor-methodology}: the power output targets for the transient 
 load characterisation, the energy density thresholds for the parameter optimisation 
 experiments, and the range requirements constraining by-product storage calculations 
 will all be set by the values documented in this matrix.
 
 \break
 
-\subsection{Metal-Water Reactor Design}
-\label{subsec:reactor-methodology}
+\subsection{Core Reactor Characterisation}
+\label{subsec:core-reactor-methodology}
 
 This section describes the experimental programme for the high-temperature 
 metal-water reactor (HT-MWR) component of this research. The programme is 
 structured to address each of the six research deliverables identified in 
-Section~\ref{sec:metal-water-research-questions}, building on the system 
+Section~\ref{sec:core-reactor-research-questions}, building on the system 
 requirements established through the industry research in 
 Section~\ref{sec:industry-research}.
 
