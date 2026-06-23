@@ -522,7 +522,7 @@ However, the performance requirements for an aluminium‑water reactor vary sign
 \break
 
 \subsection{Core Reactor Characterisation}
-\label{sec:metal-water-research-questions}
+\label{sec:core-reactor-research-questions}
 
 Based on the analysis presented in Section~\ref{sec:reactor-design}, this research 
 explicitly adopts the high-temperature metal-water reactor (HT-MWR) as the design 
@@ -798,7 +798,7 @@ deployment.
 \subsection{Metal-Water Reactor Control Systems}
 \label{sec:control-questions}
 
-While the experimental characterisation described in Section~\ref{sec:metal-water-research-questions} will establish the steady-state and transient behaviour of the HT‑MWR under open-loop conditions, a marine propulsion system requires closed-loop regulation. A superyacht's power demand is not constant; it changes continuously during harbour manoeuvring, coastal transits, and open-sea cruising. To be practically useful, the reactor must be capable of receiving a power setpoint and adjusting its output accordingly, while maintaining safe and stable operation.
+While the experimental characterisation described in Section~\ref{sec:core-reactor-research-questions} will establish the steady-state and transient behaviour of the HT‑MWR under open-loop conditions, a marine propulsion system requires closed-loop regulation. A superyacht's power demand is not constant; it changes continuously during harbour manoeuvring, coastal transits, and open-sea cruising. To be practically useful, the reactor must be capable of receiving a power setpoint and adjusting its output accordingly, while maintaining safe and stable operation.
 
 However, a full continuous-flow reactor---with real-time fuel injection, dynamic slurry pumping, and continuous by-product extraction---introduces substantial mechanical complexity that is independent of the core thermal and kinetic control problem. Before attempting to regulate a continuous system, it is necessary to demonstrate that the reactor itself can be reliably stabilised at multiple power levels and transition between them with predictable dynamics. This research therefore scopes the control investigation to a \emph{fixed-batch} configuration, in which a known mass of aluminium fuel is loaded at the start of a run and the reaction proceeds until depletion. This simplification isolates the control problem to its essential core---modulating the reaction rate via accessible process variables---while deferring the mechanical engineering of continuous fuel and solids handling to future work.
 
@@ -821,7 +821,7 @@ Critically, this research does \emph{not} design the battery buffer system that 
 \subsection{Engine and Battery System Analysis}
 \label{sec:engine-battery-questions}
 
-The HT‑MWR produces a high-temperature, high-pressure output stream composed of steam and hydrogen gas. This output must ultimately be converted into mechanical shaft power to drive a propeller. The reactor research in Sections~\ref{sec:metal-water-research-questions} and~\ref{sec:control-questions} establishes the thermodynamic state of that output---its temperature, pressure, mass flow rate, and hydrogen fraction---but it does not prescribe how that output should be transformed into propulsion. The choice of power conversion architecture is therefore a critical design decision that affects efficiency, weight, footprint, capital cost, and---most importantly for near-term deployment---regulatory certification risk.
+The HT‑MWR produces a high-temperature, high-pressure output stream composed of steam and hydrogen gas. This output must ultimately be converted into mechanical shaft power to drive a propeller. The reactor research in Sections~\ref{sec:core-reactor-research-questions} and~\ref{sec:control-questions} establishes the thermodynamic state of that output---its temperature, pressure, mass flow rate, and hydrogen fraction---but it does not prescribe how that output should be transformed into propulsion. The choice of power conversion architecture is therefore a critical design decision that affects efficiency, weight, footprint, capital cost, and---most importantly for near-term deployment---regulatory certification risk.
 
 The analysis in this section is explicitly scoped as a \emph{requirements-definition and trade-off study}, not an engineering design. The goal is not to design a specific engine or battery system, but rather to survey the available options, apply a consistent set of selection criteria, and produce a clear, defensible recommendation for the most viable Generation‑1 propulsion architecture. Detailed simulation, integration, and prototype testing of the engine and battery systems are explicitly out of scope and are identified as future work in Table~\ref{tab:scope}.
 
@@ -1033,7 +1033,7 @@ will all be set by the values documented in this matrix.
 
 This section describes the experimental programme for the high-temperature 
 metal-water reactor (HT-MWR) component of this research. The programme is 
-structured to address each of the six research deliverables identified in 
+structured to address each of the research deliverables identified in 
 Section~\ref{sec:core-reactor-research-questions}, building on the system 
 requirements established through the industry research in 
 Section~\ref{sec:industry-research}.
@@ -1271,7 +1271,7 @@ handling, continuous hydrogen gas production, and high-pressure and high-tempera
 reactor operation. A comprehensive safety protocol addressing each risk category, 
 together with the plan for independent peer review and formal university approval 
 of the experimental design, is provided in full in 
-Appendix~\ref{appendix:safety-verification}. In summary, all experimental work will 
+Appendix. In summary, all experimental work will 
 be conducted in a dedicated ventilated enclosure with Class~D fire suppression, 
 continuous hydrogen monitoring with automatic equipment interlocks, and a minimum 
 of two researchers present at all times. A detailed laboratory experimental proposal 
@@ -1281,6 +1281,261 @@ approval by the university's laboratory safety committee. No high-pressure or
 high-temperature experimental work will commence before this approval is granted. 
 This comprehensive proposal and its approval will be completed by the \textbf{end 
 of the first quarter} of the research project.
+
+\break
+
+\subsection{Metal-Water Reactor Control Systems}
+\label{sec:control-methodology}
+
+\subsubsection*{Overview}
+
+The experimental characterisation described in Section~\ref{subsec:core-reactor-methodology} establishes the open-loop behaviour of the HT-MWR—its steady-state hydrogen yield, thermal output, and transient response to step changes in water injection rate and temperature. That data is necessary but not sufficient for marine propulsion. A superyacht requires a reactor that can accept a commanded power setpoint and adjust its output automatically, while remaining stable and safe. This section describes the methodology for developing and validating a closed-loop control system for the fixed-batch reactor configuration introduced in Section~\ref{sec:control-questions}.
+
+Crucially, the actuator selection is \textbf{not predetermined}. It will be informed directly by the experimental data from Section~\ref{subsec:core-reactor-methodology}. The parameter optimisation runs will reveal which variable (water injection rate or reactor temperature) produces the fastest, most stable response to a demand change. That variable will be selected as the primary control actuator for the closed-loop work.
+
+\subsubsection*{Experimental Configuration: Fixed-Batch Reactor}
+
+For the control validation experiments, the reactor is operated in a \emph{fixed-batch mode}. A known mass of aluminium powder (determined from the requirements matrix in Section~\ref{sec:industry-research}) is loaded into the reactor at the start of each run. The reactor is then sealed, purged with nitrogen, and brought to thermal standby temperature. The reaction proceeds until the aluminium is fully consumed. This configuration deliberately excludes real-time fuel injection and continuous by-product extraction, which are deferred to future work. The simplification allows the control investigation to focus purely on thermal and kinetic regulation—the core intellectual challenge—without the confounding mechanical complexities of slurry pumping, nozzle clogging, and solids handling.
+
+\subsubsection*{Power Mode Definition}
+
+The reactor's output will be regulated across \textbf{five discrete power modes}, defined as percentages of the rated output determined from the requirements matrix (Section~\ref{sec:industry-research}):
+
+\begin{itemize}
+    \item \textbf{0\%} — Thermal standby. The reactor is maintained at a minimum temperature (e.g., 250\textdegree C) via electrical heater input, but the aluminium-water reaction is suppressed (water injection stopped). This preserves the ability to respond rapidly when higher power is demanded.
+    \item \textbf{25\%} — Corresponds to harbour manoeuvring, low-speed transit, or docking.
+    \item \textbf{50\%} — Corresponds to moderate cruising.
+    \item \textbf{75\%} — Corresponds to high-speed cruising.
+    \item \textbf{100\%} — Full rated output.
+\end{itemize}
+
+The absolute power targets (in kW thermal and kg H$_2$/hr) for each mode will be derived from the superyacht power demand profiles established in Section~\ref{sec:industry-research}. The control system's task is to transition between these modes on command, maintaining each mode stably, and to characterise the dynamic behaviour of each transition.
+
+\subsubsection*{Actuator Selection — Informed by Section 3.2 Data}
+
+In the fixed-batch configuration, the reactor contains a known, fixed mass of aluminium powder loaded at the start of each run. Consequently, the only variable that can be modulated in real-time to affect the reaction rate is the \textbf{water injection rate}.
+
+The water injection rate is controlled via the variable-speed high-pressure plunger pump already installed as part of the reactor rig. By varying the pump speed, the water flow rate into the fixed aluminium bed is adjusted. Increasing the water flow accelerates the exothermic reaction (up to a point), raising hydrogen production and thermal output, while decreasing the flow slows the reaction. The instantaneous water-to-aluminium ratio is therefore a \textbf{dependent variable}—it changes as a consequence of the water flow rate adjustment, rather than being an independently controlled actuator. While the fuel-to-water ratio is a parameter of interest in the open-loop characterisation (Section~\ref{subsec:core-reactor-methodology}), in the closed-loop fixed-batch control validation it is not a separate control degree of freedom.
+
+In addition to water injection rate, the reactor \textbf{temperature} can be modulated via the electrical resistance heater. However, due to the thermal inertia of the reactor vessel and its contents (the fixed aluminium bed and any accumulated by-product), this method has a slow response time—on the order of minutes rather than seconds. It will therefore be investigated as a \textbf{secondary, coarse-trim} actuator for steady-state fine-tuning or for managing thermal standby (0\% mode). It is not expected to be suitable as the primary means of load-following for fast transients.
+
+The open-loop data from Section~\ref{subsec:core-reactor-methodology} will quantify, for the water injection rate actuator, the \textbf{gain} (change in output per unit change in pump speed), the \textbf{time constant}, the \textbf{dead time}, and the \textbf{linearity} (whether the response is proportional across the operating range). This data will be used to tune the controller gains and to establish the maximum allowable slew rate (rate of change of pump speed) that avoids thermal runaway or pressure exceedance.
+
+If pump speed modulation alone proves insufficient to meet the transient response requirements from the requirements matrix (Section~\ref{sec:industry-research}), the temperature actuator may be used in a \textbf{cascaded} strategy—fast adjustments via pump speed, with slow temperature trim to compensate for drift as the aluminium is consumed and the by-product accumulates. The cascade architecture will be documented and tested, but the primary data product remains the measured response characteristics of the water injection actuator, as this is the most commercially viable control approach for a future continuous-flow system.
+
+\subsubsection*{Instrumentation and Sensor Suite}
+
+The same instrumentation described in Section~\ref{subsec:core-reactor-methodology} will be used for the control experiments, with the addition of digital communication interfaces for real-time feedback. The sensor suite comprises:
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{p{4.2cm} p{4.2cm} p{7cm}}
+\toprule
+\textbf{Sensor} & \textbf{Measured Quantity} & \textbf{Purpose in Control Loop} \\
+\midrule
+Four K-type thermocouples (axial distribution) & Reactor wall temperature (average) & Thermal feedback; indicator of reaction exothermicity \\
+High-frequency pressure transducer (reactor headspace) & Reactor pressure & Primary indicator of hydrogen production rate (via dP/dt); safety monitor \\
+High-frequency pressure transducer (pump inlet) & Water feed pressure & Diagnostic for pump performance and nozzle fouling \\
+Thermal mass flow controller (gas outlet) & Volumetric gas flow rate & Cross-validation of hydrogen yield; steady-state verification \\
+Electrochemical hydrogen sensor (gas outlet and enclosure) & H$_2$ concentration (\%) & Safety interlock; supplementary yield measurement \\
+\bottomrule
+\end{tabular}
+\caption{Instrumentation for closed-loop control validation.}
+\label{tab:control-sensors}
+\end{table}
+
+All sensors will be sampled at a minimum frequency of \textbf{10 Hz} (higher if the data acquisition hardware permits) to capture transient dynamics with sufficient temporal resolution. Sensor outputs will be logged with timestamps synchronised to the control input signals.
+
+\subsubsection*{Microcontroller Hardware and Control Architecture}
+
+The closed-loop controller will be implemented on a \textbf{microcontroller platform}—either a Raspberry Pi (for higher computational flexibility) or an Arduino-based system (for deterministic, low-latency real-time control). The final choice will be made during the design phase based on required sampling rate, control algorithm complexity, and I/O availability.
+
+\textbf{Hardware components:}
+\begin{itemize}
+    \item Microcontroller board (Raspberry Pi 4 or Arduino Due / Teensy 4.0)
+    \item Analogue-to-digital converters (ADCs) for thermocouple and pressure transducer signals
+    \item Digital-to-analogue converters (DACs) or PWM outputs for actuator control
+    \item Signal conditioning boards (thermocouple amplifiers, pressure transducer excitations)
+    \item Power relays / solid-state switches for heater control
+    \item Motor driver / variable-speed drive for the plunger pump
+    \item Isolated communication links (USB, Ethernet, or CAN) to the data acquisition console
+\end{itemize}
+
+\textbf{Control algorithm:}
+
+The control algorithm itself is \textbf{not} a primary research deliverable. The objective is not to design an optimal controller, but to characterise the plant dynamics that any future controller would need to handle. Therefore, a simple \textbf{proportional-integral-derivative (PID)} controller will be implemented initially, with gains tuned manually (or via Ziegler-Nichols) to achieve stable setpoint tracking. If the plant exhibits significant non-linearity or time-varying behaviour (e.g., as the aluminium is consumed), a gain-scheduled or model-predictive controller may be explored. In all cases, the control scheme will be documented transparently, and the primary data product will be the measured closed-loop response (not the controller coefficients themselves).
+
+\subsubsection*{Experimental Procedure — Mode Transition Characterisation}
+
+The control validation experiments consist of a series of \textbf{step-change tests} between the five power modes. For each test, the reactor is first stabilised at a given mode (e.g., 25\%). A step command is then sent to the microcontroller to transition to a target mode (e.g., 75\%). The reactor's response—hydrogen production rate (from dP/dt), thermal output (from thermocouple data), pressure, and temperature—is recorded continuously. The following metrics are extracted for each transition:
+
+\begin{itemize}
+    \item \textbf{Response lag} — Time from command issuance to first detectable change in output.
+    \item \textbf{Rise time} — Time from first output change to reaching 90\% of the final steady-state value.
+    \item \textbf{Settling time} — Time to reach and remain within ±5\% of the final steady-state value.
+    \item \textbf{Overshoot / undershoot} — Maximum excursion above or below the target value, expressed as a percentage of the target.
+    \item \textbf{Steady-state error} — Residual difference between the setpoint and the measured output after settling.
+\end{itemize}
+
+Each pairwise transition is repeated at least three times to assess repeatability. The full set of transitions (0to25, 0to50, 0to75, 0to100, 25to50, 25to75, 25to100, 50to75, 50to100, 75to100) will be characterised. The direction of the transition (e.g., 25\% to 75\% vs. 75\% to 25\%) is treated separately, as the reactor may exhibit asymmetric behaviour (e.g., faster response to increased demand than to reduced demand).
+
+\textbf{Stability and controllability limits:}
+
+To probe the stability envelope, the controller will be subjected to:
+\begin{itemize}
+    \item \textbf{Large step changes} (e.g., 0\% to 100\% directly) to determine if the reactor can handle extreme transients without thermal runaway or pressure exceedance.
+    \item \textbf{Ramp changes} (linear increase from 25\% to 75\% over 30, 60, and 120 seconds) to characterise the maximum tolerable slew rate.
+    \item \textbf{Repeated cycling} between two modes (e.g., 25\% to 75\% repeated 5 times) to test for hysteresis or cumulative drift.
+\end{itemize}
+
+\subsubsection*{Mode Granularity Optimisation}
+
+The choice of five discrete modes is a design assumption, not a fixed constraint. The data from the transition characterisation will be used to evaluate whether five modes are appropriate. If the reactor can transition smoothly between widely spaced modes (e.g., 25\% to 75\%) with acceptable lags and overshoot, a \textbf{coarser discretisation} (e.g., 0\%, 50\%, 100\%) may be sufficient, simplifying the control system. Conversely, if transitions between distant modes induce instability or unacceptable lag, a \textbf{finer discretisation} or a \textbf{continuously variable} strategy may be required. The recommendation will be grounded in quantitative data and will explicitly address the trade-off between control complexity and manoeuvrability performance.
+
+\subsubsection*{Data Analysis and Comparison Against Requirements}
+
+The measured transition metrics will be compared directly against the superyacht power demand profiles and manoeuvring requirements documented in the requirements matrix (Section~\ref{sec:industry-research}). The key comparison is:
+
+\begin{itemize}
+    \item For each power mode transition demanded by a typical sailing profile (e.g., harbour to cruising to docking), does the reactor's measured response lag and rise time fall within the acceptable limits defined by the naval architects and owners?
+\end{itemize}
+
+If the reactor's response is faster than required, the control system can be simplified (e.g., slower, smoother ramps to reduce wear). If the response is slower than required, the data will quantify exactly how much battery buffering (energy and power) is needed to bridge the gap. This quantitative relationship—reactor lag vs. required buffer size—is the primary output of this methodology.
+
+\subsubsection*{Limitations and Scope Boundary}
+
+This methodology is explicitly limited to \textbf{fixed-batch, laboratory-scale} validation. The control system is a \textbf{demonstrator}, not a production-ready marine system. The microcontroller hardware and software are chosen for ease of development and data logging, not for maritime ruggedisation or certification. The control algorithm is simplified (PID) and is not intended to be directly transferable to a full-scale vessel. However, the \textbf{dynamic response data} produced here—the transfer functions, time constants, and stability boundaries—is independent of the specific controller hardware. It constitutes the fundamental input that future engineers will use to design a ruggedised, certified control system for commercial deployment.
+
+
+\subsection{Engine and Battery System Analysis}
+\label{sec:engine-methodology}
+
+\subsubsection*{Overview}
+
+This section describes the methodology for the systematic, comparative analysis of candidate engine and battery architectures for the Generation-1 aluminium-water propulsion system. Unlike the experimental components in Sections~\ref{subsec:core-reactor-methodology} and~\ref{sec:control-methodology}, this analysis is a \textbf{literature-based and manufacturer-data-based trade-off study}. It does not involve laboratory work, prototyping, or simulation. The objective is to produce a clear, well-justified architectural recommendation and a set of engineering interface specifications that will guide future prototype development. This is consistent with the scope boundary defined in Table~\ref{tab:scope}, which explicitly identifies engine integration and battery design as future work.
+
+The analysis is guided by the principle of \textbf{minimising technical and certification risk} for the aluminium-water reactor and fuel system. The engine and battery should be as mature, off-the-shelf, and readily certifiable as possible.
+
+\subsubsection*{Step 1 — Definition of Evaluation Criteria}
+
+Before comparing any specific technologies, a set of quantitative and qualitative criteria will be defined. These criteria will be used to score each candidate architecture consistently. The criteria are:
+
+\begin{enumerate}[label=\arabic*.]
+    \item \textbf{Technical maturity} — Has the technology been deployed in marine or adjacent industrial applications for >5 years? (Weighted high)
+    \item \textbf{Certification pathway} — Do classification societies (RINA, LR, DNV) have existing rules and guidance? (Weighted highest)
+    \item \textbf{Thermal efficiency} — What is the expected efficiency when operating on the reactor's steam-hydrogen mixture? (Gen-1 target: 20–30\%) (Weighted medium)
+    \item \textbf{Power-to-weight ratio} — Is the engine suitable for the weight-constrained environment of a superyacht? (Weighted medium)
+    \item \textbf{Footprint and packaging} — Does the engine fit within the available machinery space? (Weighted low)
+    \item \textbf{Capital cost} — What is the approximate per-kW cost for a unit in the 100–500 kW range? (Weighted low)
+    \item \textbf{Maintenance complexity} — How frequent and costly are scheduled overhauls? (Weighted low)
+    \item \textbf{Sensitivity to hydrogen content} — Can the engine tolerate variations in the steam-H$_2$ mixture composition? (Weighted high)
+    \item \textbf{Integration effort} — How many additional subsystems are required to interface with the reactor? (Weighted high)
+\end{enumerate}
+
+Each criterion will be scored on a 1–5 scale (5 being best), and a weighted sum will be calculated. The weighting factors will be justified explicitly in the thesis, with reference to the industry interview findings (Section~\ref{sec:industry-research}).
+
+\subsubsection*{Step 2 — Thermal Integration Pathway Trade-Off}
+
+The reactor output is a hot mixture of steam and hydrogen gas. Two fundamentally different architectures for converting this output into shaft power will be evaluated:
+
+\textbf{Option A — Direct thermal integration (non-separation):}
+The steam-H$_2$ mixture is fed directly into a downstream \textbf{combustor} where air is injected to burn the hydrogen. The combustion further superheats the steam, which is then expanded through a turbine. This approach eliminates the need for hydrogen separation, purification, compression, and storage—all of which are expensive, energy-intensive, and hard to certify. This is the preferred pathway for a Generation-1 prototype.
+
+\textbf{Option B — Hydrogen separation (limited buffer only):}
+The steam is condensed to liquid water, and the gaseous hydrogen is separated for later combustion. However, to minimise system complexity, weight, and certification risk, \textbf{hydrogen storage will be strictly limited to a small buffer}—sufficient for no more than 10 minutes of operation at full power. This buffer serves only to smooth transient mismatches between hydrogen production and demand, not as a primary energy store. \textbf{Metal hydride storage and large-scale compressed hydrogen storage are explicitly excluded} from consideration for the Generation-1 system, as they introduce prohibitive weight, cost, and certification burdens. The analysis will identify the minimum buffer size required to enable the selected prime mover, but will not design the storage system itself.
+
+The trade-off analysis will compare the two options against the evaluation criteria defined in Step 1. The hypothesis—that Option A (direct thermal integration) is superior for a Generation-1 system—will be tested using the weighted scoring.
+
+\subsubsection*{Step 3 — Prime Mover Candidate Selection}
+
+Based on the outcome of Step 2, a set of mature, commercially available prime movers compatible with the selected thermal integration pathway will be identified. For Option A (direct thermal integration), the candidate prime movers are:
+
+\begin{enumerate}[label=\arabic*.]
+    \item \textbf{Steam turbines} — Mature technology with extensive marine and industrial service records. Well-matched to the high-temperature steam output. Class society rules are well established. Efficiency in the 20–30\% range for small-scale units (100–500 kW).
+    
+    \item \textbf{Organic Rankine Cycle (ORC) engines} — Use an organic working fluid with a lower boiling point than water, enabling efficient power extraction from lower-temperature heat sources. Commercially available in the 50–500 kW range (e.g., Turboden, Ormat, Enertime). Increasingly used in marine waste-heat recovery, but have less extensive marine certification history than steam turbines.
+    
+    \item \textbf{Diesel engines (dual-fuel or hydrogen-enriched)} — Dominant prime mover in the existing marine fleet, with mature certification pathways. Integrating hydrogen into a diesel cycle introduces injection, combustion control, and emissions challenges (particularly NOx). This option will be retained primarily as a reference case and is expected to score lower than steam turbines on simplicity and certification risk.
+\end{enumerate}
+
+Prime movers that are speculative, developmental, or lack marine certification will be \textbf{explicitly deprioritised}. These include solid oxide fuel cells, opposed-piston engines, supercritical CO$_2$ turbines, and Stirling engines. A brief justification for each deprioritised technology will be included in the thesis.
+
+For each candidate prime mover, data on efficiency, power-to-weight, cost, maintenance intervals, and certification status will be gathered from:
+\begin{itemize}
+    \item Manufacturer datasheets and technical publications.
+    \item Classification society guidance documents (e.g., DNV-GL, LR, RINA class rules).
+    \item Published literature on small-scale steam and ORC systems.
+    \item Industry interviews (from Section~\ref{sec:industry-research}).
+\end{itemize}
+
+\subsubsection*{Step 4 — Battery Buffer Specification}
+
+The transient response characterisation from Section~\ref{sec:control-methodology} will produce a set of measured lag times, rise times, and ramp rates for the reactor when transitioning between power modes. These data will be used to define the requirements for a buffer battery.
+
+\textbf{Calculating the required energy and power:}
+
+For each measured mode transition, the battery's required energy and power are determined by the \textbf{difference} between what the vessel demands and what the reactor actually produces during the transient. The reactor is never producing zero power—it is always ramping from one level to another—so the battery only needs to supply the \textbf{deficit}, not the full demand.
+
+For example, if the vessel demands 150 kW but the reactor is currently producing 50 kW and ramping up, the battery must supply the 100 kW difference. If the reactor takes 30 seconds to complete the ramp, the total energy the battery must deliver is the sum of that 100 kW deficit over the ramp period—significantly less than the energy that would be required if the reactor were completely off. The same logic applies in reverse: if the reactor overshoots and produces more power than demanded, the battery may absorb the excess (charging), which affects its cycle life and cooling requirements.
+
+For each transition, the \textbf{peak power deficit} (the largest instantaneous gap between demand and reactor output) defines the required battery power rating (kW). The \textbf{total energy deficit} (the sum of the gap over the entire transient) defines the required battery energy capacity (kWh).
+
+\textbf{Identifying the worst-case transition:}
+
+The transition that yields the largest energy requirement defines the minimum energy capacity, while the transition that yields the largest instantaneous power deficit defines the minimum power rating. These worst-case transitions are not necessarily the same—a slow ramp over a long period may require more energy, while a sudden demand step with a long lag may require high instantaneous power.
+
+\textbf{Applying a safety margin:}
+
+A safety margin (e.g., 20\%) will be applied to both the energy and power requirements to account for measurement uncertainty, degradation over the battery's lifetime, and conservative assumptions in the demand profiles.
+
+\textbf{Surveying commercially available marine batteries:}
+
+A systematic survey of marine-certified battery systems will be conducted. Focus will be on \textbf{lithium iron phosphate (LFP)} and \textbf{nickel manganese cobalt (NMC)} chemistries, as these have existing marine approvals (e.g., DNV-GL type approval, LR certification). Speculative chemistries (solid-state, sodium-ion, lithium-sulphur) announced in press releases but not yet commercially available in marine form will be excluded.
+
+\textbf{Recommending a hybrid topology:}
+
+The simplest hybrid architecture—series, parallel, or combined—that meets the buffering requirements will be recommended. The \textbf{series hybrid} (reactor to generator to battery to electric motor) decouples the reactor from the propeller, allowing the reactor to operate at its most efficient steady state while the battery handles transients. This is mechanically simple and will be the default recommendation unless a compelling case for parallel hybrid emerges.
+
+\textbf{Producing a procurement specification:}
+
+The final output will be a specification sheet listing the required battery capacity (kWh), power (kW), nominal voltage, C-rate, cooling requirements, and preferred chemistry. This specification is intended to be handed to a battery supplier for quotation, not to be a detailed engineering design.
+
+\subsubsection*{Step 5 — Efficiency Target Relaxation}
+
+The preliminary energy density analysis in Section~1.1 assumed a 40\% engine efficiency for metal fuels, derived from theoretical projections rather than real-world demonstration. For a Generation-1 prototype, this assumption is unrealistic. The methodology for revisiting the efficiency target is:
+
+\begin{itemize}
+    \item \textbf{Literature review:} Gather published data on the actual efficiencies of small-scale (<1 MW) steam turbines, ORC engines, and diesel gensets. These will typically be in the range of 20–30\% for steam turbines and ORC.
+    \item \textbf{Consultation with manufacturers:} Where possible, obtain indicative efficiency curves from suppliers for units in the 100–500 kW range.
+    \item \textbf{Trade-off analysis:} Compare the effective energy density of the aluminium fuel system (from Tables~\ref{tab:Al-by-products-comparison} and~\ref{tab:fuel-volume-density}) using the literature-based efficiencies (20–30\%) against competing electro-fuels (hydrogen, ammonia, methanol). If aluminium remains competitive (within a factor of 2 in volumetric energy density), the relaxed target is acceptable.
+    \item \textbf{Justification:} The thesis will explicitly argue that a 20–30\% efficiency target is sufficient for a proof-of-concept prototype, and that efficiency optimisation can be pursued in later development iterations once the fundamental safety and controllability of the reactor are demonstrated.
+\end{itemize}
+
+\subsubsection*{Step 6 — Synthesis into an Architectural Recommendation}
+
+The outputs of Steps 1–5 will be synthesised into a single, coherent \textbf{architectural recommendation} for the Generation-1 propulsion system. This recommendation will specify:
+
+\begin{itemize}
+    \item The selected thermal integration pathway (direct combustion vs. limited separation).
+    \item The recommended prime mover and the reason for its selection.
+    \item The critical interface requirements: steam temperature, pressure, mass flow rate, hydrogen fraction, and allowable transient ramp rates.
+    \item The recommended battery chemistry, capacity (kWh), and power (kW), and the preferred hybrid topology.
+    \item The revised efficiency target and its justification.
+\end{itemize}
+
+The recommendation will be presented as a \textbf{decision matrix} and a \textbf{narrative summary}, with all assumptions and uncertainties explicitly documented. This is \textbf{not} a final engineering design—it is a \textbf{feasible and de-risked pathway} for the next phase of research and development.
+
+\subsubsection*{Limitations and Scope Boundary}
+
+This analysis is explicitly \textbf{desk-based}. It does not involve:
+\begin{itemize}
+    \item Simulation of engine or battery performance.
+    \item Physical testing of any prime mover or battery cell.
+    \item Detailed design of engine control systems, alternators, power electronics, or thermal management.
+    \item Cost-engineering or procurement of any component.
+\end{itemize}
+
+The outputs are \textbf{requirements and recommendations}, not designs. They are intended to inform and de-risk subsequent work, which will involve full-scale simulation, prototype integration, and certification testing.
 
 \break
 
