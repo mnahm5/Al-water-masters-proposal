@@ -561,122 +561,17 @@ alternatives rests on four compounding advantages:
     the entire aluminium fuel supply chain.
 \end{enumerate}
 
-\break
-
-\subsubsection*{Scope of This Research}
-
-The overarching research question this project addresses is:
-
-\begin{quote}
-    \textit{Can a high-temperature aluminium-water reactor be designed and operated 
-    to provide reliable propulsion power for superyachts, and under what conditions 
-    does it do so safely and efficiently?}
-\end{quote}
-
-However, given the timeframe of a Master's research programme, the scope must be 
-carefully bounded. Table~\ref{tab:scope} formalises what falls within and outside 
-the scope of this study, and identifies how the outputs of this work will directly 
-enable each downstream research activity.
-
-\begin{longtable}{p{3.2cm} p{1.8cm} p{1.8cm} p{7.2cm}}
-\hline
-\textbf{Research Activity} & 
-\textbf{In Scope} & 
-\textbf{Out of Scope} & 
-\textbf{How This Study Enables Future Work} \\
-\hline
-\endfirsthead
-
-\hline
-\textbf{Research Activity} & 
-\textbf{In Scope} & 
-\textbf{Out of Scope} & 
-\textbf{How This Study Enables Future Work} \\
-\hline
-\endhead
-
-\hline
-\multicolumn{4}{r}{\textit{Continued on next page\ldots}} \\
-\endfoot
-
-\hline
-\endlastfoot
-
-Industry requirements matrix & 
-Yes & --- & 
-Defines power, range, and energy density targets that bound all downstream 
-reactor design \\[6pt]
-
-Reaction parameter characterisation (T, P, particle size, fuel-to-water ratio) & 
-Yes & --- & 
-Produces the experimental dataset for reactor geometry and operating point 
-selection \\[6pt]
-
-By-product composition analysis (\ce{Al(OH)3}, AlOOH, \ce{Al2O3}) & 
-Yes & --- & 
-Determines achievable effective energy density and recycling compatibility 
-under real operating conditions \\[6pt]
-
-Seawater vs.\ distilled water reactant comparison & 
-Yes & --- & 
-Establishes whether onboard seawater can be used directly, and specifies 
-any pre-treatment or filtration requirements \\[6pt]
-
-Reactor start-up time and transient load characterisation & 
-Yes & --- & 
-Defines the battery buffer specification and informs control system design 
-required for hybrid-electric integration \\[6pt]
-
-Marine safety protocols (bunkering, dust control, emergency response) & 
-Yes & --- & 
-Provides the safety evidential basis for future certification submissions 
-to RINA, LR, and DNV \\[6pt]
-
-Reactor geometry and material selection & 
-Yes (lab-scale, indicative) & Full-scale design & 
-Lab-scale findings provide the basis for scaled engineering design in 
-future work \\[6pt]
-
-Preliminary cost estimation (reactor and aluminium fuel) & 
-Yes (indicative, order-of-magnitude) & Final production costs & 
-High-level estimates inform the economic feasibility case and identify 
-where further cost refinement is needed \\[6pt]
-
-Engine and turbine selection and integration & 
---- & Yes & 
-Steam output conditions characterised here define turbine inlet 
-specifications for future work \\[6pt]
-
-Battery sizing for hybrid-electric buffer & 
---- & Yes & 
-Reactor transient data from this study directly bounds the battery energy 
-and power requirements \\[6pt]
-
-Control system development & 
---- & Yes & 
-Reactor transient data and power modulation results from this study 
-provide the input requirements for control system design \\[6pt]
-
-Full-scale stress testing and classification society approval & 
---- & Yes & 
-Experimental safety protocols and datasets developed here form the 
-evidential basis for future certification submissions \\
-
-\end{longtable}
-\addtocounter{table}{-1}
-\captionof{table}{Scope boundary for the metal-water reactor research and its relation to future work.}
-\label{tab:scope}
-
-Two points in the scope boundary deserve particular emphasis. First, the preliminary 
-cost estimates for the lab-scale reactor and aluminium powder fuel are intended to 
-give an indicative, order-of-magnitude picture of economic viability, not final 
-production costs. These numbers will need to be refined substantially once a 
-full-scale commercial system has been designed. Second, the reactor designed and 
-built in this project is a laboratory-scale prototype intended for systematic 
-parameter testing. It is not directly equivalent to the system that would eventually 
-be deployed aboard a commercial superyacht, and should not be interpreted as such.
-
 \subsubsection*{Reactor Research Deliverables}
+
+The experimental programme is structured as a tiered investigation. The core 
+distilled water experiments constitute Tier 1 and are essential for the project's 
+success. These provide all data required for control system development and 
+battery sizing. Synthetic and natural seawater experiments are designated as 
+Tier 2 and Tier 3 respectively---they are valuable for understanding seawater's 
+effects but are not required for the primary research objectives. This tiered 
+structure ensures that the thesis remains defensible on distilled water 
+experiments alone, while providing flexibility to extend the work if time and 
+resources permit.
 
 With this scope established, the research decomposes into the following primary 
 questions:
@@ -738,7 +633,10 @@ This investigation will compare the hydrogen yield and thermal output of the
 aluminium-water reaction using distilled water versus seawater. Any filtration or 
 pre-treatment required for the seawater intake will be identified and documented, 
 since this information is essential for a proper cost-benefit analysis of seawater 
-as the operational oxidiser.
+as the operational oxidiser. Critically, this investigation is designated as Tier 2
+---it will be pursued only if the core distilled water experiments are completed 
+ahead of schedule. The thesis remains defensible on distilled water experiments 
+alone.
 
 \paragraph{5. Reactor start-up time and transient load characterisation}
 
@@ -754,10 +652,10 @@ compare the results against the power demand profiles established for the target
 superyacht class in Section~\ref{sec-system-requirements-questions}. This characterisation is 
 explicitly scoped to describe the reactor's transient behaviour, not to design the 
 battery buffer system that will bridge the gap during start-up and load 
-transitions---battery sizing is identified in Table~\ref{tab:scope} as future work. 
-However, the data produced here will be the primary input that enables future 
-researchers and engineers to correctly specify that buffer, design appropriate control 
-systems, and select compatible engine configurations.
+transitions---battery sizing is identified as future work in the scope table 
+(Table~\ref{tab:scope-full}). However, the data produced here will be the primary 
+input that enables future researchers and engineers to correctly specify that buffer, 
+design appropriate control systems, and select compatible engine configurations.
 
 \paragraph{6. Marine safety systems}
 
@@ -794,8 +692,6 @@ will be transparently documented and justified as part of this study, providing
 future engineers with the information they need to make informed design decisions 
 as the metal-water propulsion system is developed further toward commercial 
 deployment.
-
-\break
 
 \subsection{Metal-Water Reactor Control Systems}
 \label{sec:control-questions}
