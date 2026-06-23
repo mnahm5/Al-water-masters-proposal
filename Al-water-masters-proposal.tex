@@ -54,6 +54,8 @@
 \definecolor{thesiscol}{RGB}{218, 202, 230}
 \definecolor{gatecol}  {RGB}{255, 0, 0}
 \definecolor{safetycol}{RGB}{255, 192, 0}
+\definecolor{controlcol}{RGB}{207, 226, 243}   % Pale Blue — Control Systems
+\definecolor{enginecol}{RGB}{204, 235, 197}    % Pale Green — Engine & Battery
 
 \title{Aluminium-Water Combustion for Zero Carbon Marine Shipping: Masters Proposal}
 
@@ -1630,7 +1632,8 @@ or engine sections may need to be reduced.
 
 \subsection*{Go/No-Go Gate Summary}
 
-\begin{table}[h]
+\vspace{-0.5cm}
+\begin{table}[!ht]
 \centering
 \small
 \setlength{\tabcolsep}{4pt}
@@ -1652,6 +1655,133 @@ Submission & M24 & Thesis submitted & --- \\
 \caption*{Go/No-Go Gate Summary}
 \label{tab:gates}
 \end{table}
+\vspace{-0.5cm}
+
+\begin{landscape}
+\thispagestyle{empty}
+\pagestyle{empty}
+
+% ============================================================
+% Page 1: Months 1 to 15
+% ============================================================
+\begin{ganttchart}[
+    hgrid,
+    vgrid={*{14}{dotted}},
+    x unit=1.125cm,
+    y unit title=0.6cm,
+    y unit chart=0.55cm,
+    title height=1,
+    bar height=0.5,
+    bar top shift=0.25,
+    title label font=\scriptsize\bfseries,
+    bar label font=\scriptsize,
+    group label font=\scriptsize\bfseries,
+    milestone label font=\scriptsize\itshape,
+    bar/.append style={draw=black!60},
+    group/.append style={draw=black!70},
+    milestone/.append style={fill=red!70, draw=red!90},
+    bar label node/.append style={text width=4.5cm, align=right, anchor=east, font=\scriptsize},
+    group label node/.append style={text width=4.5cm, align=right, anchor=east, font=\scriptsize},
+    milestone label node/.append style={text width=4.5cm, align=right, anchor=east, font=\scriptsize}
+]{1}{15}
+\gantttitle{M1}{1} \gantttitle{M2}{1} \gantttitle{M3}{1} \gantttitle{M4}{1} \gantttitle{M5}{1} \gantttitle{M6}{1} \gantttitle{M7}{1} \gantttitle{M8}{1} \gantttitle{M9}{1} \gantttitle{M10}{1} \gantttitle{M11}{1} \gantttitle{M12}{1} \gantttitle{M13}{1} \gantttitle{M14}{1} \gantttitle{M15}{1} \\
+
+% Phase 0: Foundation
+\ganttgroup[group/.append style={fill=phase0col}]{Phase 0: Foundation}{1}{4} \\
+\ganttbar[bar/.append style={fill=phase0col}]{Literature review}{1}{3} \\
+\ganttbar[bar/.append style={fill=phase0col}]{Interview guide dev.}{2}{4} \\
+\ganttbar[bar/.append style={fill=phase0col}]{Peer review: exp. design}{3}{4} \\
+\ganttbar[bar/.append style={fill=phase0col}]{Safety submission}{3}{4} \\
+\ganttbar[bar/.append style={fill=phase0col}]{Reactor procurement}{1}{4} \\
+\ganttmilestone[milestone/.append style={fill=gatecol}]{Gate 1: Safety approval}{4} \\
+
+% Phase 1: Industry Research
+\ganttgroup[group/.append style={fill=phase1col}]{Phase 1: Industry Research}{2}{7} \\
+\ganttbar[bar/.append style={fill=phase1col}]{Pilot interviews}{2}{3} \\
+\ganttbar[bar/.append style={fill=phase1col}]{Stakeholder interviews}{3}{6} \\
+\ganttbar[bar/.append style={fill=phase1col}]{Quantitative analysis}{4}{7} \\
+\ganttbar[bar/.append style={fill=phase1col}]{Requirements matrix}{5}{7} \\
+\ganttmilestone[milestone/.append style={fill=gatecol}]{Gate 2: Reqts. matrix}{7} \\
+
+% Phase 2: Reactor Commissioning
+\ganttgroup[group/.append style={fill=phase2col}]{Phase 2: Reactor Commissioning}{5}{6} \\
+\ganttbar[bar/.append style={fill=phase2col}]{Build \& commission}{5}{6} \\
+\ganttbar[bar/.append style={fill=phase2col}]{Calibration runs}{6}{6} \\
+
+% Phase 3: Core Experiments (Tier 1)
+\ganttgroup[group/.append style={fill=tier1col}]{Phase 3: Core Experiments}{7}{15} \\
+\ganttbar[bar/.append style={fill=tier1col}]{Temp./pressure optimisation}{7}{9} \\
+\ganttbar[bar/.append style={fill=tier1col}]{Particle size screening}{7}{10} \\
+\ganttbar[bar/.append style={fill=tier1col}]{By-product analysis (PXRD)}{9}{12} \\
+\ganttbar[bar/.append style={fill=tier1col}]{Transient load characterisation}{10}{15} \\
+\ganttmilestone[milestone/.append style={fill=gatecol}]{Gate 3: Core complete}{15} \\
+
+% Tier 2: Synthetic Seawater (if on schedule)
+\ganttgroup[group/.append style={fill=tier2col}]{Tier 2: Synthetic Seawater}{10}{14} \\
+\ganttbar[bar/.append style={fill=tier2col}]{Synthetic seawater tests}{10}{12} \\
+\ganttbar[bar/.append style={fill=tier2col}]{Coarse-filtered seawater}{12}{14} \\
+
+% Tier 3: Natural Seawater (if ahead)
+\ganttgroup[group/.append style={fill=tier3col}]{Tier 3: Natural Seawater}{13}{15} \\
+\ganttbar[bar/.append style={fill=tier3col}]{Fine-filtered seawater}{13}{15} \\
+\ganttbar[bar/.append style={fill=tier3col}]{Repeat / validation runs}{14}{15} \\
+
+\end{ganttchart}
+
+\clearpage
+\thispagestyle{empty}
+
+% ============================================================
+% Page 2: Months 12 to 24
+% ============================================================
+\begin{ganttchart}[
+    hgrid,
+    vgrid={*{12}{dotted}},
+    x unit=1.125cm,
+    y unit title=0.6cm,
+    y unit chart=0.55cm,
+    title height=1,
+    bar height=0.5,
+    bar top shift=0.25,
+    title label font=\scriptsize\bfseries,
+    bar label font=\scriptsize,
+    group label font=\scriptsize\bfseries,
+    milestone label font=\scriptsize\itshape,
+    bar/.append style={draw=black!60},
+    group/.append style={draw=black!70},
+    milestone/.append style={fill=red!70, draw=red!90},
+    bar label node/.append style={text width=4.5cm, align=right, anchor=east, font=\scriptsize},
+    group label node/.append style={text width=4.5cm, align=right, anchor=east, font=\scriptsize},
+    milestone label node/.append style={text width=4.5cm, align=right, anchor=east, font=\scriptsize}
+]{12}{24}
+\gantttitle{M12}{1} \gantttitle{M13}{1} \gantttitle{M14}{1} \gantttitle{M15}{1} \gantttitle{M16}{1} \gantttitle{M17}{1} \gantttitle{M18}{1} \gantttitle{M19}{1} \gantttitle{M20}{1} \gantttitle{M21}{1} \gantttitle{M22}{1} \gantttitle{M23}{1} \gantttitle{M24}{1} \\
+
+% Phase 4: Control System Development
+\ganttgroup[group/.append style={fill=controlcol}]{Phase 4: Control Systems}{12}{18} \\
+\ganttbar[bar/.append style={fill=controlcol}]{Offline controller design}{12}{14} \\
+\ganttbar[bar/.append style={fill=controlcol}]{Hardware procurement \& setup}{13}{14} \\
+\ganttbar[bar/.append style={fill=controlcol}]{Physical controller validation}{15}{17} \\
+\ganttbar[bar/.append style={fill=controlcol}]{Data analysis \& mode optimisation}{16}{18} \\
+
+% Phase 5: Engine & Battery Analysis
+\ganttgroup[group/.append style={fill=enginecol}]{Phase 5: Engine \& Battery}{16}{20} \\
+\ganttbar[bar/.append style={fill=enginecol}]{Trade-off criteria definition}{16}{16} \\
+\ganttbar[bar/.append style={fill=enginecol}]{Engine survey \& scoring}{16}{18} \\
+\ganttbar[bar/.append style={fill=enginecol}]{Battery buffer sizing}{17}{19} \\
+\ganttbar[bar/.append style={fill=enginecol}]{Architectural recommendation}{18}{20} \\
+\ganttmilestone[milestone/.append style={fill=gatecol}]{Gate 4: Analysis complete}{20} \\
+
+% Phase 6: Thesis Writing
+\ganttgroup[group/.append style={fill=thesiscol}]{Phase 6: Thesis Writing}{21}{24} \\
+\ganttbar[bar/.append style={fill=thesiscol}]{Chapter drafting}{21}{22} \\
+\ganttbar[bar/.append style={fill=thesiscol}]{Analysis chapters}{21}{23} \\
+\ganttbar[bar/.append style={fill=thesiscol}]{Supervisor review}{23}{23} \\
+\ganttbar[bar/.append style={fill=thesiscol}]{Final corrections}{23}{24} \\
+\ganttmilestone[milestone/.append style={fill=gatecol}]{Thesis submission}{24} \\
+
+\end{ganttchart}
+
+\end{landscape}
 
 \break
 
