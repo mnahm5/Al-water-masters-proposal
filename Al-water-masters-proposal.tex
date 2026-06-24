@@ -57,6 +57,9 @@
 \definecolor{controlcol}{RGB}{207, 226, 243}   % Pale Blue — Control Systems
 \definecolor{enginecol}{RGB}{204, 235, 197}    % Pale Green — Engine & Battery
 
+\usepackage{ltablex}
+\usepackage{ragged2e}
+
 \title{Aluminium-Water Combustion for Zero Carbon Marine Shipping: Masters Proposal}
 
 \author{Md Nadim Ahmed}
@@ -738,6 +741,220 @@ The engine and battery analysis addresses the following primary research questio
 \end{enumerate}
 
 The outputs of this analysis will be a set of \textbf{engineering specifications}---precise interface requirements between the reactor, the prime mover, and the battery buffer---and a \textbf{clear architectural recommendation} for the minimum viable Generation‑1 propulsion system. By defining these interfaces in terms of commercially available, certifiable components, the analysis reduces the overall technology risk and provides a concrete, actionable roadmap for the next phase of prototype development.
+
+\break
+
+\subsection{Scope of This Research}
+\label{sec:scope-questions}
+
+The overarching research question this project addresses is:
+
+\begin{quote}
+    \textit{Can a high-temperature aluminium-water reactor be designed and operated 
+    to provide reliable propulsion power for superyachts, and under what conditions 
+    does it do so safely and efficiently?}
+\end{quote}
+
+The research encompasses three interconnected workstreams: (1) core reactor 
+characterisation, (2) closed-loop control system development, and (3) engine and 
+battery system trade-off analysis. Table~\ref{tab:scope-full} formalises what 
+falls within and outside the scope of this study for each workstream, and 
+identifies how the outputs of this work will directly enable each downstream 
+research activity.
+
+The core reactor characterisation is structured as a tiered experimental 
+programme to manage schedule risk. Distilled water experiments constitute 
+Tier 1 and are essential for the project's success---they provide all data 
+required for control system development, transient characterisation, and 
+by-product analysis. Synthetic seawater experiments are designated as Tier 2, 
+and natural seawater experiments as Tier 3. These seawater investigations are 
+valuable for understanding the effects of ionic, biological, and particulate 
+seawater components on reactor performance, but they are not required for the 
+primary research objectives. The thesis remains defensible on distilled water 
+experiments alone, and the tiered structure provides flexibility to extend the 
+work if time and resources permit.
+
+\setlength{\tabcolsep}{4pt}
+\small
+\begin{tabularx}{\textwidth}{|
+    >{\hsize=1.0\hsize\RaggedRight\arraybackslash}X|
+    >{\hsize=0.5\hsize\RaggedRight\arraybackslash}X|
+    >{\hsize=0.5\hsize\RaggedRight\arraybackslash}X|
+    >{\hsize=2.0\hsize\RaggedRight\arraybackslash}X|
+}
+\hline
+\textbf{Research Activity} & 
+\textbf{In Scope} & 
+\textbf{Out Scope} & 
+\textbf{How This Study Enables Future Work} \\
+\hline
+\endfirsthead
+
+\hline
+\textbf{Research Activity} & 
+\textbf{In Scope} & 
+\textbf{Out Scope} & 
+\textbf{How This Study Enables Future Work} \\
+\hline
+\endhead
+
+\hline
+\multicolumn{4}{|r|}{\textit{Continued on next page\ldots}} \\
+\hline
+\endfoot
+
+\hline
+\endlastfoot
+
+% --- Core Reactor Characterisation ---
+\multicolumn{4}{|l|}{\textbf{Core Reactor Characterisation}} \\
+\hline
+Industry requirements matrix & 
+Yes & --- & 
+Defines power, range, and energy density targets that bound all downstream 
+reactor design \\
+\hline
+Reaction parameter characterisation 
+(T, P, particle size, fuel-to-water ratio) & 
+Yes (Tier 1) & --- & 
+Produces the experimental dataset for reactor geometry and operating point 
+selection \\
+\hline
+By-product composition analysis 
+(\ce{Al(OH)3}, AlOOH, \ce{Al2O3}) & 
+Yes (Tier 1) & --- & 
+Determines achievable effective energy density and recycling compatibility 
+under real operating conditions \\
+\hline
+Seawater vs.\ distilled water reactant comparison & 
+Yes (Tier 2) & --- & 
+Establishes whether onboard seawater can be used directly, and specifies 
+any pre-treatment or filtration requirements \\
+\hline
+Reactor start-up time and transient load characterisation & 
+Yes (Tier 1) & --- & 
+Provides the open-loop dynamic data required for control system design 
+and battery buffer specification \\
+\hline
+Marine safety protocols (bunkering, dust control, emergency response) & 
+Yes & --- & 
+Provides the safety evidential basis for future certification submissions 
+to RINA, LR, and DNV \\
+\hline
+Reactor geometry and material selection & 
+Yes (lab-scale, indicative) & Full-scale design & 
+Lab-scale findings provide the basis for scaled engineering design in 
+future work \\
+\hline
+Preliminary cost estimation (reactor and aluminium fuel) & 
+Yes (indicative, order-of-magnitude) & Final production costs & 
+High-level estimates inform the economic feasibility case and identify 
+where further cost refinement is needed \\
+\hline
+
+% --- Control Systems ---
+\multicolumn{4}{|l|}{\textbf{Control Systems}} \\
+\hline
+Closed-loop control system development & 
+Yes (fixed-batch demonstrator) & Production-ready control hardware & 
+Demonstrates thermal and kinetic controllability; quantifies response 
+lags, rise times, and stability boundaries \\
+\hline
+Microcontroller hardware selection and implementation & 
+Yes & Maritime ruggedisation & 
+Provides a validated testbed for control algorithm development; hardware 
+choices inform future procurement specifications \\
+\hline
+Power mode transition characterisation & 
+Yes & Optimal controller design & 
+Quantifies the reactor's dynamic response to step changes, enabling 
+future engineers to size battery buffers and design control systems \\
+\hline
+Mode granularity optimisation & 
+Yes & --- & 
+Determines the optimal number and spacing of discrete power modes for 
+marine propulsion, balancing controllability and manoeuvrability \\
+\hline
+
+% --- Engine and Battery Analysis ---
+\multicolumn{4}{|l|}{\textbf{Engine and Battery Analysis}} \\
+\hline
+Thermal integration pathway trade-off (direct vs. separation) & 
+Yes & Detailed separation system design & 
+Identifies the lowest-risk pathway for converting the steam-H$_2$ 
+mixture into shaft power \\
+\hline
+Prime mover survey and selection & 
+Yes (requirements definition) & Engine design or integration & 
+Produces a decision matrix comparing mature, certifiable prime movers 
+(steam turbine, ORC, diesel) \\
+\hline
+Battery buffer specification & 
+Yes (requirements definition) & Battery system design & 
+Defines minimum energy (kWh) and power (kW) requirements for a 
+marine-certified battery to bridge reactor transients \\
+\hline
+Hybrid architecture recommendation & 
+Yes (requirements definition) & Hybrid system integration & 
+Recommends the simplest hybrid topology (series, parallel, or combined) 
+that meets buffering requirements with lowest system risk \\
+\hline
+Efficiency target relaxation analysis & 
+Yes & Efficiency optimisation & 
+Establishes realistic, defensible efficiency targets (20--30\%) for a 
+Generation-1 prototype \\
+\hline
+
+% --- Out of Scope ---
+\multicolumn{4}{|l|}{\textbf{Out of Scope (Future Work)}} \\
+\hline
+Full-scale reactor design and stress testing & 
+--- & Yes & 
+Lab-scale findings from this study provide the basis for scaling 
+engineering design in future work \\
+\hline
+Continuous-flow reactor (real-time fuel injection \& solids handling) & 
+--- & Yes & 
+Fixed-batch control data demonstrates fundamental controllability; 
+continuous-flow engineering is a separate mechanical design challenge \\
+\hline
+Engine and turbine detailed design and integration & 
+--- & Yes & 
+Interface specifications (steam temperature, pressure, flow rate) 
+defined here enable future procurement and integration \\
+\hline
+Battery system detailed design and BMS development & 
+--- & Yes & 
+Capacity and power requirements defined here enable future procurement 
+and integration \\
+\hline
+Classification society approval (full-scale) & 
+--- & Yes & 
+Safety protocols and experimental datasets developed here form the 
+evidential basis for future certification submissions \\
+\hline
+
+\end{tabularx}
+
+Three points in the scope boundary deserve particular emphasis. First, the 
+control system developed in this research is a \emph{fixed-batch demonstrator}, 
+not a production-ready marine system. It is designed to prove that the reactor 
+can be thermally and kinetically regulated---the critical intellectual 
+step---while deferring the mechanical engineering of continuous fuel and 
+solids handling to future work. Second, the engine and battery analysis is 
+explicitly a \emph{requirements-definition and trade-off study}, not an 
+engineering design. The outputs are specifications and recommendations that 
+will guide future prototype development, not detailed designs for procurement. 
+All cost estimates are indicative, order-of-magnitude figures that will require 
+substantial refinement once a full-scale commercial system is designed.
+
+Third, and critically for project risk management, the experimental programme 
+is tiered. Distilled water experiments (Tier 1) are the priority and are 
+sufficient to answer the core research questions and enable the control system 
+development and engine/battery trade-off analysis. Seawater experiments are 
+valuable extensions (Tiers 2 and 3) that will be pursued only if the schedule 
+permits. The thesis remains fully defensible on the distilled water experiments 
+alone.
 
 \break
 

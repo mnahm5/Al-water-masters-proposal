@@ -1,0 +1,182 @@
+\documentclass[12pt]{article}
+
+\usepackage{geometry}
+\geometry{a4paper, margin=2cm}
+
+\usepackage{longtable}
+\usepackage{caption}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage[version=4]{mhchem}
+
+% Column type with no hyphenation
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+
+\begin{document}
+
+\section*{Scope of This Research — Table Test}
+
+\subsection*{Table~\ref{tab:scope-full}: Scope boundary for the full research programme and its relation to future work.}
+
+\setlength{\tabcolsep}{4pt}
+\setlength{\LTleft}{0.025\textwidth}
+\setlength{\LTright}{0.025\textwidth}
+\begin{longtable}{|L{3.5cm}|L{2.5cm}|L{2.5cm}|L{7.0cm}|}
+\hline
+\textbf{Research Activity} & 
+\textbf{In Scope} & 
+\textbf{Out of Scope} & 
+\textbf{How This Study Enables Future Work} \\
+\hline
+\endfirsthead
+
+\hline
+\textbf{Research Activity} & 
+\textbf{In Scope} & 
+\textbf{Out of Scope} & 
+\textbf{How This Study Enables Future Work} \\
+\hline
+\endhead
+
+\hline
+\multicolumn{4}{|r|}{\textit{Continued on next page\ldots}} \\
+\hline
+\endfoot
+
+\hline
+\endlastfoot
+
+% --- Core Reactor Characterisation ---
+\multicolumn{4}{|L{14.5cm}|}{\textbf{Core Reactor Characterisation}} \\
+\hline
+Industry requirements matrix & 
+Yes & --- & 
+Defines power, range, and energy density targets that bound all downstream 
+reactor design \\
+\hline
+Reaction parameter characterisation 
+(T, P, particle size, fuel-to-water ratio) & 
+Yes (Tier 1) & --- & 
+Produces the experimental dataset for reactor geometry and operating point 
+selection \\
+\hline
+By-product composition analysis 
+(\ce{Al(OH)3}, AlOOH, \ce{Al2O3}) & 
+Yes (Tier 1) & --- & 
+Determines achievable effective energy density and recycling compatibility 
+under real operating conditions \\
+\hline
+Seawater vs.\ distilled water reactant comparison & 
+Yes (Tier 2) & --- & 
+Establishes whether onboard seawater can be used directly, and specifies 
+any pre-treatment or filtration requirements \\
+\hline
+Reactor start-up time and transient load characterisation & 
+Yes (Tier 1) & --- & 
+Provides the open-loop dynamic data required for control system design 
+and battery buffer specification \\
+\hline
+Marine safety protocols (bunkering, dust control, emergency response) & 
+Yes & --- & 
+Provides the safety evidential basis for future certification submissions 
+to RINA, LR, and DNV \\
+\hline
+Reactor geometry and material selection & 
+Yes (lab-scale, indicative) & Full-scale design & 
+Lab-scale findings provide the basis for scaled engineering design in 
+future work \\
+\hline
+Preliminary cost estimation (reactor and aluminium fuel) & 
+Yes (indicative, order-of-magnitude) & Final production costs & 
+High-level estimates inform the economic feasibility case and identify 
+where further cost refinement is needed \\
+\hline
+
+% --- Control Systems ---
+\multicolumn{4}{|L{14.5cm}|}{\textbf{Control Systems}} \\
+\hline
+Closed-loop control system development & 
+Yes (fixed-batch demonstrator) & Production-ready control hardware & 
+Demonstrates thermal and kinetic controllability; quantifies response 
+lags, rise times, and stability boundaries \\
+\hline
+Microcontroller hardware selection and implementation & 
+Yes & Maritime ruggedisation & 
+Provides a validated testbed for control algorithm development; hardware 
+choices inform future procurement specifications \\
+\hline
+Power mode transition characterisation & 
+Yes & Optimal controller design & 
+Quantifies the reactor's dynamic response to step changes, enabling 
+future engineers to size battery buffers and design control systems \\
+\hline
+Mode granularity optimisation & 
+Yes & --- & 
+Determines the optimal number and spacing of discrete power modes for 
+marine propulsion, balancing controllability and manoeuvrability \\
+\hline
+
+% --- Engine and Battery Analysis ---
+\multicolumn{4}{|L{14.5cm}|}{\textbf{Engine and Battery Analysis}} \\
+\hline
+Thermal integration pathway trade-off (direct vs. separation) & 
+Yes & Detailed separation system design & 
+Identifies the lowest-risk pathway for converting the steam-H$_2$ 
+mixture into shaft power \\
+\hline
+Prime mover survey and selection & 
+Yes (requirements definition) & Engine design or integration & 
+Produces a decision matrix comparing mature, certifiable prime movers 
+(steam turbine, ORC, diesel) \\
+\hline
+Battery buffer specification & 
+Yes (requirements definition) & Battery system design & 
+Defines minimum energy (kWh) and power (kW) requirements for a 
+marine-certified battery to bridge reactor transients \\
+\hline
+Hybrid architecture recommendation & 
+Yes (requirements definition) & Hybrid system integration & 
+Recommends the simplest hybrid topology (series, parallel, or combined) 
+that meets buffering requirements with lowest system risk \\
+\hline
+Efficiency target relaxation analysis & 
+Yes & Efficiency optimisation & 
+Establishes realistic, defensible efficiency targets (20--30\%) for a 
+Generation-1 prototype \\
+\hline
+
+% --- Out of Scope ---
+\multicolumn{4}{|L{14.5cm}|}{\textbf{Out of Scope (Future Work)}} \\
+\hline
+Full-scale reactor design and stress testing & 
+--- & Yes & 
+Lab-scale findings from this study provide the basis for scaling 
+engineering design in future work \\
+\hline
+Continuous-flow reactor (real-time fuel injection \& solids handling) & 
+--- & Yes & 
+Fixed-batch control data demonstrates fundamental controllability; 
+continuous-flow engineering is a separate mechanical design challenge \\
+\hline
+Engine and turbine detailed design and integration & 
+--- & Yes & 
+Interface specifications (steam temperature, pressure, flow rate) 
+defined here enable future procurement and integration \\
+\hline
+Battery system detailed design and BMS development & 
+--- & Yes & 
+Capacity and power requirements defined here enable future procurement 
+and integration \\
+\hline
+Classification society approval (full-scale) & 
+--- & Yes & 
+Safety protocols and experimental datasets developed here form the 
+evidential basis for future certification submissions \\
+\hline
+
+\end{longtable}
+\addtocounter{table}{-1}
+\captionof{table}{Scope boundary for the full research programme and its relation to future work.}
+\label{tab:scope-full}
+
+\end{document}
