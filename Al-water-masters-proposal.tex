@@ -202,7 +202,7 @@ As illustrated in Figure \ref{fig:simplified_fuel_energy_density}, metal fuels d
 	\small \textit{Note: 1) Pressure Cylinder H2 is 25\degree Celsius 500 bar\\
 	2) Liquid NH3 is -33\degree Celsius 1 bar. Energy needed for cracking for NH3 to H2 is ignored in this table and all subsequent calculations.\\
 	3) The engine efficiency for hydrogen and hydrocarbon combustion is assumed to be around 50\%\\
-	4) The engine efficiency for the metal fuels is assumed to be 40\%. This number is theortically as no such system currently exists for marine shipping. More information about the metal combustion will be discuessed in the following sections.\\
+	4) The engine efficiency for the metal fuels is assumed to be 40\%. This number is theortical as no such system currently exists for marine shipping. More information about the metal combustion will be discussed in the following sections.\\
 	5) For the metal hydrides, the energy needed to free the stored hydrogen is not considered in this calculation.
 	}
   \end{minipage}
@@ -740,7 +740,7 @@ The control investigation addresses the following primary research questions:
     \item \textbf{Mode granularity optimisation.} The number and spacing of discrete power modes is a design choice, not a fixed constraint. What is the optimal mode granularity---for instance, three, five, or a continuously variable strategy---that balances controllability, manoeuvrability, and fuel utilisation? This investigation will assess whether a coarse discretisation is sufficient for smooth propulsion, or whether finer resolution is required to avoid unacceptable lags or instability.
 \end{enumerate}
 
-Critically, this research does \emph{not} design the battery buffer system that would compensate for reactor start-up and load-following limitations---that task is identified as future work in Table~\ref{tab:scope}. However, the dynamic characterisation produced here---the measured lag times, ramp rates, and stability boundaries---constitutes the primary quantitative input that future engineers will require to correctly size that battery buffer, select its chemistry, and specify its power electronics. By delivering a validated closed-loop characterisation of the HT‑MWR, this research transforms the reactor from a laboratory-scale demonstrator into an engineering subsystem with known, documented performance boundaries.
+Critically, this research does \emph{not} design the battery buffer system that would compensate for reactor start-up and load-following limitations---that task is identified as future work in Table~\ref{tab:scope-full}. However, the dynamic characterisation produced here---the measured lag times, ramp rates, and stability boundaries---constitutes the primary quantitative input that future engineers will require to correctly size that battery buffer, select its chemistry, and specify its power electronics. By delivering a validated closed-loop characterisation of the HT‑MWR, this research transforms the reactor from a laboratory-scale demonstrator into an engineering subsystem with known, documented performance boundaries.
 
 \break
 
@@ -749,7 +749,7 @@ Critically, this research does \emph{not} design the battery buffer system that 
 
 The HT‑MWR produces a high-temperature, high-pressure output stream composed of steam and hydrogen gas. This output must ultimately be converted into mechanical shaft power to drive a propeller. The reactor research in Sections~\ref{sec:core-reactor-research-questions} and~\ref{sec:control-questions} establishes the thermodynamic state of that output---its temperature, pressure, mass flow rate, and hydrogen fraction---but it does not prescribe how that output should be transformed into propulsion. The choice of power conversion architecture is therefore a critical design decision that affects efficiency, weight, footprint, capital cost, and---most importantly for near-term deployment---regulatory certification risk.
 
-The analysis in this section is explicitly scoped as a \emph{requirements-definition and trade-off study}, not an engineering design. The goal is not to design a specific engine or battery system, but rather to survey the available options, apply a consistent set of selection criteria, and produce a clear, defensible recommendation for the most viable Generation‑1 propulsion architecture. Detailed simulation, integration, and prototype testing of the engine and battery systems are explicitly out of scope and are identified as future work in Table~\ref{tab:scope}.
+The analysis in this section is explicitly scoped as a \emph{requirements-definition and trade-off study}, not an engineering design. The goal is not to design a specific engine or battery system, but rather to survey the available options, apply a consistent set of selection criteria, and produce a clear, defensible recommendation for the most viable Generation‑1 propulsion architecture. Detailed simulation, integration, and prototype testing of the engine and battery systems are explicitly out of scope and are identified as future work in Table~\ref{tab:scope-full}.
 
 The analysis is guided by a single overarching principle: \textbf{minimise technical and certification risk for the metal‑water reactor and aluminium fuel system}. The reactor and its fuel cycle are the novel, unproven elements of the propulsion chain. The engine and battery, by contrast, should be as mature, standardised, and readily certifiable as possible. Any complexity or novelty allocated to the prime mover or energy storage subsystem increases the overall system risk and lengthens the pathway to regulatory approval. The analysis therefore deliberately favours components with existing marine service records, established classification society rules, and straightforward integration pathways, even if this means accepting lower thermal efficiency.
 
@@ -958,6 +958,8 @@ Classification society approval (full-scale) &
 Safety protocols and experimental datasets developed here form the 
 evidential basis for future certification submissions \\
 \hline
+
+\label{tab:scope-full}
 
 \end{tabularx}
 
@@ -1552,7 +1554,7 @@ This methodology is explicitly limited to \textbf{fixed-batch, laboratory-scale}
 
 \subsubsection*{Overview}
 
-This section describes the methodology for the systematic, comparative analysis of candidate engine and battery architectures for the Generation-1 aluminium-water propulsion system. Unlike the experimental components in Sections~\ref{subsec:core-reactor-methodology} and~\ref{sec:control-methodology}, this analysis is a \textbf{literature-based and manufacturer-data-based trade-off study}. It does not involve laboratory work, prototyping, or simulation. The objective is to produce a clear, well-justified architectural recommendation and a set of engineering interface specifications that will guide future prototype development. This is consistent with the scope boundary defined in Table~\ref{tab:scope}, which explicitly identifies engine integration and battery design as future work.
+This section describes the methodology for the systematic, comparative analysis of candidate engine and battery architectures for the Generation-1 aluminium-water propulsion system. Unlike the experimental components in Sections~\ref{subsec:core-reactor-methodology} and~\ref{sec:control-methodology}, this analysis is a \textbf{literature-based and manufacturer-data-based trade-off study}. It does not involve laboratory work, prototyping, or simulation. The objective is to produce a clear, well-justified architectural recommendation and a set of engineering interface specifications that will guide future prototype development. This is consistent with the scope boundary defined in Table~\ref{tab:scope-full}, which explicitly identifies engine integration and battery design as future work.
 
 The analysis is guided by the principle of \textbf{minimising technical and certification risk} for the aluminium-water reactor and fuel system. The engine and battery should be as mature, off-the-shelf, and readily certifiable as possible.
 
@@ -1561,7 +1563,7 @@ The analysis is guided by the principle of \textbf{minimising technical and cert
 Before comparing any specific technologies, a set of quantitative and qualitative criteria will be defined. These criteria will be used to score each candidate architecture consistently. The criteria are:
 
 \begin{enumerate}[label=\arabic*.]
-    \item \textbf{Technical maturity} — Has the technology been deployed in marine or adjacent industrial applications for >5 years? (Weighted high)
+    \item \textbf{Technical maturity} — Has the technology been deployed in marine or adjacent industrial applications for more than 5 years? (Weighted high)
     \item \textbf{Certification pathway} — Do classification societies (RINA, LR, DNV) have existing rules and guidance? (Weighted highest)
     \item \textbf{Thermal efficiency} — What is the expected efficiency when operating on the reactor's steam-hydrogen mixture? (Gen-1 target: 20–30\%) (Weighted medium)
     \item \textbf{Power-to-weight ratio} — Is the engine suitable for the weight-constrained environment of a superyacht? (Weighted medium)
