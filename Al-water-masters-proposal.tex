@@ -612,7 +612,9 @@ yield and thermal heat output? The target thermal output is a steam-hydrogen mix
 at 400--500\textdegree C---the temperature range required to drive external heat 
 engines such as steam turbines. The goal of this investigation is to identify the 
 combination of parameters that delivers stable, controllable output at this 
-temperature while maximising hydrogen yield.
+temperature while maximising hydrogen yield. As a secondary metric, the cold-start 
+warm-up time from ambient to operating temperature will also be recorded for each 
+optimal setpoint, to inform later battery sizing.
 
 \paragraph{2. Aluminium particle size characterisation}
 
@@ -666,26 +668,7 @@ as the operational oxidiser. Critically, this investigation is designated as Tie
 ahead of schedule. The thesis remains defensible on distilled water experiments 
 alone.
 
-\paragraph{5. Reactor start-up time and transient load characterisation}
-
-Much of the existing research on high-temperature aluminium-water reactors---including 
-work conducted at McGill University---is directed at baseload electricity generation 
-for remote communities or mining operations, where the reactor reaches a steady state 
-and holds it. A marine propulsion system operates in a fundamentally different 
-environment: power demand changes continuously as the vessel manoeuvres, accelerates, 
-cruises, and docks.
-
-This investigation will characterise the reactor's power modulation capability and 
-compare the results against the power demand profiles established for the target 
-superyacht class in Section~\ref{sec-system-requirements-questions}. This characterisation is 
-explicitly scoped to describe the reactor's transient behaviour, not to design the 
-battery buffer system that will bridge the gap during start-up and load 
-transitions---battery sizing is identified as future work in the scope table 
-(Table~\ref{tab:scope-full}). However, the data produced here will be the primary 
-input that enables future researchers and engineers to correctly specify that buffer, 
-design appropriate control systems, and select compatible engine configurations.
-
-\paragraph{6. Marine safety systems}
+\paragraph{5. Marine safety systems}
 
 Aluminium powder introduces a set of hazards that are not commonly encountered in 
 conventional marine fuel systems and are not fully addressed by existing maritime 
@@ -721,10 +704,12 @@ future engineers with the information they need to make informed design decision
 as the metal-water propulsion system is developed further toward commercial 
 deployment.
 
-\subsection{Metal-Water Reactor Control Systems}
+\break
+
+\subsection{Control Systems Development}
 \label{sec:control-questions}
 
-While the experimental characterisation described in Section~\ref{sec:core-reactor-research-questions} will establish the steady-state and transient behaviour of the HT‑MWR under open-loop conditions, a marine propulsion system requires closed-loop regulation. A superyacht's power demand is not constant; it changes continuously during harbour manoeuvring, coastal transits, and open-sea cruising. To be practically useful, the reactor must be capable of receiving a power setpoint and adjusting its output accordingly, while maintaining safe and stable operation.
+While the experimental characterisation described in Section~\ref{sec:core-reactor-research-questions} will establish the steady-state and transient behaviour of the HT-MWR under open-loop conditions, a marine propulsion system requires closed-loop regulation. A superyacht's power demand is not constant; it changes continuously during harbour manoeuvring, coastal transits, and open-sea cruising. To be practically useful, the reactor must be capable of receiving a power setpoint and adjusting its output accordingly, while maintaining safe and stable operation.
 
 However, a full continuous-flow reactor---with real-time fuel injection, dynamic slurry pumping, and continuous by-product extraction---introduces substantial mechanical complexity that is independent of the core thermal and kinetic control problem. Before attempting to regulate a continuous system, it is necessary to demonstrate that the reactor itself can be reliably stabilised at multiple power levels and transition between them with predictable dynamics. This research therefore scopes the control investigation to a \emph{fixed-batch} configuration, in which a known mass of aluminium fuel is loaded at the start of a run and the reaction proceeds until depletion. This simplification isolates the control problem to its essential core---modulating the reaction rate via accessible process variables---while deferring the mechanical engineering of continuous fuel and solids handling to future work.
 
@@ -740,7 +725,7 @@ The control investigation addresses the following primary research questions:
     \item \textbf{Mode granularity optimisation.} The number and spacing of discrete power modes is a design choice, not a fixed constraint. What is the optimal mode granularity---for instance, three, five, or a continuously variable strategy---that balances controllability, manoeuvrability, and fuel utilisation? This investigation will assess whether a coarse discretisation is sufficient for smooth propulsion, or whether finer resolution is required to avoid unacceptable lags or instability.
 \end{enumerate}
 
-Critically, this research does \emph{not} design the battery buffer system that would compensate for reactor start-up and load-following limitations---that task is identified as future work in Table~\ref{tab:scope-full}. However, the dynamic characterisation produced here---the measured lag times, ramp rates, and stability boundaries---constitutes the primary quantitative input that future engineers will require to correctly size that battery buffer, select its chemistry, and specify its power electronics. By delivering a validated closed-loop characterisation of the HT‑MWR, this research transforms the reactor from a laboratory-scale demonstrator into an engineering subsystem with known, documented performance boundaries.
+Critically, this research does \emph{not} design the battery buffer system that would compensate for reactor start-up and load-following limitations---that task is identified as future work in Table~\ref{tab:scope-full}. However, the dynamic characterisation produced here---the measured lag times, ramp rates, and stability boundaries---constitutes the primary quantitative input that future engineers will require to correctly size that battery buffer, select its chemistry, and specify its power electronics. By delivering a validated closed-loop characterisation of the HT-MWR, this research transforms the reactor from a laboratory-scale demonstrator into an engineering subsystem with known, documented performance boundaries.
 
 \break
 
@@ -771,33 +756,6 @@ The outputs of this analysis will be a set of \textbf{engineering specifications
 
 \subsection{Scope of This Research}
 \label{sec:scope-questions}
-
-The overarching research question this project addresses is:
-
-\begin{quote}
-    \textit{Can a high-temperature aluminium-water reactor be designed and operated 
-    to provide reliable propulsion power for superyachts, and under what conditions 
-    does it do so safely and efficiently?}
-\end{quote}
-
-The research encompasses three interconnected workstreams: (1) core reactor 
-characterisation, (2) closed-loop control system development, and (3) engine and 
-battery system trade-off analysis. Table~\ref{tab:scope-full} formalises what 
-falls within and outside the scope of this study for each workstream, and 
-identifies how the outputs of this work will directly enable each downstream 
-research activity.
-
-The core reactor characterisation is structured as a tiered experimental 
-programme to manage schedule risk. Distilled water experiments constitute 
-Tier 1 and are essential for the project's success---they provide all data 
-required for control system development, transient characterisation, and 
-by-product analysis. Synthetic seawater experiments are designated as Tier 2, 
-and natural seawater experiments as Tier 3. These seawater investigations are 
-valuable for understanding the effects of ionic, biological, and particulate 
-seawater components on reactor performance, but they are not required for the 
-primary research objectives. The thesis remains defensible on distilled water 
-experiments alone, and the tiered structure provides flexibility to extend the 
-work if time and resources permit.
 
 \setlength{\tabcolsep}{4pt}
 \small
@@ -876,7 +834,6 @@ Yes (indicative, order-of-magnitude) & Final production costs &
 High-level estimates inform the economic feasibility case and identify 
 where further cost refinement is needed \\
 \hline
-
 % --- Control Systems ---
 \multicolumn{4}{|l|}{\textbf{Control Systems}} \\
 \hline
@@ -956,32 +913,11 @@ and integration \\
 Classification society approval (full-scale) & 
 --- & Yes & 
 Safety protocols and experimental datasets developed here form the 
-evidential basis for future certification submissions \\
-\hline
+evidential basis for future certification submissions
 
 \label{tab:scope-full}
 
 \end{tabularx}
-
-Three points in the scope boundary deserve particular emphasis. First, the 
-control system developed in this research is a \emph{fixed-batch demonstrator}, 
-not a production-ready marine system. It is designed to prove that the reactor 
-can be thermally and kinetically regulated---the critical intellectual 
-step---while deferring the mechanical engineering of continuous fuel and 
-solids handling to future work. Second, the engine and battery analysis is 
-explicitly a \emph{requirements-definition and trade-off study}, not an 
-engineering design. The outputs are specifications and recommendations that 
-will guide future prototype development, not detailed designs for procurement. 
-All cost estimates are indicative, order-of-magnitude figures that will require 
-substantial refinement once a full-scale commercial system is designed.
-
-Third, and critically for project risk management, the experimental programme 
-is tiered. Distilled water experiments (Tier 1) are the priority and are 
-sufficient to answer the core research questions and enable the control system 
-development and engine/battery trade-off analysis. Seawater experiments are 
-valuable extensions (Tiers 2 and 3) that will be pursued only if the schedule 
-permits. The thesis remains fully defensible on the distilled water experiments 
-alone.
 
 \break
 
