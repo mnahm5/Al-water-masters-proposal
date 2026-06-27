@@ -1587,7 +1587,7 @@ The final output will be a specification sheet listing the required battery capa
 The preliminary energy density analysis in Section~1.1 assumed a 40\% engine efficiency for metal fuels, derived from theoretical projections rather than real-world demonstration. For a Generation-1 prototype, this assumption is unrealistic. The methodology for revisiting the efficiency target is:
 
 \begin{itemize}
-    \item \textbf{Literature review:} Gather published data on the actual efficiencies of small-scale (<1 MW) steam turbines, ORC engines, and diesel gensets. These will typically be in the range of 20–30\% for steam turbines and ORC.
+    \item \textbf{Literature review:} Gather published data on the actual efficiencies of small-scale (less than 1 MW) steam turbines, ORC engines, and diesel gensets. These will typically be in the range of 20–30\% for steam turbines and ORC.
     \item \textbf{Consultation with manufacturers:} Where possible, obtain indicative efficiency curves from suppliers for units in the 100–500 kW range.
     \item \textbf{Trade-off analysis:} Compare the effective energy density of the aluminium fuel system (from Tables~\ref{tab:Al-by-products-comparison} and~\ref{tab:fuel-volume-density}) using the literature-based efficiencies (20–30\%) against competing electro-fuels (hydrogen, ammonia, methanol). If aluminium remains competitive (within a factor of 2 in volumetric energy density), the relaxed target is acceptable.
     \item \textbf{Justification:} The thesis will explicitly argue that a 20–30\% efficiency target is sufficient for a proof-of-concept prototype, and that efficiency optimisation can be pursued in later development iterations once the fundamental safety and controllability of the reactor are demonstrated.
@@ -1631,9 +1631,6 @@ structural features:
           if time has been lost.
     \item \textbf{A tiered experiment programme} --- Tier 1 (core), Tier 2 (extended), and
           Tier 3 (optional). The thesis is defensible on Tier 1 alone.
-    \item \textbf{Extended experimental period} --- core experiments run from Month 7 to
-          Month 15, allowing for thorough parameter sweeps, replication runs, and
-          extended transient characterisation.
     \item \textbf{Parallel development of control systems and engine/battery analysis} ---
           control system development begins in parallel with later experiments, while
           the engine and battery trade-off study runs after the core experiments
@@ -1647,8 +1644,7 @@ data for the project's primary objectives:
 
 \begin{itemize}
     \item \textbf{Tier 1 (Core)} --- Distilled water experiments covering temperature,
-    pressure, particle size, and fuel-to-water ratio optimisation, plus full transient
-    load characterisation. This tier is essential for the project's success and
+    pressure, particle size, and fuel-to-water ratio optimisation. This tier is essential for the project's success and
     provides all data required for control system development and battery sizing.
 
     \item \textbf{Tier 2 (Extended)} --- Synthetic seawater experiments and limited
@@ -1681,7 +1677,7 @@ continue in parallel and any refined targets are incorporated before Tier 2
 experiments begin.
 
 \medskip
-\noindent\textbf{Gate 3 --- Month 15: Core Experiments Complete.} All Tier 1 experiments must
+\noindent\textbf{Gate 3 --- Month 12: Core Experiments Complete.} All Tier 1 experiments must
 be finished by this point. If not, the contingency buffer (built into Months 14--15)
 is used to complete them, and Tier 2 and 3 experiments are formally deferred to
 future work.
@@ -1702,11 +1698,7 @@ or engine sections may need to be reduced.
     \item \textbf{Thesis writing is concentrated in Months 21--24}, after all experimental work
           and analysis is complete. However, literature review and preliminary
           chapter structuring begin earlier.
-    \item \textbf{Control system development uses early experimental data} --- offline design
-          and simulation (Months 12--14) uses data from the first four months of
-          experiments (Months 7--11). Physical validation then occurs as the final
-          experiments (Months 15--17) are running.
-    \item \textbf{A 4-week contingency buffer} is built into Months 14--15 for repeat runs,
+    \item \textbf{A 4-week contingency buffer} is built into Month 12 for repeat runs,
           instrument troubleshooting, and analysis backlogs.
 \end{itemize}
 
@@ -1726,7 +1718,7 @@ Gate 1 & M4  & Safety approval granted & Reduce particle size grades: 7 $\righta
 \hline
 Gate 2 & M7  & Requirements matrix finalised & Use provisional targets; revise in thesis \\
 \hline
-Gate 3 & M15 & All core experiments complete & Tier 2/3 experiments become future work \\
+Gate 3 & M12 & All core experiments complete & Tier 2/3 experiments become future work \\
 \hline
 Gate 4 & M20 & Control validation and engine/battery analysis complete & Reduce scope of control or engine sections \\
 \hline
@@ -1789,12 +1781,12 @@ Submission & M24 & Thesis submitted & --- \\
 \ganttbar[bar/.append style={fill=phase2col}]{Calibration runs}{6}{6} \\
 
 % Phase 3: Core Experiments (Tier 1)
-\ganttgroup[group/.append style={fill=tier1col}]{Phase 3: Core Experiments}{7}{15} \\
+\ganttgroup[group/.append style={fill=tier1col}]{Phase 3: Core Experiments}{7}{12} \\
 \ganttbar[bar/.append style={fill=tier1col}]{Temp./pressure optimisation}{7}{9} \\
 \ganttbar[bar/.append style={fill=tier1col}]{Particle size screening}{7}{10} \\
-\ganttbar[bar/.append style={fill=tier1col}]{By-product analysis (PXRD)}{9}{12} \\
-\ganttbar[bar/.append style={fill=tier1col}]{Transient load characterisation}{10}{15} \\
-\ganttmilestone[milestone/.append style={fill=gatecol}]{Gate 3: Core complete}{15} \\
+\ganttbar[bar/.append style={fill=tier1col}]{By-product analysis (PXRD)}{9}{11} \\
+\ganttbar[bar/.append style={fill=tier1col}]{Repeat / validation runs}{12}{12} \\
+\ganttmilestone[milestone/.append style={fill=gatecol}]{Gate 3: Core complete}{12} \\
 
 % Tier 2: Synthetic Seawater (if on schedule)
 \ganttgroup[group/.append style={fill=tier2col}]{Tier 2: Synthetic Seawater}{10}{14} \\
@@ -1804,7 +1796,6 @@ Submission & M24 & Thesis submitted & --- \\
 % Tier 3: Natural Seawater (if ahead)
 \ganttgroup[group/.append style={fill=tier3col}]{Tier 3: Natural Seawater}{13}{15} \\
 \ganttbar[bar/.append style={fill=tier3col}]{Fine-filtered seawater}{13}{15} \\
-\ganttbar[bar/.append style={fill=tier3col}]{Repeat / validation runs}{14}{15} \\
 
 \end{ganttchart}
 
@@ -1838,10 +1829,11 @@ Submission & M24 & Thesis submitted & --- \\
 
 % Phase 4: Control System Development
 \ganttgroup[group/.append style={fill=controlcol}]{Phase 4: Control Systems}{12}{18} \\
-\ganttbar[bar/.append style={fill=controlcol}]{Offline controller design}{12}{14} \\
-\ganttbar[bar/.append style={fill=controlcol}]{Hardware procurement \& setup}{13}{14} \\
-\ganttbar[bar/.append style={fill=controlcol}]{Physical controller validation}{15}{17} \\
-\ganttbar[bar/.append style={fill=controlcol}]{Data analysis \& mode optimisation}{16}{18} \\
+\ganttbar[bar/.append style={fill=controlcol}]{Open-Loop Plant Study}{12}{15} \\
+\ganttbar[bar/.append style={fill=controlcol}]{Offline controller design}{14}{15} \\
+\ganttbar[bar/.append style={fill=controlcol}]{Hardware procurement \& setup}{14}{15} \\
+\ganttbar[bar/.append style={fill=controlcol}]{Closed-Loop Impl.}{15}{18} \\
+\ganttbar[bar/.append style={fill=controlcol}]{Data analysis}{17}{18} \\
 
 % Phase 5: Engine & Battery Analysis
 \ganttgroup[group/.append style={fill=enginecol}]{Phase 5: Engine \& Battery}{16}{20} \\
