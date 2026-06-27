@@ -1111,7 +1111,7 @@ will all be set by the values documented in this matrix.
 
 This section describes the experimental programme for the high-temperature 
 metal-water reactor (HT-MWR) component of this research. The programme is 
-structured to address each of the research deliverables identified in 
+structured to address the steady-state research deliverables identified in 
 Section~\ref{sec:core-reactor-research-questions}, building on the system 
 requirements established through the industry research in 
 Section~\ref{sec:industry-research}.
@@ -1205,7 +1205,8 @@ The target output condition is a steam--hydrogen mixture at 400--500\textdegree 
 The coarsest particle size that still achieves this target while meeting the power 
 demand requirements of the superyacht class from 
 Section~\ref{sec:industry-research} will be identified as the most commercially 
-attractive operating point.
+attractive operating point. The cold-start warm-up time from ambient to operating 
+temperature will also be recorded for each optimal setpoint.
 
 \subsubsection*{By-product Composition Analysis}
 
@@ -1258,232 +1259,235 @@ be compared against the distilled water baseline. The filtration complexity and
 estimated cost of each category will be documented, enabling a cost-benefit analysis 
 of onboard seawater pre-treatment for a deployed marine system.
 
-\subsubsection*{Reactor Start-up and Transient Load Characterisation}
-
-This is the most novel component of the experimental programme. Prior 
-high-temperature aluminium--water reactor research --- including work conducted at 
-McGill University --- has focused on baseload electricity generation for stationary 
-applications where the reactor reaches a steady state and holds it. No prior work 
-has characterised HT-MWR behaviour under the dynamic load-following conditions 
-required for marine propulsion, where power demand changes continuously as the 
-vessel manoeuvres, accelerates, cruises, and docks.
-
-The reactor's output will be characterised across four discrete power settings that 
-reflect the operational modes of a marine propulsion system:
-
-\begin{itemize}
-    \item \textbf{Off}: No aluminium injection; reactor held at thermal standby 
-    temperature
-
-    \item \textbf{Low}: Approximately 25\% of rated hydrogen output, corresponding 
-    to harbour manoeuvring and low-speed transit conditions
-
-    \item \textbf{Medium}: Approximately 50\% of rated hydrogen output, 
-    corresponding to moderate cruising
-
-    \item \textbf{High}: 100\% of rated hydrogen output, corresponding to full 
-    cruising speed
-\end{itemize}
-
-The absolute output targets for each level will be derived from the superyacht power 
-demand profiles established in Section~\ref{sec:industry-research}.
-
-Real-time hydrogen yield will be measured continuously throughout all transient 
-experiments using two simultaneous methods:
-
-\begin{enumerate}
-    \item \textbf{Pressure--time derivative method}: The rate of pressure change 
-    (d$P$/d$t$) from the high-frequency pressure transducer, combined with the 
-    known gas space volume, gives the instantaneous molar hydrogen production rate 
-    via a modified ideal gas equation, consistent with the computational procedure 
-    of Vlaskin et al.~\cite{high-temp-Al-H2O}. This provides high temporal resolution.
-
-    \item \textbf{Mass flow controller method}: The gas outlet thermal mass flow 
-    controller provides a direct real-time volumetric measurement of gas leaving the 
-    reactor, cross-validated against hydrogen concentration from the in-line 
-    electrochemical sensor.
-\end{enumerate}
-
-Both measurement streams will be logged with timestamps synchronised to the pump 
-control input signals, enabling direct calculation of the lag time between a control 
-input change and the corresponding output change --- the primary dataset required by 
-future engineers designing control systems for this reactor.
-
-Three power modulation techniques will be investigated, each chosen for its 
-relevance to real-world continuous marine propulsion rather than the batch operation 
-characterised in prior research:
-
-\begin{enumerate}
-    \item \textbf{Slurry injection rate modulation}: Adjusting the pump speed to 
-    change the aluminium mass flow rate entering the reactor. This is the most direct 
-    analogue to fuel injection control in a conventional engine and is expected to 
-    produce the fastest dynamic response, making it the most commercially viable 
-    approach for a deployed marine system.
-
-    \item \textbf{Fuel-to-water ratio modulation}: Adjusting the aluminium slurry 
-    and water supply rates independently to tune the fuel-to-water ratio while 
-    holding total throughput approximately constant. This may help maintain reactor 
-    pressure stability during load transitions without requiring large changes in 
-    total flow rate.
-
-    \item \textbf{Temperature modulation}: Varying heater power to shift the reactor 
-    operating temperature within the 250--400\textdegree C range, exploiting the 
-    strong temperature-dependence of aluminium oxidation kinetics. This method has 
-    the slowest response time due to reactor thermal mass, but may serve as a coarse 
-    power adjustment complementing injection rate control.
-\end{enumerate}
-
-Each technique will be tested independently, and promising combinations will be 
-tested together. For each transition between power settings, the response lag, rise 
-time, steady-state output, and any overshoot or undershoot in hydrogen production 
-will be recorded and reported. The results will be compared directly against the 
-superyacht power demand profiles from Section~\ref{sec:industry-research}, and 
-will form the primary dataset enabling future researchers and engineers to design 
-control systems, size battery buffers, and select engine configurations for this 
-propulsion architecture.
-
 \subsubsection*{Safety, Verification, and Approval}
 
 The experimental programme involves concurrent hazards from aluminium powder 
 handling, continuous hydrogen gas production, and high-pressure and high-temperature 
 reactor operation. A comprehensive safety protocol addressing each risk category, 
 together with the plan for independent peer review and formal university approval 
-of the experimental design, is provided in full in 
-Appendix. In summary, all experimental work will 
-be conducted in a dedicated ventilated enclosure with Class~D fire suppression, 
-continuous hydrogen monitoring with automatic equipment interlocks, and a minimum 
-of two researchers present at all times. A detailed laboratory experimental proposal 
-incorporating the full safety protocol, risk register, and reactor specifications 
-will be submitted for independent review by experienced academics and for formal 
-approval by the university's laboratory safety committee. No high-pressure or 
-high-temperature experimental work will commence before this approval is granted. 
-This comprehensive proposal and its approval will be completed by the \textbf{end 
-of the first quarter} of the research project.
+of the experimental design, is provided in full in the Appendix. In summary, all 
+experimental work will be conducted in a dedicated ventilated enclosure with 
+Class~D fire suppression, continuous hydrogen monitoring with automatic equipment 
+interlocks, and a minimum of two researchers present at all times. A detailed 
+laboratory experimental proposal incorporating the full safety protocol, risk 
+register, and reactor specifications will be submitted for independent review by 
+experienced academics and for formal approval by the university's laboratory safety 
+committee. No high-pressure or high-temperature experimental work will commence 
+before this approval is granted. This comprehensive proposal and its approval will 
+be completed by the end of the first quarter of the research project.
 
-\break
 
 \subsection{Metal-Water Reactor Control Systems}
 \label{sec:control-methodology}
 
 \subsubsection*{Overview}
 
-The experimental characterisation described in Section~\ref{subsec:core-reactor-methodology} establishes the open-loop behaviour of the HT-MWR—its steady-state hydrogen yield, thermal output, and transient response to step changes in water injection rate and temperature. That data is necessary but not sufficient for marine propulsion. A superyacht requires a reactor that can accept a commanded power setpoint and adjust its output automatically, while remaining stable and safe. This section describes the methodology for developing and validating a closed-loop control system for the fixed-batch reactor configuration introduced in Section~\ref{sec:control-questions}.
-
-Crucially, the actuator selection is \textbf{not predetermined}. It will be informed directly by the experimental data from Section~\ref{subsec:core-reactor-methodology}. The parameter optimisation runs will reveal which variable (water injection rate or reactor temperature) produces the fastest, most stable response to a demand change. That variable will be selected as the primary control actuator for the closed-loop work.
+The steady-state characterisation described in Section~\ref{subsec:core-reactor-methodology} 
+identifies the optimal operating points --- temperature, pressure, particle size, 
+and fuel-to-water ratio --- that maximise hydrogen yield and thermal output. A 
+marine propulsion system, however, requires dynamic load-following: the reactor must 
+accept a commanded power setpoint and adjust its output automatically while 
+remaining stable and safe. This section describes the methodology for characterising 
+the reactor's dynamic behaviour and developing a closed-loop control system for the 
+fixed-batch reactor configuration introduced in Section~\ref{sec:control-questions}.
 
 \subsubsection*{Experimental Configuration: Fixed-Batch Reactor}
 
-For the control validation experiments, the reactor is operated in a \emph{fixed-batch mode}. A known mass of aluminium powder (determined from the requirements matrix in Section~\ref{sec:industry-research}) is loaded into the reactor at the start of each run. The reactor is then sealed, purged with nitrogen, and brought to thermal standby temperature. The reaction proceeds until the aluminium is fully consumed. This configuration deliberately excludes real-time fuel injection and continuous by-product extraction, which are deferred to future work. The simplification allows the control investigation to focus purely on thermal and kinetic regulation—the core intellectual challenge—without the confounding mechanical complexities of slurry pumping, nozzle clogging, and solids handling.
+For the control validation experiments, the reactor is operated in a \emph{fixed-batch 
+mode}. A known mass of aluminium powder (determined from the requirements matrix in 
+Section~\ref{sec:industry-research}) is loaded into the reactor at the start of each 
+run. The reactor is then sealed, purged with nitrogen, and brought to thermal 
+standby temperature. The reaction proceeds until the aluminium is fully consumed. 
+This configuration deliberately excludes real-time fuel injection and continuous 
+by-product extraction, which are deferred to future work. The simplification allows 
+the control investigation to focus purely on thermal and kinetic regulation---the 
+core intellectual challenge---without the confounding mechanical complexities of 
+slurry pumping, nozzle clogging, and solids handling.
 
 \subsubsection*{Power Mode Definition}
 
-The reactor's output will be regulated across \textbf{five discrete power modes}, defined as percentages of the rated output determined from the requirements matrix (Section~\ref{sec:industry-research}):
+The reactor's output will be regulated across \textbf{five discrete power modes}, 
+defined as percentages of the rated output determined from the requirements matrix 
+(Section~\ref{sec:industry-research}):
 
 \begin{itemize}
-    \item \textbf{0\%} — Thermal standby. The reactor is maintained at a minimum temperature (e.g., 250\textdegree C) via electrical heater input, but the aluminium-water reaction is suppressed (water injection stopped). This preserves the ability to respond rapidly when higher power is demanded.
-    \item \textbf{25\%} — Corresponds to harbour manoeuvring, low-speed transit, or docking.
-    \item \textbf{50\%} — Corresponds to moderate cruising.
-    \item \textbf{75\%} — Corresponds to high-speed cruising.
-    \item \textbf{100\%} — Full rated output.
+    \item \textbf{0\%} --- Thermal standby. The reactor is maintained at a minimum 
+    temperature (e.g., 250\textdegree C) via electrical heater input, but the 
+    aluminium-water reaction is suppressed (water injection stopped). This preserves 
+    the ability to respond rapidly when higher power is demanded.
+    \item \textbf{25\%} --- Corresponds to harbour manoeuvring, low-speed transit, 
+    or docking.
+    \item \textbf{50\%} --- Corresponds to moderate cruising.
+    \item \textbf{75\%} --- Corresponds to high-speed cruising.
+    \item \textbf{100\%} --- Full rated output.
 \end{itemize}
 
-The absolute power targets (in kW thermal and kg H$_2$/hr) for each mode will be derived from the superyacht power demand profiles established in Section~\ref{sec:industry-research}. The control system's task is to transition between these modes on command, maintaining each mode stably, and to characterise the dynamic behaviour of each transition.
+The absolute power targets (in kW thermal and kg H$_2$/hr) for each mode will be 
+derived from the superyacht power demand profiles established in 
+Section~\ref{sec:industry-research}. The control system's task is to transition 
+between these modes on command, maintaining each mode stably, and to characterise 
+the dynamic behaviour of each transition.
 
-\subsubsection*{Actuator Selection — Informed by Section 3.2 Data}
+\subsubsection*{Open-Loop Plant Characterisation (Prerequisite)}
 
-In the fixed-batch configuration, the reactor contains a known, fixed mass of aluminium powder loaded at the start of each run. Consequently, the only variable that can be modulated in real-time to affect the reaction rate is the \textbf{water injection rate}.
+Before feedback control can be implemented, the reactor's inherent dynamic response 
+must be quantified without any automated regulation. Using the reactor apparatus 
+described in Section~\ref{subsec:core-reactor-methodology} --- the same 
+thermocouples, pressure transducers, mass flow controller, and hydrogen sensor --- 
+step-change tests are performed across the five power modes. Hydrogen production 
+rate is calculated via the pressure-time derivative method (dP/dt) and 
+cross-validated against the mass flow controller reading. For each transition 
+(e.g., 25\% to 75\%), the following metrics are recorded:
 
-The water injection rate is controlled via the variable-speed high-pressure plunger pump already installed as part of the reactor rig. By varying the pump speed, the water flow rate into the fixed aluminium bed is adjusted. Increasing the water flow accelerates the exothermic reaction (up to a point), raising hydrogen production and thermal output, while decreasing the flow slows the reaction. The instantaneous water-to-aluminium ratio is therefore a \textbf{dependent variable}—it changes as a consequence of the water flow rate adjustment, rather than being an independently controlled actuator. While the fuel-to-water ratio is a parameter of interest in the open-loop characterisation (Section~\ref{subsec:core-reactor-methodology}), in the closed-loop fixed-batch control validation it is not a separate control degree of freedom.
+\begin{itemize}
+    \item \textbf{Response lag} --- Time from the step command to the first 
+    detectable change in output.
+    \item \textbf{Rise time} --- Time from first output change to reaching 90\% of 
+    the final steady-state value.
+    \item \textbf{Settling time} --- Time to reach and remain within ±5\% of the 
+    final steady-state value.
+    \item \textbf{Overshoot / undershoot} --- Maximum excursion above or below the 
+    target value, expressed as a percentage of the target.
+    \item \textbf{Steady-state error} --- Residual difference between the setpoint 
+    and the measured output after settling.
+\end{itemize}
 
-In addition to water injection rate, the reactor \textbf{temperature} can be modulated via the electrical resistance heater. However, due to the thermal inertia of the reactor vessel and its contents (the fixed aluminium bed and any accumulated by-product), this method has a slow response time—on the order of minutes rather than seconds. It will therefore be investigated as a \textbf{secondary, coarse-trim} actuator for steady-state fine-tuning or for managing thermal standby (0\% mode). It is not expected to be suitable as the primary means of load-following for fast transients.
+Each pairwise transition (0→25, 0→50, 0→75, 0→100, 25→50, 25→75, 25→100, 50→75, 
+50→100, 75→100) is repeated at least three times to assess repeatability. The 
+direction of the transition (e.g., 25\% to 75\% vs. 75\% to 25\%) is treated 
+separately, as the reactor may exhibit asymmetric behaviour.
 
-The open-loop data from Section~\ref{subsec:core-reactor-methodology} will quantify, for the water injection rate actuator, the \textbf{gain} (change in output per unit change in pump speed), the \textbf{time constant}, the \textbf{dead time}, and the \textbf{linearity} (whether the response is proportional across the operating range). This data will be used to tune the controller gains and to establish the maximum allowable slew rate (rate of change of pump speed) that avoids thermal runaway or pressure exceedance.
+This open-loop dataset establishes the raw plant dynamics --- the gain, time 
+constant, and dead-time that any future controller must handle. It also provides 
+the baseline against which all closed-loop improvements will be measured.
 
-If pump speed modulation alone proves insufficient to meet the transient response requirements from the requirements matrix (Section~\ref{sec:industry-research}), the temperature actuator may be used in a \textbf{cascaded} strategy—fast adjustments via pump speed, with slow temperature trim to compensate for drift as the aluminium is consumed and the by-product accumulates. The cascade architecture will be documented and tested, but the primary data product remains the measured response characteristics of the water injection actuator, as this is the most commercially viable control approach for a future continuous-flow system.
+\subsubsection*{Actuator Selection}
 
-\subsubsection*{Instrumentation and Sensor Suite}
+The open-loop data informs the choice of primary control actuator. The reactor has 
+two variables that can be modulated in real-time:
 
-The same instrumentation described in Section~\ref{subsec:core-reactor-methodology} will be used for the control experiments, with the addition of digital communication interfaces for real-time feedback. The sensor suite comprises:
+\begin{itemize}
+    \item \textbf{Water injection rate}: Controlled via the variable-speed 
+    high-pressure plunger pump. The open-loop step tests quantify the gain (change 
+    in output per unit change in pump speed), time constant, and linearity of this 
+    actuator.
+    
+    \item \textbf{Reactor temperature}: Modulated via the electrical resistance 
+    heater. Due to thermal inertia, this method has a slow response time --- on the 
+    order of minutes rather than seconds.
+\end{itemize}
 
-\begin{table}[h!]
-\centering
-\begin{tabular}{p{4.2cm} p{4.2cm} p{7cm}}
-\toprule
-\textbf{Sensor} & \textbf{Measured Quantity} & \textbf{Purpose in Control Loop} \\
-\midrule
-Four K-type thermocouples (axial distribution) & Reactor wall temperature (average) & Thermal feedback; indicator of reaction exothermicity \\
-High-frequency pressure transducer (reactor headspace) & Reactor pressure & Primary indicator of hydrogen production rate (via dP/dt); safety monitor \\
-High-frequency pressure transducer (pump inlet) & Water feed pressure & Diagnostic for pump performance and nozzle fouling \\
-Thermal mass flow controller (gas outlet) & Volumetric gas flow rate & Cross-validation of hydrogen yield; steady-state verification \\
-Electrochemical hydrogen sensor (gas outlet and enclosure) & H$_2$ concentration (\%) & Safety interlock; supplementary yield measurement \\
-\bottomrule
-\end{tabular}
-\caption{Instrumentation for closed-loop control validation.}
-\label{tab:control-sensors}
-\end{table}
+The actuator with the faster, more linear response and shorter time constant will 
+be selected as the primary means of load-following. The slower actuator 
+(temperature) will be investigated as a secondary, coarse-trim actuator for 
+steady-state fine-tuning or thermal standby management. If pump speed modulation 
+alone proves insufficient to meet the transient response requirements from the 
+requirements matrix (Section~\ref{sec:industry-research}), a cascaded strategy may 
+be used --- fast adjustments via pump speed with slow temperature trim to 
+compensate for drift as the aluminium is consumed.
 
-All sensors will be sampled at a minimum frequency of \textbf{10 Hz} (higher if the data acquisition hardware permits) to capture transient dynamics with sufficient temporal resolution. Sensor outputs will be logged with timestamps synchronised to the control input signals.
+\subsubsection*{Closed-Loop Controller Implementation}
 
-\subsubsection*{Microcontroller Hardware and Control Architecture}
-
-The closed-loop controller will be implemented on a \textbf{microcontroller platform}—either a Raspberry Pi (for higher computational flexibility) or an Arduino-based system (for deterministic, low-latency real-time control). The final choice will be made during the design phase based on required sampling rate, control algorithm complexity, and I/O availability.
+A closed-loop controller is implemented on a \textbf{microcontroller platform}---either 
+a Raspberry Pi (for higher computational flexibility) or an Arduino-based system 
+(for deterministic, low-latency real-time control). The final choice will be made 
+during the design phase based on required sampling rate, control algorithm 
+complexity, and I/O availability.
 
 \textbf{Hardware components:}
 \begin{itemize}
     \item Microcontroller board (Raspberry Pi 4 or Arduino Due / Teensy 4.0)
-    \item Analogue-to-digital converters (ADCs) for thermocouple and pressure transducer signals
+    \item Analogue-to-digital converters (ADCs) for thermocouple and pressure 
+    transducer signals
     \item Digital-to-analogue converters (DACs) or PWM outputs for actuator control
-    \item Signal conditioning boards (thermocouple amplifiers, pressure transducer excitations)
+    \item Signal conditioning boards (thermocouple amplifiers, pressure transducer 
+    excitations)
     \item Power relays / solid-state switches for heater control
     \item Motor driver / variable-speed drive for the plunger pump
-    \item Isolated communication links (USB, Ethernet, or CAN) to the data acquisition console
+    \item Isolated communication links (USB, Ethernet, or CAN) to the data 
+    acquisition console
 \end{itemize}
 
-\textbf{Control algorithm:}
+The control algorithm itself is \textbf{not} a primary research deliverable. The 
+objective is not to design an optimal controller, but to characterise the plant 
+dynamics that any future controller would need to handle. Therefore, a simple 
+\textbf{proportional-integral-derivative (PID)} controller will be implemented 
+initially, with gains tuned using the gain and time constant extracted from the 
+open-loop tests. If the plant exhibits significant non-linearity or time-varying 
+behaviour (e.g., as the aluminium is consumed), a gain-scheduled or model-predictive 
+controller may be explored. In all cases, the control scheme will be documented 
+transparently, and the primary data product will be the measured closed-loop 
+response.
 
-The control algorithm itself is \textbf{not} a primary research deliverable. The objective is not to design an optimal controller, but to characterise the plant dynamics that any future controller would need to handle. Therefore, a simple \textbf{proportional-integral-derivative (PID)} controller will be implemented initially, with gains tuned manually (or via Ziegler-Nichols) to achieve stable setpoint tracking. If the plant exhibits significant non-linearity or time-varying behaviour (e.g., as the aluminium is consumed), a gain-scheduled or model-predictive controller may be explored. In all cases, the control scheme will be documented transparently, and the primary data product will be the measured closed-loop response (not the controller coefficients themselves).
+\subsubsection*{Closed-Loop Step-Change Validation}
 
-\subsubsection*{Experimental Procedure — Mode Transition Characterisation}
+The same step-change test matrix used in the open-loop characterisation is repeated 
+under PID regulation. For each transition, the closed-loop response metrics --- lag, 
+rise time, settling time, overshoot, and steady-state error --- are recorded and 
+compared directly against the open-loop baselines to quantify the improvement.
 
-The control validation experiments consist of a series of \textbf{step-change tests} between the five power modes. For each test, the reactor is first stabilised at a given mode (e.g., 25\%). A step command is then sent to the microcontroller to transition to a target mode (e.g., 75\%). The reactor's response—hydrogen production rate (from dP/dt), thermal output (from thermocouple data), pressure, and temperature—is recorded continuously. The following metrics are extracted for each transition:
-
-\begin{itemize}
-    \item \textbf{Response lag} — Time from command issuance to first detectable change in output.
-    \item \textbf{Rise time} — Time from first output change to reaching 90\% of the final steady-state value.
-    \item \textbf{Settling time} — Time to reach and remain within ±5\% of the final steady-state value.
-    \item \textbf{Overshoot / undershoot} — Maximum excursion above or below the target value, expressed as a percentage of the target.
-    \item \textbf{Steady-state error} — Residual difference between the setpoint and the measured output after settling.
-\end{itemize}
-
-Each pairwise transition is repeated at least three times to assess repeatability. The full set of transitions (0to25, 0to50, 0to75, 0to100, 25to50, 25to75, 25to100, 50to75, 50to100, 75to100) will be characterised. The direction of the transition (e.g., 25\% to 75\% vs. 75\% to 25\%) is treated separately, as the reactor may exhibit asymmetric behaviour (e.g., faster response to increased demand than to reduced demand).
-
-\textbf{Stability and controllability limits:}
+\subsubsection*{Stability and Controllability Limits}
 
 To probe the stability envelope, the controller will be subjected to:
 \begin{itemize}
-    \item \textbf{Large step changes} (e.g., 0\% to 100\% directly) to determine if the reactor can handle extreme transients without thermal runaway or pressure exceedance.
-    \item \textbf{Ramp changes} (linear increase from 25\% to 75\% over 30, 60, and 120 seconds) to characterise the maximum tolerable slew rate.
-    \item \textbf{Repeated cycling} between two modes (e.g., 25\% to 75\% repeated 5 times) to test for hysteresis or cumulative drift.
+    \item \textbf{Large step changes} (e.g., 0\% to 100\% directly) to determine if 
+    the reactor can handle extreme transients without thermal runaway or pressure 
+    exceedance.
+    \item \textbf{Ramp changes} (linear increase from 25\% to 75\% over 30, 60, and 
+    120 seconds) to characterise the maximum tolerable slew rate.
+    \item \textbf{Repeated cycling} between two modes (e.g., 25\% to 75\% repeated 
+    5 times) to test for hysteresis or cumulative drift.
 \end{itemize}
+
+In the fixed-batch configuration, the progressive consumption of aluminium and 
+accumulation of by-product introduce time-varying plant dynamics; the stability 
+investigation explicitly characterises how controllability evolves over the course 
+of a batch.
 
 \subsubsection*{Mode Granularity Optimisation}
 
-The choice of five discrete modes is a design assumption, not a fixed constraint. The data from the transition characterisation will be used to evaluate whether five modes are appropriate. If the reactor can transition smoothly between widely spaced modes (e.g., 25\% to 75\%) with acceptable lags and overshoot, a \textbf{coarser discretisation} (e.g., 0\%, 50\%, 100\%) may be sufficient, simplifying the control system. Conversely, if transitions between distant modes induce instability or unacceptable lag, a \textbf{finer discretisation} or a \textbf{continuously variable} strategy may be required. The recommendation will be grounded in quantitative data and will explicitly address the trade-off between control complexity and manoeuvrability performance.
+The choice of five discrete modes is a design assumption, not a fixed constraint. 
+The data from the open-loop and closed-loop transition characterisation will be 
+used to evaluate whether five modes are appropriate. If the reactor can transition 
+smoothly between widely spaced modes (e.g., 25\% to 75\%) with acceptable lags and 
+overshoot, a \textbf{coarser discretisation} (e.g., 0\%, 50\%, 100\%) may be 
+sufficient, simplifying the control system. Conversely, if transitions between 
+distant modes induce instability or unacceptable lag, a \textbf{finer 
+discretisation} or a \textbf{continuously variable} strategy may be required. The 
+recommendation will be grounded in quantitative data and will explicitly address 
+the trade-off between control complexity and manoeuvrability performance.
 
 \subsubsection*{Data Analysis and Comparison Against Requirements}
 
-The measured transition metrics will be compared directly against the superyacht power demand profiles and manoeuvring requirements documented in the requirements matrix (Section~\ref{sec:industry-research}). The key comparison is:
+The measured transition metrics --- both open-loop and closed-loop --- will be 
+compared directly against the superyacht power demand profiles and manoeuvring 
+requirements documented in the requirements matrix (Section~\ref{sec:industry-research}). 
+The key comparison is whether, for each power mode transition demanded by a typical 
+sailing profile (e.g., harbour to cruising to docking), the reactor's measured 
+response lag and rise time fall within the acceptable limits defined by the naval 
+architects and owners.
 
-\begin{itemize}
-    \item For each power mode transition demanded by a typical sailing profile (e.g., harbour to cruising to docking), does the reactor's measured response lag and rise time fall within the acceptable limits defined by the naval architects and owners?
-\end{itemize}
-
-If the reactor's response is faster than required, the control system can be simplified (e.g., slower, smoother ramps to reduce wear). If the response is slower than required, the data will quantify exactly how much battery buffering (energy and power) is needed to bridge the gap. This quantitative relationship—reactor lag vs. required buffer size—is the primary output of this methodology.
+If the reactor's response is faster than required, the control system can be 
+simplified (e.g., slower, smoother ramps to reduce wear). If the response is slower 
+than required, the data will quantify exactly how much battery buffering (energy and 
+power) is needed to bridge the gap. Critically, the open-loop data quantifies the 
+minimum required buffer, while the closed-loop data quantifies the achievable 
+performance with control --- together, they bound the battery sizing problem.
 
 \subsubsection*{Limitations and Scope Boundary}
 
-This methodology is explicitly limited to \textbf{fixed-batch, laboratory-scale} validation. The control system is a \textbf{demonstrator}, not a production-ready marine system. The microcontroller hardware and software are chosen for ease of development and data logging, not for maritime ruggedisation or certification. The control algorithm is simplified (PID) and is not intended to be directly transferable to a full-scale vessel. However, the \textbf{dynamic response data} produced here—the transfer functions, time constants, and stability boundaries—is independent of the specific controller hardware. It constitutes the fundamental input that future engineers will use to design a ruggedised, certified control system for commercial deployment.
+This methodology is explicitly limited to \textbf{fixed-batch, laboratory-scale} 
+validation. The control system is a \textbf{demonstrator}, not a production-ready 
+marine system. The microcontroller hardware and software are chosen for ease of 
+development and data logging, not for maritime ruggedisation or certification. The 
+control algorithm is simplified (PID) and is not intended to be directly 
+transferable to a full-scale vessel. However, the \textbf{dynamic response data} 
+produced here --- the transfer functions, time constants, and stability boundaries
+--- is independent of the specific controller hardware. It constitutes the 
+fundamental input that future engineers will use to design a ruggedised, certified 
+control system for commercial deployment.
 
+\break
 
 \subsection{Engine and Battery System Analysis}
 \label{sec:engine-methodology}
