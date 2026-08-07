@@ -8,7 +8,6 @@
 
 \usepackage{graphicx}
 \usepackage[version=4]{mhchem}
-\usepackage{subfig}
 \usepackage{pgfgantt}
 \usepackage{pdflscape}
 \usepackage{afterpage}
@@ -34,12 +33,15 @@
   \renewcommand{\contentsname}%
     {Table of Contents}%
 }
-\usepackage[nottoc,numbib]{tocbibind}
+\usepackage{tocloft}
+\setlength{\cftbeforesecskip}{2pt}      % Reduce space before section entries
+\setlength{\cftbeforesubsecskip}{1pt}   % Reduce space before subsection entries
+\setlength{\cftbeforesubsubsecskip}{0pt}% Remove space before subsubsection entries
+\setlength{\cftparskip}{0pt}            % Remove paragraph spacing in TOC
+\usepackage[nottoc,numbib,notlot,notlof]{tocbibind}
 
 \widowpenalties 1 10000
 \raggedbottom
-
-\usepackage{tocbibind}
 
 \usepackage[expansion=false]{microtype}
 \usepackage{textcomp} % For \textmu
