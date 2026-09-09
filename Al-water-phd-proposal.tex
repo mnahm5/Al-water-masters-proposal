@@ -1635,18 +1635,21 @@ The outputs are \textbf{requirements and recommendations}, not designs. They are
 
 \section{Proposed Project Time-line}
 
-The research timeline is a 24-month, risk-buffered plan built around four
+This research is structured as a single 48-month programme with five
+Go/No-Go gates, the third of which is a funding decision for reactor
+equipment. If that gate is not met, the programme concludes at
+Month~24 with a Master of Philosophy on the strength of the completed
+research; if it is met, the programme continues through Month~48 to a
+PhD incorporating the full experimental agenda.
+
+The research timeline is a 48-month, risk-buffered plan built around four
 structural features:
 
 \begin{itemize}
-    \item \textbf{Four go/no-go gates} --- explicit decision points at which scope is adjusted
+    \item \textbf{Five go/no-go gates} --- explicit decision points at which scope is adjusted
           if time has been lost.
     \item \textbf{A tiered experiment programme} --- Tier 1 (core), Tier 2 (extended), and
           Tier 3 (optional). The thesis is defensible on Tier 1 alone.
-    \item \textbf{Parallel development of control systems and engine/battery analysis} ---
-          control system development begins in parallel with later experiments, while
-          the engine and battery trade-off study runs after the core experiments
-          complete.
 \end{itemize}
 
 \subsection*{Prioritisation of Experimental Tiers}
@@ -1672,74 +1675,91 @@ data for the project's primary objectives:
 The tiered structure ensures that the thesis remains defensible on Tier 1 alone,
 while providing flexibility to extend the work if time and resources permit.
 
-\subsection*{Go/No-Go Gates}
+\begin{center}
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{|p{3.4cm}|p{1.9cm}|p{1.9cm}|p{5.8cm}|}
+\hline
+\textbf{Phase} & \textbf{Months (Gate 3 met)} & \textbf{Months (Gate 3 not met)} & \textbf{Notes} \\
+\hline
+Phase 0: Foundation & M1--4 & M1--4 & Literature review, interview guide development, peer review of experimental design, safety submission, equipment list and budget finalisation, procurement specification, grant applications begin \\
+\hline
+Phase 1A: Industry Research (RQ1) & M1--7 & M1--7 & Pilot interviews, stakeholder interviews, quantitative analysis, requirements matrix \\
+\hline
+Phase 1B: Supply Chain Analysis (RQ2) & M8--18 & M8--18 & Aluminium fuel cost vs.\ ammonia and methanol, extending Section~1.5 \\
+\hline
+Phase 2: Reactor Commissioning & M19--24 & --- & Procurement (begins on funding confirmation), build, calibration \\
+\hline
+Phase 3: Core Reactor Characterisation (RQ3) & M25--33 & --- & Tier 1 (distilled water): temperature/pressure optimisation, particle size screening, by-product analysis, repeat/validation runs --- core deliverable. Tier 2 (synthetic seawater) and Tier 3 (natural seawater) are conditional extensions, pursued if time permits within this window; not required to satisfy Gate~5 \\
+\hline
+Phase 4: Control Systems Development (RQ4) & M33--45 & --- & Open-loop plant characterisation, closed-loop implementation, mode granularity optimisation \\
+\hline
+Phase 5: Engine and Battery System Analysis (RQ5) & M45--47 & M19--24 & Trade-off analysis; informed by measured RQ3/RQ4 data if Gate~3 is met, or run alongside thesis writing if not \\
+\hline
+Phase 6: Thesis Writing and Submission & M45--48 & M19--24 & Concentrated final writing; chapter drafting on completed phases begins earlier throughout \\
+\hline
+\end{tabular}
 
-\noindent\textbf{Gate 1 --- Month 4: Safety Approval.} No high-pressure or high-temperature work
-begins before university laboratory safety approval is granted. If approval is
-delayed by more than two weeks, particle size grades are reduced from seven to four
-to protect the experiment schedule.
+\captionof{table}{Project Timeline Phases}
+\label{tab:project-timeline-phases}
+\end{center}
 
-\medskip
-\noindent\textbf{Gate 2 --- Month 7: Requirements Matrix.} Power output targets and energy density
-thresholds must be confirmed before the main parameter sweep begins. If stakeholder
-interviews are delayed, a provisional matrix will be constructed from publicly
-available superyacht specifications and class rule documentation from RINA, Lloyd's
-Register, and DNV, and submitted to the supervisor for formal approval. Interviews
-continue in parallel and any refined targets are incorporated before Tier 2
-experiments begin.
+\bigskip
+\subsection*{Go/No-Go Gate Summary}
 
-\medskip
-\noindent\textbf{Gate 3 --- Month 12: Core Experiments Complete.} All Tier 1 experiments must
-be finished by this point. If not, the contingency buffer (built into Months 14--15)
-is used to complete them, and Tier 2 and 3 experiments are formally deferred to
-future work.
+\begin{center}
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{|>{\centering\arraybackslash}p{1.9cm}|>{\centering\arraybackslash}p{2.9cm}|p{3.9cm}|p{4.3cm}|}
+\hline
+\textbf{Gate} & \textbf{Month} & \textbf{Criterion} & \textbf{If not met} \\
+\hline
+Gate 1 & M4  & Safety approval granted & Commissioning (Phase 2) start delayed until approval is granted; schedule shifts by the same margin \\
+\hline
+Gate 2 & M7  & Requirements matrix finalised (RQ1) & Use provisional targets; revise in thesis \\
+\hline
+Gate 3 & M18 & Equipment funding secured & Skip Phases 2--4; proceed directly to Phase 5 (RQ5) and Phase 6, submit at M24 as MPhil \\
+\hline
+Gate 4 & M29 & Core Reactor Characterisation (RQ3) on track for M33 completion, accounting for any delay carried forward from Phase 2 & Reduce particle size grades tested: 7 $\rightarrow$ 4, to complete within the remaining window; Tier 2 and Tier 3 seawater experiments deferred to future work \\
+\hline
+Gate 5 & M33 & RQ3 validated and sufficient to define RQ4 conditions & Reduce RQ4 scope \\
+\hline
+Submission & M24 (Gate 3 not met) / M48 (Gate 3 met) & Thesis submitted & --- \\
+\hline
+\end{tabular}
 
-\medskip
-\noindent\textbf{Gate 4 --- Month 20: Control Validation and Engine Analysis Complete.} The
-control system validation and the engine/battery trade-off study must be completed
-by this point. If either is delayed, the thesis writing phase (Months 21--24)
-remains available for completing analysis and writing, but the scope of the control
-or engine sections may need to be reduced.
+\captionof{table}{Go/No-Go Gate Summary}
+\label{tab:gates}
+\end{center}
 
 \subsection*{Key Scheduling Decisions}
 
 \begin{itemize}
-    \item \textbf{Procurement begins Month 2}, before safety approval. The pressure vessel and
-          plunger pump carry 10--16 week lead times; waiting until Month 4 would push
-          commissioning to Month 8 and collapse the experiment window.
-    \item \textbf{Thesis writing is concentrated in Months 21--24}, after all experimental work
-          and analysis is complete. However, literature review and preliminary
-          chapter structuring begin earlier.
-    \item \textbf{A 4-week contingency buffer} is built into Month 12 for repeat runs,
-          instrument troubleshooting, and analysis backlogs.
+    \item \textbf{Grant applications begin at programme start} (Phase 0),
+          in parallel with all other early activity, to maximise the
+          runway before the Gate~3 deadline at M18.
+    \item \textbf{Equipment list, budget, and procurement specification
+          are finalised by M1--2} so that ordering can begin the instant
+          Gate~3 is met, whenever that occurs within the M1--18 window ---
+          procurement does not wait for a fixed calendar month.
+    \item \textbf{Gate 1 (safety approval) proceeds on schedule regardless
+          of Gate~3's outcome}, since it costs no money and must not
+          become a second bottleneck stacked on top of procurement once
+          funding lands.
+    \item \textbf{RQ2 sits inside Phase 1B (M8--18)}; RQ5 is deliberately
+          held until after Phase~4 if Gate~3 is met, since its trade-off
+          analysis benefits from measured reactor performance data rather
+          than projections alone --- or paired with thesis writing if
+          Gate~3 is not met.
+    \item \textbf{Gate 3 is a hard deadline for abandoning Phases 2--4},
+          not a fixed start date for them --- if funding is confirmed
+          earlier than M18, procurement and the downstream schedule begin
+          immediately.
+    \item \textbf{The Phase 2--6 schedule will be revised at the point
+          Gate~3 is met}, since the exact confirmation date determines how
+          much procurement lead time overlaps with the remainder of
+          Phase~1B.
 \end{itemize}
-
-\break
-
-\subsection*{Go/No-Go Gate Summary}
-
-\begin{table}[!ht]
-\centering
-\small
-\setlength{\tabcolsep}{4pt}
-\begin{tabular}{|c|c|p{3.8cm}|p{4.5cm}|}
-\hline
-\textbf{Gate} & \textbf{Month} & \textbf{Criterion} & \textbf{If not met} \\
-\hline
-Gate 1 & M4  & Safety approval granted & Reduce particle size grades: 7 $\rightarrow$ 4 \\
-\hline
-Gate 2 & M7  & Requirements matrix finalised & Use provisional targets; revise in thesis \\
-\hline
-Gate 3 & M12 & All core experiments complete & Tier 2/3 experiments become future work \\
-\hline
-Gate 4 & M20 & Control validation and engine/battery analysis complete & Reduce scope of control or engine sections \\
-\hline
-Submission & M24 & Thesis submitted & --- \\
-\hline
-\end{tabular}
-\caption*{Go/No-Go Gate Summary}
-\label{tab:gates}
-\end{table}
 
 \begin{landscape}
 \thispagestyle{empty}
