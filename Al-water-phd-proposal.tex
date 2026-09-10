@@ -1764,6 +1764,7 @@ Submission & M24 (Gate 3 not met) / M48 (Gate 3 met) & Thesis submitted & --- \\
           Phase~1B.
 \end{itemize}
 
+\newgeometry{margin=1in}
 \begin{landscape}
 \thispagestyle{empty}
 \pagestyle{empty}
@@ -1773,20 +1774,20 @@ Submission & M24 (Gate 3 not met) / M48 (Gate 3 met) & Thesis submitted & --- \\
     vgrid={*{11}{dotted}},
     x unit=1.5cm,
     y unit title=0.75cm,
-    y unit chart=0.6cm,
+    y unit chart=0.85cm,
     title height=1,
-    bar height=0.5,
-    bar top shift=0.3,
+    bar height=0.45,
+    bar top shift=0.28,
     title label font=\footnotesize\bfseries,
-    bar label font=\footnotesize,
-    group label font=\footnotesize\bfseries,
-    milestone label font=\footnotesize\itshape,
+    bar label font=\fontsize{13}{16}\selectfont,
+    group label font=\fontsize{13}{16}\selectfont\bfseries,
+    milestone label font=\fontsize{13}{16}\selectfont\itshape,
     bar/.append style={draw=black!60},
     group/.append style={draw=black!70},
     milestone/.append style={fill=gatecol, draw=red!90},
-    bar label node/.append style={text width=5.2cm, align=right, anchor=east, font=\footnotesize},
-    group label node/.append style={text width=5.2cm, align=right, anchor=east, font=\footnotesize},
-    milestone label node/.append style={text width=5.2cm, align=right, anchor=east, font=\footnotesize}
+        bar label node/.append style={text width=7.5cm, align=right, anchor=east, font=\footnotesize, inner xsep=6pt},
+    group label node/.append style={text width=5.2cm, align=right, anchor=east, font=\footnotesize, inner xsep=6pt},
+    milestone label node/.append style={text width=5.2cm, align=right, anchor=east, font=\fontsize{13}{16}\selectfont, inner xsep=6pt}
 }
 
 % ============================================================
@@ -1819,7 +1820,7 @@ Submission & M24 (Gate 3 not met) / M48 (Gate 3 met) & Thesis submitted & --- \\
 
 % Phase 1B: Supply Chain Analysis (RQ2) — continues on Page 2
 \ganttgroup[group/.append style={fill=safetycol}]{Phase 1B: Supply Chain Analysis (RQ2)}{8}{12} \\
-\ganttbar[bar/.append style={fill=safetycol}]{Cost modelling: Al vs.\ NH3/MeOH}{8}{12} \\
+\ganttbar[bar/.append style={fill=safetycol}]{Cost modelling: Al vs.\ NH3/MeOH}{8}{12}
 
 \end{ganttchart}}
 \end{center}
@@ -1856,7 +1857,7 @@ Submission & M24 (Gate 3 not met) / M48 (Gate 3 met) & Thesis submitted & --- \\
 \ganttbar[bar/.append style={fill=enginecol}]{Trade-off analysis}{19}{24} \\
 \ganttgroup[group/.append style={fill=thesiscol}]{Phase 6: Thesis Writing (if Gate 3 not met)}{19}{24} \\
 \ganttbar[bar/.append style={fill=thesiscol}]{Concentrated writing}{19}{24} \\
-\ganttmilestone[milestone/.append style={fill=gatecol}]{Submission (MPhil)}{24} \\
+\ganttmilestone[milestone/.append style={fill=gatecol}]{Submission (MPhil)}{24}
 
 \end{ganttchart}}
 \end{center}
@@ -1892,7 +1893,7 @@ Submission & M24 (Gate 3 not met) / M48 (Gate 3 met) & Thesis submitted & --- \\
 
 % Phase 4: Control Systems Development (RQ4) — continues on Page 4
 \ganttgroup[group/.append style={fill=controlcol}]{Phase 4: Control Systems Development (RQ4)}{33}{36} \\
-\ganttbar[bar/.append style={fill=controlcol}]{Open-loop plant characterisation}{33}{36} \\
+\ganttbar[bar/.append style={fill=controlcol}]{Open-loop plant characterisation}{33}{36}
 
 \end{ganttchart}}
 \end{center}
@@ -1926,11 +1927,12 @@ Submission & M24 (Gate 3 not met) / M48 (Gate 3 met) & Thesis submitted & --- \\
 \ganttgroup[group/.append style={fill=thesiscol}]{Phase 6: Thesis Writing and Submission}{45}{48} \\
 \ganttbar[bar/.append style={fill=thesiscol}]{Chapter drafting / finalisation}{45}{47} \\
 \ganttbar[bar/.append style={fill=thesiscol}]{Final corrections}{47}{48} \\
-\ganttmilestone[milestone/.append style={fill=gatecol}]{Thesis submission (PhD)}{48} \\
+\ganttmilestone[milestone/.append style={fill=gatecol}]{Thesis submission (PhD)}{48}
 
 \end{ganttchart}}
 \end{center}
 
+\restoregeometry
 \end{landscape}
 
 \break
