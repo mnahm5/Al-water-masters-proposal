@@ -1,0 +1,199 @@
+% ============================================================
+% Standalone Gantt Chart — Aluminium-Water PhD Proposal
+% Compile directly: pdflatex gantt_chart.tex
+% One landscape page per programme year (Months 1-12, 13-24, 25-36, 37-48)
+% ============================================================
+
+\documentclass[a4paper,10pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{xcolor}
+\usepackage{pgfgantt}
+\usepackage{pdflscape}
+
+% ---- Phase colours (darker/more saturated for readability) ----
+\definecolor{phase0col}{RGB}{74, 126, 187}     % Blue    — Foundation
+\definecolor{phase1col}{RGB}{89, 150, 66}      % Green   — Industry Research (RQ1)
+\definecolor{safetycol}{RGB}{214, 130, 33}     % Orange  — Supply Chain Analysis (RQ2)
+\definecolor{phase2col}{RGB}{196, 160, 40}     % Mustard — Reactor Commissioning
+\definecolor{tier1col} {RGB}{178, 90, 60}      % Terracotta — Core Reactor Characterisation (RQ3, Tier 1)
+\definecolor{tier2col} {RGB}{107, 142, 88}     % Sage    — Tier 2: Synthetic Seawater (conditional)
+\definecolor{tier3col} {RGB}{120, 120, 120}    % Grey    — Tier 3: Natural Seawater (conditional)
+\definecolor{controlcol}{RGB}{0, 140, 150}     % Turquoise — Control Systems Development (RQ4)
+\definecolor{enginecol}{RGB}{70, 148, 96}      % Teal Green — Engine and Battery System Analysis (RQ5)
+\definecolor{thesiscol}{RGB}{142, 97, 173}     % Purple  — Thesis Writing and Submission
+\definecolor{gatecol}  {RGB}{200, 0, 0}        % Dark Red — Gate / milestone markers
+
+% ---- Shared Gantt chart style, applied globally so every page matches ----
+\ganttset{
+    hgrid,
+    vgrid={*{11}{dotted}},
+    x unit=1.5cm,
+    y unit title=0.75cm,
+    y unit chart=0.6cm,
+    title height=1,
+    bar height=0.5,
+    bar top shift=0.3,
+    title label font=\footnotesize\bfseries,
+    bar label font=\footnotesize,
+    group label font=\footnotesize\bfseries,
+    milestone label font=\footnotesize\itshape,
+    bar/.append style={draw=black!60},
+    group/.append style={draw=black!70},
+    milestone/.append style={fill=gatecol, draw=red!90},
+    bar label node/.append style={text width=5.2cm, align=right, anchor=east, font=\footnotesize},
+    group label node/.append style={text width=5.2cm, align=right, anchor=east, font=\footnotesize},
+    milestone label node/.append style={text width=5.2cm, align=right, anchor=east, font=\footnotesize}
+}
+
+\begin{document}
+\pagestyle{empty}
+
+\begin{landscape}
+\thispagestyle{empty}
+
+% ============================================================
+% Page 1 — Year 1 (Months 1-12)
+% ============================================================
+\begin{center}\large\textbf{Year 1 (Months 1--12)}\end{center}
+\vspace{4pt}
+
+\begin{center}
+\begin{ganttchart}{1}{12}
+\gantttitle{M1}{1} \gantttitle{M2}{1} \gantttitle{M3}{1} \gantttitle{M4}{1} \gantttitle{M5}{1} \gantttitle{M6}{1} \gantttitle{M7}{1} \gantttitle{M8}{1} \gantttitle{M9}{1} \gantttitle{M10}{1} \gantttitle{M11}{1} \gantttitle{M12}{1} \\
+
+% Phase 0: Foundation
+\ganttgroup[group/.append style={fill=phase0col}]{Phase 0: Foundation}{1}{4} \\
+\ganttbar[bar/.append style={fill=phase0col}]{Literature review}{1}{3} \\
+\ganttbar[bar/.append style={fill=phase0col}]{Interview guide dev.}{2}{4} \\
+\ganttbar[bar/.append style={fill=phase0col}]{Peer review: exp. design}{3}{4} \\
+\ganttbar[bar/.append style={fill=phase0col}]{Safety submission}{3}{4} \\
+\ganttbar[bar/.append style={fill=phase0col}]{Procurement specification}{1}{2} \\
+\ganttbar[bar/.append style={fill=phase0col}]{Grant applications (rolling)}{1}{12} \\
+\ganttmilestone[milestone/.append style={fill=gatecol}]{Gate 1: Safety approval}{4} \\
+
+% Phase 1A: Industry Research (RQ1)
+\ganttgroup[group/.append style={fill=phase1col}]{Phase 1A: Industry Research (RQ1)}{1}{7} \\
+\ganttbar[bar/.append style={fill=phase1col}]{Pilot interviews}{2}{3} \\
+\ganttbar[bar/.append style={fill=phase1col}]{Stakeholder interviews}{3}{6} \\
+\ganttbar[bar/.append style={fill=phase1col}]{Quantitative analysis}{4}{7} \\
+\ganttbar[bar/.append style={fill=phase1col}]{Requirements matrix}{5}{7} \\
+\ganttmilestone[milestone/.append style={fill=gatecol}]{Gate 2: Reqts. matrix}{7} \\
+
+% Phase 1B: Supply Chain Analysis (RQ2) — continues on Page 2
+\ganttgroup[group/.append style={fill=safetycol}]{Phase 1B: Supply Chain Analysis (RQ2)}{8}{12} \\
+\ganttbar[bar/.append style={fill=safetycol}]{Cost modelling: Al vs.\ NH3/MeOH}{8}{12} \\
+
+\end{ganttchart}
+\end{center}
+
+\clearpage
+\thispagestyle{empty}
+
+% ============================================================
+% Page 2 — Year 2 (Months 13-24)
+% Gate 3 (M18) forks the programme: PhD pathway vs. MPhil pathway
+% ============================================================
+\begin{center}\large\textbf{Year 2 (Months 13--24) --- Gate 3 Funding Decision at M18}\end{center}
+\vspace{4pt}
+
+\begin{center}
+\begin{ganttchart}{13}{24}
+\gantttitle{M13}{1} \gantttitle{M14}{1} \gantttitle{M15}{1} \gantttitle{M16}{1} \gantttitle{M17}{1} \gantttitle{M18}{1} \gantttitle{M19}{1} \gantttitle{M20}{1} \gantttitle{M21}{1} \gantttitle{M22}{1} \gantttitle{M23}{1} \gantttitle{M24}{1} \\
+
+% Phase 1B: Supply Chain Analysis (RQ2) — continued from Page 1
+\ganttgroup[group/.append style={fill=safetycol}]{Phase 1B: Supply Chain Analysis (RQ2) (cont'd)}{13}{18} \\
+\ganttbar[bar/.append style={fill=safetycol}]{Cost modelling (cont'd)}{13}{14} \\
+\ganttbar[bar/.append style={fill=safetycol}]{Sensitivity analysis \& write-up}{14}{18} \\
+\ganttbar[bar/.append style={fill=phase0col}]{Grant applications (rolling, cont'd)}{13}{18} \\
+\ganttmilestone[milestone/.append style={fill=gatecol}]{Gate 3: Funding decision}{18} \\
+
+% --- Fork: Path A — if Gate 3 is met (PhD pathway continues) ---
+\ganttgroup[group/.append style={fill=phase2col}]{Phase 2: Reactor Commissioning (if Gate 3 met)}{19}{24} \\
+\ganttbar[bar/.append style={fill=phase2col}]{Procurement}{19}{21} \\
+\ganttbar[bar/.append style={fill=phase2col}]{Build \& commission}{21}{23} \\
+\ganttbar[bar/.append style={fill=phase2col}]{Calibration runs}{23}{24} \\
+
+% --- Fork: Path B — if Gate 3 is not met (MPhil pathway; alternative to Path A above, not concurrent with it) ---
+\ganttgroup[group/.append style={fill=enginecol}]{Phase 5: Engine \& Battery (RQ5) (if Gate 3 not met)}{19}{24} \\
+\ganttbar[bar/.append style={fill=enginecol}]{Trade-off analysis}{19}{24} \\
+\ganttgroup[group/.append style={fill=thesiscol}]{Phase 6: Thesis Writing (if Gate 3 not met)}{19}{24} \\
+\ganttbar[bar/.append style={fill=thesiscol}]{Concentrated writing}{19}{24} \\
+\ganttmilestone[milestone/.append style={fill=gatecol}]{Submission (MPhil)}{24} \\
+
+\end{ganttchart}
+\end{center}
+
+\clearpage
+\thispagestyle{empty}
+
+% ============================================================
+% Page 3 — Year 3 (Months 25-36)
+% PhD pathway only (MPhil pathway concludes at M24, see Page 2)
+% ============================================================
+\begin{center}\large\textbf{Year 3 (Months 25--36) --- PhD Pathway}\end{center}
+\vspace{4pt}
+
+\begin{center}
+\begin{ganttchart}{25}{36}
+\gantttitle{M25}{1} \gantttitle{M26}{1} \gantttitle{M27}{1} \gantttitle{M28}{1} \gantttitle{M29}{1} \gantttitle{M30}{1} \gantttitle{M31}{1} \gantttitle{M32}{1} \gantttitle{M33}{1} \gantttitle{M34}{1} \gantttitle{M35}{1} \gantttitle{M36}{1} \\
+
+% Phase 3: Core Reactor Characterisation (RQ3)
+\ganttgroup[group/.append style={fill=tier1col}]{Phase 3: Core Reactor Characterisation (RQ3)}{25}{33} \\
+\ganttbar[bar/.append style={fill=tier1col}]{Temperature/pressure optimisation}{25}{28} \\
+\ganttbar[bar/.append style={fill=tier1col}]{Particle size screening}{25}{29} \\
+\ganttbar[bar/.append style={fill=tier1col}]{By-product analysis (PXRD)}{28}{32} \\
+\ganttbar[bar/.append style={fill=tier1col}]{Repeat / validation runs}{32}{33} \\
+\ganttmilestone[milestone/.append style={fill=gatecol}]{Gate 4: Progress check}{29} \\
+
+% Tier 2/3 — conditional seawater extensions
+\ganttgroup[group/.append style={fill=tier2col}]{Tier 2: Synthetic Seawater (conditional)}{29}{31} \\
+\ganttbar[bar/.append style={fill=tier2col}]{Synthetic seawater tests}{29}{31} \\
+\ganttgroup[group/.append style={fill=tier3col}]{Tier 3: Natural Seawater (conditional)}{31}{33} \\
+\ganttbar[bar/.append style={fill=tier3col}]{Natural seawater tests}{31}{33} \\
+\ganttmilestone[milestone/.append style={fill=gatecol}]{Gate 5: RQ3 to RQ4 handoff}{33} \\
+
+% Phase 4: Control Systems Development (RQ4) — continues on Page 4
+\ganttgroup[group/.append style={fill=controlcol}]{Phase 4: Control Systems Development (RQ4)}{33}{36} \\
+\ganttbar[bar/.append style={fill=controlcol}]{Open-loop plant characterisation}{33}{36} \\
+
+\end{ganttchart}
+\end{center}
+
+\clearpage
+\thispagestyle{empty}
+
+% ============================================================
+% Page 4 — Year 4 (Months 37-48)
+% PhD pathway only
+% ============================================================
+\begin{center}\large\textbf{Year 4 (Months 37--48) --- PhD Pathway}\end{center}
+\vspace{4pt}
+
+\begin{center}
+\begin{ganttchart}{37}{48}
+\gantttitle{M37}{1} \gantttitle{M38}{1} \gantttitle{M39}{1} \gantttitle{M40}{1} \gantttitle{M41}{1} \gantttitle{M42}{1} \gantttitle{M43}{1} \gantttitle{M44}{1} \gantttitle{M45}{1} \gantttitle{M46}{1} \gantttitle{M47}{1} \gantttitle{M48}{1} \\
+
+% Phase 4: Control Systems Development (RQ4) — continued from Page 3
+\ganttgroup[group/.append style={fill=controlcol}]{Phase 4: Control Systems Development (RQ4) (cont'd)}{37}{45} \\
+\ganttbar[bar/.append style={fill=controlcol}]{Offline controller design}{37}{40} \\
+\ganttbar[bar/.append style={fill=controlcol}]{Hardware procurement \& setup}{37}{40} \\
+\ganttbar[bar/.append style={fill=controlcol}]{Closed-loop implementation}{40}{44} \\
+\ganttbar[bar/.append style={fill=controlcol}]{Data analysis}{43}{45} \\
+
+% Phase 5: Engine and Battery System Analysis (RQ5)
+\ganttgroup[group/.append style={fill=enginecol}]{Phase 5: Engine and Battery System Analysis (RQ5)}{45}{47} \\
+\ganttbar[bar/.append style={fill=enginecol}]{Trade-off analysis (uses RQ3/RQ4 data)}{45}{47} \\
+
+% Phase 6: Thesis Writing and Submission
+\ganttgroup[group/.append style={fill=thesiscol}]{Phase 6: Thesis Writing and Submission}{45}{48} \\
+\ganttbar[bar/.append style={fill=thesiscol}]{Chapter drafting / finalisation}{45}{47} \\
+\ganttbar[bar/.append style={fill=thesiscol}]{Final corrections}{47}{48} \\
+\ganttmilestone[milestone/.append style={fill=gatecol}]{Thesis submission (PhD)}{48} \\
+
+\end{ganttchart}
+\end{center}
+
+\end{landscape}
+
+\end{document}
