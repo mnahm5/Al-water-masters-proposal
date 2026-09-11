@@ -96,9 +96,9 @@ Fourth, a systematic trade-off analysis compares candidate prime movers and ther
 
 \tableofcontents
 
-\break
-
 \listoftables
+
+\break
 
 \listoffigures
 
@@ -923,6 +923,8 @@ Classification society approval (full-scale) &
 Safety protocols and experimental datasets developed here form the 
 evidential basis for future certification submissions
 
+\\ \hline
+\caption{Scope of This Research: In-Scope vs. Out-of-Scope Activities}
 \label{tab:scope-full}
 
 \end{tabularx}
@@ -1943,18 +1945,21 @@ Submission & M24 (Gate 3 not met) / M48 (Gate 3 met) & Thesis submitted & --- \\
 \break
 
 \appendix
-\section*{Appendix A: Laboratory Safety Protocols and Experimental Plan Verification}
-\addcontentsline{toc}{section}{Appendix A: Laboratory Safety Protocols and Experimental Plan Verification}
+\renewcommand{\thesection}{Appendix \Alph{section}:}
+\renewcommand{\thesubsection}{\Alph{section}.\arabic{subsection}}
+\renewcommand{\thesubsubsection}{\Alph{section}.\arabic{subsection}.\arabic{subsubsection}}
+\addtocontents{toc}{\protect\setlength{\protect\cftsecnumwidth}{9em}}   %% <-- ADD THIS LINE
+\section{Laboratory Safety Protocols and Experimental Plan Verification}
 
 %===============================================================================
-\subsection*{A.1\quad Safety Protocols}
+\subsection{Safety Protocols}
 %===============================================================================
 
 The experimental programme involves four concurrent categories of hazard. Each must
 be fully addressed before any laboratory work begins.
 
 %-------------------------------------------------------------------------------
-\subsubsection*{A.1.1\quad Aluminium Powder Hazards}
+\subsubsection{Aluminium Powder Hazards}
 %-------------------------------------------------------------------------------
 
 Micron-sized aluminium powder presents four distinct hazards:
@@ -1999,7 +2004,7 @@ Micron-sized aluminium powder presents four distinct hazards:
 \end{enumerate}
 
 %-------------------------------------------------------------------------------
-\subsubsection*{A.1.2\quad Hydrogen Gas Hazards}
+\subsubsection{Hydrogen Gas Hazards}
 %-------------------------------------------------------------------------------
 
 Hydrogen has a lower explosive limit (LEL) of 4\% in air. The following controls
@@ -2038,7 +2043,7 @@ will be maintained throughout all experimental sessions.
 \end{itemize}
 
 %-------------------------------------------------------------------------------
-\subsubsection*{A.1.3\quad High-Pressure and High-Temperature Hazards}
+\subsubsection{High-Pressure and High-Temperature Hazards}
 %-------------------------------------------------------------------------------
 
 \noindent\textbf{Pressure vessel integrity:}
@@ -2076,7 +2081,7 @@ will be maintained throughout all experimental sessions.
 \end{itemize}
 
 %-------------------------------------------------------------------------------
-\subsubsection*{A.1.4\quad Reactor Fouling Control and Cleaning Protocol}
+\subsubsection{Reactor Fouling Control and Cleaning Protocol}
 %-------------------------------------------------------------------------------
 
 \paragraph{Background and justification.}
@@ -2290,7 +2295,7 @@ drift must be detected and bounded \textit{during} a run, not only between runs:
 \end{enumerate}
 
 %-------------------------------------------------------------------------------
-\subsubsection*{A.1.5\quad General Laboratory Controls}
+\subsubsection{General Laboratory Controls}
 %-------------------------------------------------------------------------------
 
 \begin{itemize}[itemsep=4pt]
@@ -2306,7 +2311,7 @@ drift must be detected and bounded \textit{during} a run, not only between runs:
 \end{itemize}
 
 %===============================================================================
-\subsection*{A.2\quad Experimental Plan Verification and University Approval}
+\subsection{Experimental Plan Verification and University Approval}
 %===============================================================================
 
 The experimental programme described in Section~3.2 represents the high-level
@@ -2314,7 +2319,7 @@ research plan appropriate for a Master's proposal. Before any laboratory work be
 this plan must undergo two independent layers of review.
 
 %-------------------------------------------------------------------------------
-\subsubsection*{A.2.1\quad Internal Peer Review}
+\subsubsection{Internal Peer Review}
 %-------------------------------------------------------------------------------
 
 \noindent\textbf{Process:}
@@ -2343,7 +2348,7 @@ instrumentation, and safety provisions that may not be apparent from within the
 research team.
 
 %-------------------------------------------------------------------------------
-\subsubsection*{A.2.2\quad University Laboratory Safety Approval}
+\subsubsection{A.2.2\quad University Laboratory Safety Approval}
 %-------------------------------------------------------------------------------
 
 \noindent\textbf{Submission requirements:}
@@ -2382,9 +2387,9 @@ approval is formally granted.
 Month~4 (Quarter~1 of the research programme), consistent with the Gate~1 milestone
 in the project timeline.
 
-\section*{Appendix B: Energy Density Analysis Code}
+\section{Energy Density Analysis Code}
 
-\subsection*{B.1\quad Python Analysis Script}
+\subsection{Python Analysis Script}
 
 \inputminted[
     linenos=true,
@@ -2393,7 +2398,7 @@ in the project timeline.
     fontsize=\small
 ]{python}{code/energy-density-analysis.py}
 
-\subsection*{B.2\quad Fuel Dataset}
+\subsection{Fuel Dataset}
 
 \inputminted[
     linenos=true,
