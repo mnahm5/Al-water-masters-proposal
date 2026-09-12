@@ -557,6 +557,53 @@ However, the performance requirements for an aluminium‑water reactor vary sign
 \subsection{Supply Chain Analysis}
 \label{sec-supply-chain-questions}
 
+Aluminium-water combustion is not the only alternative fuel under consideration for 
+decarbonising maritime shipping. Ammonia and methanol have each attracted substantial 
+backing from industry stakeholders, and both are being actively developed as marine 
+fuels for deep-sea routes. However, the carbon intensity and fuel cost of these 
+alternatives vary widely depending on their production method and feedstock. A single 
+global-average figure for either fuel therefore conceals more than it reveals. 
+Table~\ref{tab:production-pathways} summarises the principal production pathways for 
+ammonia, methanol, and aluminium, alongside their current market share and maturity.
+
+\begin{table}[h!]
+\centering
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{2.4cm}|>{\raggedright\arraybackslash}p{3.0cm}|>{\raggedright\arraybackslash}p{2.8cm}|>{\raggedright\arraybackslash}X|}
+\hline
+\textbf{Pathway} & \textbf{Feedstock / Process} & \textbf{Current Market Share} & \textbf{Notes} \\
+\hline
+Grey ammonia & Natural gas (steam reforming) & $\sim$70\% \cite{iea-ammonia-roadmap,wef-net-zero-ammonia} & Dominant route worldwide \cite{iea-ammonia-roadmap,wef-net-zero-ammonia} \\
+\hline
+Brown ammonia & Coal gasification & Most of the remainder \cite{iea-ammonia-roadmap,wef-net-zero-ammonia} & Concentrated in China \cite{iea-ammonia-roadmap,wef-net-zero-ammonia} \\
+\hline
+Green ammonia & Green hydrogen (electrolysis) & A fraction of 1\% \cite{iea-ammonia-roadmap,wef-net-zero-ammonia} & Prominent in industry discussion, marginal in actual supply \cite{iea-ammonia-roadmap,wef-net-zero-ammonia} \\
+\hline
+Grey methanol & Natural gas & Dominant outside China & --- \\
+\hline
+Brown methanol & Coal gasification & Dominant within China & China's methanol industry is built almost entirely on coal \\
+\hline
+Light brown methanol* & Coal gasification + green hydrogen & Small but growing & Retrofits existing coal-to-chemicals plants rather than building new green capacity \cite{fuel-cells-works-inner-mongolia} \\
+\hline
+Green methanol (``e-methanol'') & Electrolysis + captured \ce{CO2} & Marginal & Still a small share of installed capacity \cite{straits-green-methanol-market} \\
+\hline
+Brown aluminium & Coal-fired electricity, carbon anode & $\sim$50--57\% globally; $>$80\% within China & Emits \ce{CO2} from both the anode and the electricity source \cite{transition-asia-aluminium,jrc-aluminium-decarbonisation} \\
+\hline
+Green-CA aluminium & Green electricity, carbon anode & $\sim$30--39\% globally & Removes electricity-source emissions; the anode-oxidation floor remains \cite{jrc-aluminium-decarbonisation} \\
+\hline
+Green-IA aluminium & Green electricity, inert anode & $<$0.1\%; single demonstration-scale cell & Removes both emissions sources entirely, at an energy cost \cite{inert-anode-scaling} \\
+\hline
+\end{tabularx}
+\vspace{6pt}
+\caption{Production Pathways, Market Share, and Maturity}
+\label{tab:production-pathways}
+\begin{minipage}{12cm} % Adjust the length as needed
+    \vspace{0.1cm} % Space between table and notes
+    \small \textit{Note: *``Light brown'' is a descriptive label introduced in this proposal to preserve the colour taxonomy applied to the remaining pathways; it is not an established term in the literature. The underlying process --- coal gasification integrated with electrolytic hydrogen to displace part of the hydrogen otherwise derived from coal --- is termed green hydrogen-coupled coal-to-methanol (GH-CTM) in the technoeconomic and life-cycle assessment literature.}
+\end{minipage}
+\end{table}
+
 \break
 
 \subsection{Core Reactor Characterisation}
