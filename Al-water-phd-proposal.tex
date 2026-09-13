@@ -1202,6 +1202,219 @@ will all be set by the values documented in this matrix.
 \subsection{Supply Chain Analysis}
 \label{subsec:supply-chain-methodology}
 
+This section describes the methodology for the pathway-resolved supply chain 
+comparison introduced in Section~\ref{sec-supply-chain-questions}. The analysis is 
+structured around three integrated strands --- an emissions pathway benchmarking 
+exercise, a cost model with explicit carbon-tax scenario sensitivity, and a 
+qualitative infrastructure-readiness assessment --- addressing the three research 
+questions identified in Section~\ref{sec-supply-chain-questions}. The emissions and 
+infrastructure-readiness strands are primarily qualitative and literature-based, 
+while the cost model is quantitative. All three strands share a common set of 
+methodological standards set out below.
+
+\subsubsection*{Common Methodological Standards}
+
+Three standards apply across all three strands.
+
+\begin{enumerate}
+    \item \textbf{Emissions boundary consistency.} Published sources sometimes 
+    report direct process emissions only, and sometimes cradle-to-gate or 
+    well-to-wake figures that include feedstock mining, processing, and upstream 
+    energy. This inconsistency is material for fuels such as ammonia and methanol, 
+    where well-to-wake accounting can substantially change the ranking against 
+    HFO \cite{hydrogen-impact-on-climate}. Every pathway in the final table will 
+    be labelled with the boundary it uses, and the analysis adopts a well-to-wake 
+    boundary throughout.
+
+    \item \textbf{Corroboration standard.} Consistent with the cross-validation 
+    principle applied to interview data in Section~\ref{sec:industry-research} 
+    \cite{braun2006,guest2006}, every figure in the final model will be 
+    corroborated against at least one independent published source before 
+    inclusion. Where two sources for the same pathway diverge by more than 
+    approximately 20\%, a third independent source will be sought; if divergence 
+    persists across three sources, the full range will be reported as a 
+    sensitivity band rather than a single point estimate. Any figure that cannot 
+    be corroborated will be flagged as provisional rather than presented as 
+    settled.
+
+    \item \textbf{Currency and price standardisation.} Each literature-derived 
+    figure will be converted to USD and inflation-adjusted to this analysis's 
+    working base year using an appropriate producer price index 
+    \cite{iea-electricity-prices}. This ensures every reported figure is directly 
+    comparable regardless of the currency, base year, or plant configuration in 
+    which it was originally published. Green methanol is frequently priced in 
+    Euros, while light brown methanol is often priced in Yuan; both are converted 
+    to USD before inclusion.
+\end{enumerate}
+
+\subsubsection*{Emissions Pathway Benchmarking}
+
+The emissions benchmarking strand reconciles the published figures for each 
+pathway into a single, internally consistent comparison table against the HFO 
+baseline.
+
+For aluminium, the three pathways are treated as a function of electricity source 
+and anode chemistry. Brown aluminium --- carbon-anode smelting on coal-fired 
+electricity --- has a process emissions floor of approximately 
+1.5~tCO\textsubscript{2} per tonne of aluminium from anode oxidation alone, a 
+figure corroborated across independent academic and industry sources and 
+consistent with the stoichiometry of anode carbon consumption 
+\cite{dardor-aluminium-decarbonisation}, on top of which sits the 
+electricity-related emissions from coal generation. Green-CA aluminium removes 
+the electricity-related component by switching to renewable or hydro power 
+\cite{dc-aluminium-basic,dc-aluminium-scaling}, but retains the same 
+anode-oxidation floor, since that floor is independent of electricity source. 
+Green-IA aluminium removes the floor entirely by additionally switching to an 
+inert anode \cite{aluminium-inert-anodes,inert-anode-scaling}; the resulting 
+electricity energy penalty is taken directly from a recent techno-economic 
+assessment that derives the voltage requirement of an inert-anode cell from 
+first-principles electrochemistry and reports electricity consumption rising 
+from approximately 13~MWh per tonne for conventional carbon-anode smelting to 
+approximately 15~MWh per tonne without a wettable cathode, or approximately 
+13.3~MWh per tonne with one \cite{boudreau-aluminium-tea}.
+
+For light brown methanol, the emissions benchmarking draws on the same 
+literature-first basis. Several independent process-modelling and life-cycle 
+studies of the GH-CTM pathway report consistent qualitative findings despite 
+differing in plant configuration and system boundary: direct process 
+CO\textsubscript{2} emissions fall by approximately 85--98\% relative to the 
+conventional coal-to-methanol baseline 
+\cite{fuel-cells-works-inner-mongolia,wang-coal-to-methanol,zhao-coal-to-methanol}. 
+Where the underlying studies report a range rather than a single value, the full 
+range is carried through to the sensitivity analysis rather than collapsed to a 
+central estimate.
+
+\subsubsection*{Cost Model with Carbon-Tax Sensitivity}
+
+Building on the landed-cost structure --- production, forward transport, and, for 
+aluminium only, reverse by-product logistics --- a carbon-tax-adjusted delivered 
+cost is calculated for each pathway under the three scenarios in 
+Table~\ref{tab:carbon-pricing-scenarios}.
+
+Brown and grey pathways for all three fuels draw on licensed commercial pricing 
+sources. Green ammonia, green methanol, and green-IA aluminium present an 
+additional costing challenge, since none of the three currently operates at 
+commercial scale and no licensed market price exists for any of them. Their 
+production cost is instead taken from the published techno-economic literature:
+
+\begin{itemize}
+    \item \textbf{Green ammonia:} levelised-cost-of-ammonia modelling that 
+    identifies electricity price, electrolyser capital cost, and renewable energy 
+    supply mix as the dominant cost drivers for islanded and semi-islanded 
+    production \cite{nayak-luke-green-ammonia,campion-green-ammonia}.
+
+    \item \textbf{Green methanol:} a levelised-cost-of-methanol case study 
+    reporting a production cost of approximately double the prevailing 
+    conventional methanol price \cite{methanol-TEA}.
+
+    \item \textbf{Green-IA aluminium:} the inert-anode cost projections 
+    referenced above \cite{boudreau-aluminium-tea}.
+\end{itemize}
+
+Each of these figures is reported in a different currency and base year, and 
+each reflects a specific case-study location or plant configuration rather than a 
+global average; converting them to a common currency and base year using the 
+harmonisation procedure above constitutes the principal costing task for these 
+three pathways, in place of an original balance-of-plant cost derivation.
+
+\subsubsection*{Carbon-Pricing Scenarios}
+
+Three carbon-pricing scenarios are modelled:
+
+\begin{itemize}
+    \item \textbf{No effective carbon price.} Continued non-adoption of a global 
+    IMO mechanism, consistent with the October 2025 postponement of the IMO 
+    Net-Zero Framework adoption vote \cite{dnv-imo-net-zero-delay}.
+
+    \item \textbf{Current EU ETS trajectory.} Current allowance price 
+    ($\sim$\texteuro75--90/tCO\textsubscript{2}e as of 2026), tested against the 
+    range of published escalation forecasts rather than a single point estimate 
+    \cite{eu-ets-2026}.
+
+    \item \textbf{Adopted IMO Net-Zero Framework.} The Framework's two-tier 
+    remedial unit structure: a Tier~1 price on the shortfall between a ship's 
+    fuel intensity and its ``direct compliance'' target, and a higher Tier~2 
+    price on any shortfall against the looser ``base'' target 
+    \cite{dnv-imo-net-zero-delay}.
+\end{itemize}
+
+The third scenario is a materially different calculation from a flat per-tonne 
+carbon tax, since it charges only the intensity shortfall against a declining 
+regulatory trajectory rather than a ship's total emissions, and this distinction 
+is built into the model directly. This produces a full cost ranking of pathways 
+under each scenario, directly answering the delivered-cost question identified 
+in Section~\ref{sec-supply-chain-questions}. Aluminium's ranking will 
+additionally be reported separately for each of the three pathways --- brown, 
+green-CA, and green-IA --- since their delivered costs are expected to diverge 
+materially once the balance-of-plant costs, the inert-anode energy penalty, and 
+the electricity-source premium are all accounted for.
+
+\subsubsection*{Infrastructure Readiness Assessment}
+
+The infrastructure-readiness strand assesses each fuel against three criteria: 
+whether a published bunkering standard exists, the maturity of safety 
+certification and classification-society guidance, and the extent of the existing 
+bunkering network.
+
+\begin{itemize}
+    \item \textbf{Methanol.} The IGF Code framework is established, and ISO 
+    22120:2026 provides a published bunkering standard \cite{iso-22120-2026}. 
+    Infrastructure costs can be benchmarked against existing industry guidance.
+
+    \item \textbf{Ammonia.} The IGF Code guidance for ammonia is still under 
+    development \cite{imo-ammonia-guidelines}. Costs are drawn from 
+    techno-economic assessments and industry pilot-stage data, accounting for 
+    ammonia's toxicity and corrosivity.
+
+    \item \textbf{Aluminium powder.} No external standard or industry guidance 
+    exists. Infrastructure costs are estimated through a reasonable 
+    first-principles assessment covering dust control, inert-atmosphere handling, 
+    and by-product storage, building on the bunkering procedure for metal fuels 
+    developed in earlier work \cite{iron-powder-container-ships}. A sensitivity 
+    analysis is conducted across the micron-sized particle grades investigated in 
+    this research, since particle size directly determines handling requirements, 
+    explosion risk, and storage configuration.
+\end{itemize}
+
+This assessment applies uniformly across all three aluminium pathways, since 
+bunkering and handling requirements for aluminium powder are determined by 
+particle characteristics and combustibility rather than by electricity source or 
+anode chemistry.
+
+\subsubsection*{Sensitivity Analysis}
+
+The full three-strand model will be re-run against variation in the two 
+parameters most likely to shift over the project timeline: grid electricity 
+carbon intensity at the candidate production sites --- which for aluminium 
+determines both the brown/green-CA split and the input assumptions for green-IA 
+\cite{en-pot-basics,en-pot-scaling,dc-aluminium-basic,dc-aluminium-scaling} --- 
+and the pace of alternative-fuel bunkering network expansion.
+
+A specific green electricity price sensitivity analysis is conducted for the 
+three green pathways --- green ammonia, green methanol, and green-IA aluminium 
+--- re-running each pathway's cost across the range of projected renewable 
+electricity prices for 2030, 2035, and 2040 
+\cite{quebue-hydro-prices,iea-electricity-prices}. This identifies the 
+electricity price threshold below which each green pathway becomes 
+cost-competitive against the HFO baseline under each carbon-pricing scenario.
+
+This matches the ``cost modelling'' and ``sensitivity analysis and write-up'' 
+activities scheduled for Phase~1B in the project timeline 
+(Section~\ref{sec:project-timeline}).
+
+\subsubsection*{Output}
+
+The output of this component is a pathway-resolved comparison spanning emissions 
+intensity, carbon-tax-scenario-adjusted delivered cost, and infrastructure 
+readiness for the principal production pathways of all three fuel types plus the 
+HFO baseline. Rather than a single verdict on aluminium versus ammonia versus 
+methanol, this produces a conditional recommendation: the specific combination 
+of production pathway --- including which of brown, green-CA, or green-IA 
+aluminium --- carbon-pricing regime, and infrastructure timeline under which 
+aluminium-water propulsion represents the strongest economic and practical case, 
+and the combination under which a specific ammonia or methanol supply contract 
+would instead be preferable.
+
 \break
 
 \subsection{Core Reactor Characterisation}
