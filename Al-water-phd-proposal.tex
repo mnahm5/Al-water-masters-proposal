@@ -64,6 +64,15 @@
 \usepackage{longtable}
 \usepackage{ragged2e}
 
+% ---- Global typographic tolerance (fixes overfull hboxes) ----
+\setlength{\emergencystretch}{3em}
+\tolerance=1000
+\hbadness=10000
+
+% Microtype with expansion enabled (or omit this line and delete the
+% expansion=false option from the earlier \usepackage{microtype})
+\usepackage{microtype}
+
 \title{Aluminium-Water Combustion for Zero Carbon Marine Shipping: PhD Proposal}
 
 \author{Md Nadim Ahmed}
@@ -83,15 +92,17 @@
 
 \section*{Abstract}
 
-Maritime shipping accounts for 2--3\% of global greenhouse gas emissions, with deep-sea routes responsible for approximately 70\% of the sector's fuel consumption. Existing electrofuel alternatives exhibit significantly lower volumetric energy densities than heavy fuel oil, and lithium-ion batteries remain impractical at ocean scale. This study investigates aluminium-water combustion via a high-temperature metal-water reactor (HT-MWR) as a zero-carbon marine propulsion technology, addressing four gaps in the published literature.
+Maritime shipping contributes 2--3\% of global GHG emissions, with deep-sea routes consuming approximately 70\% of sector fuel. Electrofuel alternatives have lower volumetric energy density than heavy fuel oil, and Li-ion batteries are impractical at ocean scale. This study investigates aluminium-water combustion via a high-temperature metal-water reactor (HT-MWR) as a zero-carbon marine propulsion technology, addressing five literature gaps.
 
-First, no validated engineering requirements dataset exists for aluminium-water propulsion in any marine vessel class. This study produces the first such matrix through semi-structured interviews with superyacht builders, naval architects, classification societies, and vessel owners. The superyacht segment is identified as the optimal commercialisation beachhead: unlike container shipping---requiring a decade-long IMO approval process---superyacht classification operates under a flexible, risk-based framework. This regulatory contrast, combined with Ultra-High-Net-Worth client tolerance for a green premium, mirrors Tesla's pathway and provides a credible route to deep-sea deployment.
+\textbf{First}, no validated engineering requirements dataset exists for aluminium-water propulsion in any marine vessel class. Through semi-structured interviews with superyacht builders, naval architects, classification societies, and vessel owners, this study produces the first such matrix. The superyacht segment is identified as the optimal commercialisation beachhead: unlike container shipping's decade-long IMO approval process, superyacht classification uses a flexible, risk-based framework, and UHNW client tolerance for a green premium mirrors Tesla's pathway to deep-sea deployment.
 
-Second, and centrally, prior HT-MWR research has addressed exclusively stationary baseload applications. This study provides the first characterisation of HT-MWR dynamic behaviour under marine propulsion conditions, comprising both open-loop plant characterisation and closed-loop control system validation. A microcontroller-based controller quantifies dynamic performance across discrete power modes, measuring response lag, rise time, settling time, overshoot, and stability boundaries. The open-loop data establishes the raw plant dynamics---gain, time constant, and dead-time---against which closed-loop improvements are evaluated. The experimental data enables mode granularity optimisation and bounds battery energy and power requirements for future hybrid-electric integration.
+\textbf{Second}, prior fuel comparisons rely on global-average cost and emissions figures that conceal pathway variation. This study produces a pathway-resolved comparison of ammonia, methanol, and aluminium on emissions intensity, carbon-tax-adjusted delivered cost, and infrastructure readiness, benchmarked against heavy fuel oil under three carbon-pricing scenarios and two green-electricity price trajectories.
 
-Third, a four-category water treatment design (distilled water through synthetic and natural seawater) is employed to investigate the influence of seawater chemistry on reactor performance, though this is a secondary Tier 2 investigation pursued only if schedule permits. Distilled water experiments remain the core deliverable.
+\textbf{Third}, prior HT-MWR research has addressed only stationary baseload applications. This study provides the first steady-state characterisation under marine propulsion conditions, covering reaction parameter optimisation, particle size screening, and by-product composition across marine-relevant temperature, pressure, and fuel-to-water ranges. Tier~2 investigations extend this to synthetic and natural seawater.
 
-Fourth, a systematic trade-off analysis compares candidate prime movers and thermal integration pathways, using the quantified transient data to specify the minimum viable battery buffer. Together, these contributions establish the technical and commercial foundation required for the first prototype aluminium-water marine propulsion system.
+\textbf{Fourth}, no prior work has characterised HT-MWR dynamic behaviour. A microcontroller-based closed-loop controller is developed and validated on a fixed-batch reactor, quantifying response lag, rise time, settling time, overshoot, and stability across discrete power modes. Open-loop data establish the raw plant dynamics---gain, time constant, and dead-time---enabling mode granularity optimisation and bounding battery energy and power requirements for future hybrid-electric integration.
+
+\textbf{Fifth}, a systematic trade-off analysis compares candidate prime movers and thermal integration pathways, using the transient data to specify the minimum viable battery buffer. Together, these contributions establish the technical and commercial foundation for the first prototype aluminium-water marine propulsion system.
 
 \break
 
