@@ -114,6 +114,7 @@ Maritime shipping plays a crucial role in global trade, facilitating around 80\%
 In response, the International Maritime Organization (IMO) has set ambitious targets to curb emissions from international shipping. By 2030, the IMO aims to reduce annual greenhouse gas emissions by 20-30\% compared to 2008 levels, with a more aggressive target of 70-80\% reduction by 2040 \cite{imo-target}.
 
 \subsection{Preliminary Analysis of Electro-Fuels Options}
+\label{subsec:preliminary-analysis}
 
 \subsubsection*{Overview}
 
@@ -435,6 +436,7 @@ The experimental programme (Section~\ref{subsec:core-reactor-methodology}) prior
 \break
 
 \subsection{Economics of Aluminium Fuel}
+\label{subsec:economics-of-aluminium}
 
 \subsubsection{The Long Term Trends}
 
@@ -491,6 +493,8 @@ Crucially, the EnPot process is no longer a theoretical concept. It is being dep
 Perhaps the most transformative development is the ongoing commercialisation of inert anodes (ceramic or metal‑based) to replace the century‑old consumable carbon anodes. Inert anodes do not oxidise during electrolysis, eliminating the direct CO\(_2\) emissions from the anode reaction. When paired with renewable electricity, the entire Hall-Héroult process becomes \textbf{completely zero‑carbon} \cite{aluminium-inert-anodes}. Several consortia (including Rusal, Alcoa, and Rio Tinto’s ELYSIS partnership) are now scaling this technology \cite{inert-anode-scaling}.
 
 Taken together, these three innovations – DC photovoltaic smelting, EnPot’s load‑flexible potlines, and inert anodes – are rapidly removing the historical carbon penalty from aluminium production. For the aluminium‑water propulsion system proposed in this work, an emerging green aluminium supply chain means that the fuel can be truly low‑carbon from well‑to‑wake, not only during onboard combustion. This strengthens both the environmental and economic case for aluminium as a marine fuel, particularly as renewable electricity becomes cheaper and more widespread.
+
+Section~\ref{sec-supply-chain-questions} extends this single-pathway comparison into a pathway-resolved supply chain analysis that treats each production route separately, combining emissions intensity, carbon-tax-adjusted delivered cost, and infrastructure readiness.
 
 \break
 
@@ -839,7 +843,8 @@ The engine and battery analysis addresses the following primary research questio
 
     \item \textbf{Battery buffer specification.} Given the quantified reactor start-up and transient lag times from Section~\ref{sec:control-questions}, what are the minimum energy capacity (kWh) and power rating (kW) that a buffer battery must provide to ensure uninterrupted propulsion during mode transitions? Which commercially available marine battery chemistries and form factors are best suited to this duty cycle, and what is the simplest hybrid architecture (e.g., series, parallel, or combined) that meets the buffering requirement with the lowest system risk?
 
-    \item \textbf{Efficiency target relaxation.} The preliminary analysis in Section~1.1 assumed a 40\% engine efficiency for metal fuels, a value derived from theoretical projections rather than real-world demonstration. For a Generation‑1 prototype, what is a realistic, defensible efficiency target that balances technical feasibility against commercial viability? More specifically, can the system achieve acceptable performance and economic competitiveness if the prime mover efficiency is relaxed to the 20--30\% range, which is more readily attainable with mature, off-the-shelf components?
+    \item \textbf{Efficiency target relaxation.} The preliminary analysis in Section~\ref{subsec:preliminary-analysis}
+assumed a 40\% engine efficiency for metal fuels, a value derived from theoretical projections rather than real-world demonstration. For a Generation‑1 prototype, what is a realistic, defensible efficiency target that balances technical feasibility against commercial viability? More specifically, can the system achieve acceptable performance and economic competitiveness if the prime mover efficiency is relaxed to the 20--30\% range, which is more readily attainable with mature, off-the-shelf components?
 \end{enumerate}
 
 The outputs of this analysis will be a set of \textbf{engineering specifications}---precise interface requirements between the reactor, the prime mover, and the battery buffer---and a \textbf{clear architectural recommendation} for the minimum viable Generation‑1 propulsion system. By defining these interfaces in terms of commercially available, certifiable components, the analysis reduces the overall technology risk and provides a concrete, actionable roadmap for the next phase of prototype development.
@@ -1877,7 +1882,7 @@ The final output will be a specification sheet listing the required battery capa
 
 \subsubsection*{Step 5 — Efficiency Target Relaxation}
 
-The preliminary energy density analysis in Section~1.1 assumed a 40\% engine efficiency for metal fuels, derived from theoretical projections rather than real-world demonstration. For a Generation-1 prototype, this assumption is unrealistic. The methodology for revisiting the efficiency target is:
+The preliminary energy density analysis in Section~\ref{subsec:preliminary-analysis} assumed a 40\% engine efficiency for metal fuels, derived from theoretical projections rather than real-world demonstration. For a Generation-1 prototype, this assumption is unrealistic. The methodology for revisiting the efficiency target is:
 
 \begin{itemize}
     \item \textbf{Literature review:} Gather published data on the actual efficiencies of small-scale (less than 1 MW) steam turbines, ORC engines, and diesel gensets. These will typically be in the range of 20–30\% for steam turbines and ORC.
@@ -1915,6 +1920,7 @@ The outputs are \textbf{requirements and recommendations}, not designs. They are
 \break
 
 \section{Proposed Project Time-line}
+\label{sec:project-timeline}
 
 This research is structured as a single 48-month programme with five
 Go/No-Go gates, the third of which is a funding decision for reactor
@@ -1970,7 +1976,7 @@ Phase 0: Foundation & M1--4 & M1--4 & Literature review, interview guide develop
 \hline
 Phase 1A: Industry Research (RQ1) & M1--7 & M1--7 & Pilot interviews, stakeholder interviews, quantitative analysis, requirements matrix \\
 \hline
-Phase 1B: Supply Chain Analysis (RQ2) & M8--18 & M8--18 & Aluminium fuel cost vs.\ ammonia and methanol, extending Section~1.5 \\
+Phase 1B: Supply Chain Analysis (RQ2) & M8--18 & M8--18 & Aluminium fuel cost vs.\ ammonia and methanol, extending Section~\ref{subsec:economics-of-aluminium} \\
 \hline
 Phase 2: Reactor Commissioning & M19--24 & --- & Procurement (begins on funding confirmation), build, calibration \\
 \hline
@@ -2231,6 +2237,7 @@ Submission & M24 (Gate 3 not met) / M48 (Gate 3 met) & Thesis submitted & --- \\
 
 %===============================================================================
 \subsection{Safety Protocols}
+\label{app:safety-protocols}
 %===============================================================================
 
 The experimental programme involves four concurrent categories of hazard. Each must
@@ -2360,6 +2367,7 @@ will be maintained throughout all experimental sessions.
 
 %-------------------------------------------------------------------------------
 \subsubsection{Reactor Fouling Control and Cleaning Protocol}
+\label{app:fouling-control}
 %-------------------------------------------------------------------------------
 
 \paragraph{Background and justification.}
@@ -2592,7 +2600,7 @@ drift must be detected and bounded \textit{during} a run, not only between runs:
 \subsection{Experimental Plan Verification and University Approval}
 %===============================================================================
 
-The experimental programme described in Section~3.2 represents the high-level
+The experimental programme described in Section~\ref{subsec:core-reactor-methodology} represents the high-level
 research plan appropriate for a Master's proposal. Before any laboratory work begins,
 this plan must undergo two independent layers of review.
 
@@ -2610,8 +2618,8 @@ this plan must undergo two independent layers of review.
         \item Instrumentation layout and calibration methodology.
         \item Full experimental sequences for all Tier~1, 2, and~3 experiment
               streams.
-        \item The complete safety protocol from Section~A.1, including the fouling
-              control procedures in Section~A.1.4.
+        \item The complete safety protocol from Section~\ref{app:safety-protocols}, including the fouling
+              control procedures in Section~\ref{app:fouling-control}.
     \end{itemize}
     \item Review will be conducted by a panel of at least two independent academics
           from the university's mechanical and chemical engineering departments with
@@ -2638,7 +2646,7 @@ This submission will include:
 
 \begin{itemize}[itemsep=3pt]
     \item Full safety protocol (this appendix, as revised).
-    \item Risk register covering all four hazard categories in Section~A.1.
+    \item Risk register covering all four hazard categories in Section~\ref{app:safety-protocols}.
     \item Emergency response and shutdown procedures.
     \item Chemical waste disposal plan for spent NaOH/\ce{NaAlO2} flush solution
           and aluminium oxide solid waste.
@@ -2646,7 +2654,7 @@ This submission will include:
           valve sizing, and instrumentation layout.
     \item Evidence of compliance with applicable pressure vessel standards.
     \item Reference to the safety framework developed in consultation with RINA,
-          Lloyd's Register, and DNV (Section~2.2).
+      Lloyd's Register, and DNV (Section~\ref{sec:core-reactor-research-questions}).
 \end{itemize}
 
 \medskip
